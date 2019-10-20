@@ -19,7 +19,7 @@
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
 ?>
   </div>
-
+<br>
 <p>bleble</p>
 </body>
 
