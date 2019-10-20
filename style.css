@@ -60,6 +60,7 @@ body{
 .center{
   width: 90%;
   margin: 0 auto;
+  display: block;
 }
 
 .tile{
