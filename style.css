@@ -61,30 +61,29 @@ body{
   width: 90%;
   margin: 0 auto;
   display: block;
-  overflow: hidden;
 }
 
 .tile{
   border: solid black 2px;
-    background-color: white;
-    text-decoration: none;
-    color: black;
-    padding: 20px;
-    border-radius: 5px;
-    display: block;
-    width: 40%;
-    font-size: xx-large;
-    float: left;
-    margin: 7px;
-    margin-right: 5%;
-    
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  display: block;
+  width: 40%;
+  font-size: xx-large;
+  float: left;
 }
 
 @media  (max-width: 1134px){
   .tile{
-    width: inherit;
+    width: 100%;
+    box-sizing: border-box;
     float: none;
     font-size: larger;
+    margin: 0;
+    margin-top: 5px;
   }
 }
 
