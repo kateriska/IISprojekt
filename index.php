@@ -5,7 +5,7 @@
     require_once('fn.elements.php');  
   ?>
   <style>
-    body{color: blue; background-color: yellow}
+    body{color: blue}
   </style>
 </head>
 
