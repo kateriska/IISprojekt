@@ -122,4 +122,5 @@ input, button{
   margin-left: 1%;
   padding: 8px;
   max-width: 125px;
+  min-width: 43px;
 }
