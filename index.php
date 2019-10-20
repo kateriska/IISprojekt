@@ -1,8 +1,16 @@
 <html>
 <head>
-</head.
+</head>
+<?php 
+  require_once('fn.elements.php');  
+?>
+
+
 <body>
-HELLO
+<?php 
+  insert_tile('ahoj');
+?>
+
 </body>
 
 </html>
