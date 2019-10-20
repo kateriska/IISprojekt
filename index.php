@@ -15,18 +15,14 @@
 
   <container class="center">
 <?php 
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
-  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  show_pending_student_registrations();       //G
+  show_my_courses_student();                  //S
+  show_my_courses_lecturer();                 //L
+  show_my_courses_garant();                   //G
+  tile_manage_rooms();                        //V
+  tile_manage_users();                        //A
+  tile_show_all_courses();                    //N
+  tile_edit_profile();                        //S
 ?>
   </container>
 </body>
