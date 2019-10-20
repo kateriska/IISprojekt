@@ -1,13 +1,11 @@
 <html>
 <head>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=latin-ext" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <?php 
-    require_once('fn.elements.php');  
-  ?>
+  <link rel="stylesheet" href="style.css">
+  <!--
   <style>
     body{color: blue; background-color: yellow}
-  </style>
+  </style>-->
 </head>
 
 
