@@ -13,7 +13,7 @@
   insert_login_bar();
 ?>
 
-  <div class="center">
+  <container class="center">
 <?php 
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
@@ -28,8 +28,7 @@
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
 ?>
-  </div>
-<br>
+  </container>
 </body>
 
 </html>

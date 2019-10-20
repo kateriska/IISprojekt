@@ -99,7 +99,7 @@ input, button{
   width: 100%;
   margin-top: 1%;
   margin-bottom: 1%;
-  float: left;
+  display: inline-block;
 }
 
 #login{
@@ -121,5 +121,5 @@ input, button{
   margin-left: 1%;
   padding: 8px;
   max-width: 125px;
-  min-width: 43px;
+  min-width: 53px;
 }
