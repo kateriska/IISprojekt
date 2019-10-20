@@ -69,12 +69,13 @@ body{
     font-size: xx-large;
     float: left;
     margin: 7px;
+    margin-right: 5%;
     
 }
 
 @media  (max-width: 600px){
   .tile{
-    width: 100%;
+    width: 90%;
   }
 }
 
