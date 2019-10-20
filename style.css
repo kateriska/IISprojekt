@@ -65,7 +65,7 @@ body{
     padding: 20px;
     border-radius: 5px;
     display: block;
-    max-width: 40%;
+    width: 40%;
     font-size: xx-large;
     float: left;
     margin: 7px;
