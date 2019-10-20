@@ -5,6 +5,9 @@
   <?php 
     require_once('fn.elements.php');  
   ?>
+  <style>
+    body{color: blue;}
+  </style>
 </head>
 
 
@@ -12,7 +15,7 @@
 <?php 
   insert_tile('ahoj');
 ?>
-
+bleble
 </body>
 
 </html>
