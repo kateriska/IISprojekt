@@ -104,10 +104,15 @@ input, button{
 #login input{
   width: 38%;
   font-size: medium;
-  margin: 1%;
+  margin-left: 1%;
+  padding: 8px;
+  max-width: 250px;
 }
 
 #login button{
   width: 18%;
   font-size: medium;
+  margin-left: 1%;
+  padding: 8px;
+  max-width: 125px;
 }
