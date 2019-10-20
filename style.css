@@ -83,6 +83,7 @@ body{
 @media  (max-width: 1134px){
   .tile{
     width: inherit;
+    float: none;
   }
 }
 
