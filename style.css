@@ -84,6 +84,7 @@ body{
   .tile{
     width: inherit;
     float: none;
+    font-size: larger;
   }
 }
 
