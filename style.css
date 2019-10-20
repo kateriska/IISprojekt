@@ -71,19 +71,20 @@ body{
   padding: 20px;
   border-radius: 5px;
   display: block;
-  width: 40%;
+  width: 48%;
+  margin: 1%;
   font-size: xx-large;
   float: left;
+  box-sizing: border-box;
 }
 
 @media  (max-width: 1134px){
   .tile{
     width: 100%;
-    box-sizing: border-box;
     float: none;
     font-size: larger;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 0.5%;
   }
 }
 
