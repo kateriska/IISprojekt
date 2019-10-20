@@ -73,18 +73,20 @@ body{
   display: block;
   width: 48%;
   margin: 1%;
-  font-size: xx-large;
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+  font-size: x-large;
   float: left;
   box-sizing: border-box;
 }
 
-@media  (max-width: 1134px){
+@media  (max-width: 785px){
   .tile{
     width: 100%;
     float: none;
     font-size: larger;
     margin: 0;
-    margin-top: 0.5%;
+    margin-top: 1%;
   }
 }
 
