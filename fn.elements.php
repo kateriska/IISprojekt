@@ -8,7 +8,7 @@ function insert_login_bar(){
         <form id='login' action='act.login.php' method='post'>
           <input type='text' name='mail' placeholder='Email'>
           <input type='password' name='pwd' placeholder='Heslo'>
-          <button type='submit' name='submit_login'>PÅ™ihlÃ¡sit</button>
+          <button type='submit' name='submit_login'>Pøihlásit</button>
         </form>
         </div>");
 }
