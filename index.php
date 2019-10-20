@@ -5,7 +5,7 @@
     require_once('fn.elements.php');  
   ?>
   <style>
-    body{color: blue}
+    p{color: blue}
   </style>
 </head>
 
@@ -14,7 +14,8 @@
 <?php 
   insert_tile('ahoj');
 ?>
-bleble
+
+<p>bleble</p>
 </body>
 
 </html>
