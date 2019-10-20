@@ -4,9 +4,7 @@
   <?php 
     require_once('fn.elements.php');  
   ?>
-  <style>
-    p{color: blue}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
