@@ -12,7 +12,7 @@
 
 <body>
 <?php 
-  insert_tile('ahoj', 'ahoj.php');
+  insert_tile('Zobrazit všechny kurzy', 'courses.php');
 ?>
 
 <p>bleble</p>
