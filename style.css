@@ -2,6 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=latin-ext&text=%E2%86%90|%E2%86%92');
 
 body{
-  font-family: 'Montserrat', sans-serif;
   background-color: red;
+  font-family: 'Montserrat', sans-serif;
 }
