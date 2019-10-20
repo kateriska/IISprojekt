@@ -11,12 +11,14 @@
 
 
 <body>
+  <div class="center">
 <?php 
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
 ?>
+  </div>
 
 <p>bleble</p>
 </body>

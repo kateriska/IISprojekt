@@ -59,12 +59,18 @@ body{
 
 .tile{
   border: solid black 2px;
-  background-color: white;
-  text-decoration: none;
-  color: black;
-  padding: 20px;
-  border-radius: 5px;
-  display: block;
-  max-width: 40%;
-  font-size: xx-large;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+    display: block;
+    max-width: 40%;
+    font-size: xx-large;
+    float: left;
+    margin: 7px;
+}
+
+.center{
+  margin: 0 auto;
 }
