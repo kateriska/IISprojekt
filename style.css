@@ -57,6 +57,11 @@ body{
   font-family: 'Montserrat', sans-serif;
 }
 
+.center{
+  width: 90%;
+  margin: 0 auto;
+}
+
 .tile{
   border: solid black 2px;
     background-color: white;
@@ -79,7 +84,3 @@ body{
   }
 }
 
-.center{
-  width: 90%;
-  margin: 0 auto;
-}
