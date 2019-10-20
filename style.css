@@ -95,6 +95,13 @@ input, button{
   }
 }
 
-#login input, #login button{
+
+#login input{
+  width: 38%;
+  font-size: medium;
+}
+
+#login button{
+  width: 18%;
   font-size: medium;
 }
