@@ -12,7 +12,7 @@
 
 <body>
 <?php 
-  insert_tile('ahoj');
+  insert_tile('ahoj', 'ahoj.php');
 ?>
 
 <p>bleble</p>
