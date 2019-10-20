@@ -80,7 +80,7 @@ body{
 
 @media  (max-width: 1134px){
   .tile{
-    width: 90%;
+    width: inherit;
   }
 }
 
