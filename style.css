@@ -5,3 +5,10 @@ body{
   background-color: red;
   font-family: 'Montserrat', sans-serif;
 }
+
+.tile{
+  border: solid black 3px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+}

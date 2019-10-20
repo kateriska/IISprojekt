@@ -1,6 +1,6 @@
 <?php
-function insert_tile($name){
-  echo("<div>&gt;&#8594;&rarr;$name</div>");
+function insert_tile($name, $url){
+  echo("<a href='./$url' class='tile'>&rarr; $name</div>");
 }
 
 
