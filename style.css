@@ -95,6 +95,6 @@ input, button{
   }
 }
 
-.login input, .login button{
+#login input, #login button{
   font-size: medium;
 }
