@@ -96,9 +96,14 @@ input, button{
 }
 
 
+#login{
+  width: 100%;
+  margin-top: 1%;
+}
 #login input{
   width: 38%;
   font-size: medium;
+  margin: 1%;
 }
 
 #login button{

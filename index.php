@@ -19,6 +19,14 @@
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
+  insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
 ?>
   </div>
 <br>
