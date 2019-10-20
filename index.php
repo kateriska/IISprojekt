@@ -9,6 +9,10 @@
 
 
 <body>
+<?php
+  insert_login_bar();
+?>
+
   <div class="center">
 <?php 
   insert_tile('Zobrazit v¹echny kurzy', 'courses.php');
