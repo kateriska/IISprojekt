@@ -30,7 +30,6 @@ function insert_login_bar(){
 }
 
 function check_rights($role){
-  session_start();
   if(isset($_SESSION['user_id']) && isset($_SESSION['role'])){
     if($_SESSION['role'] >= $role){
       return true;
@@ -41,24 +40,24 @@ function check_rights($role){
 
 
 function tile_show_all_courses(){
-  insert_tile("Zobrazit v¹echny kurzy", "/courses.php");
+  insert_tile("Zobrazit v¹echny kurzy", "./courses.php");
 }
 
 function tile_manage_rooms(){
   if( check_rights(FACILITY_MANAGER) ){
-    insert_tile("Správa místností", "/rooms.php");
+    insert_tile("Správa místností", "./rooms.php");
   }
 }
 
 function tile_manage_users(){
   if( check_rights(ADMIN) ){
-    insert_tile("Správa u¾ivatelù", "/users.php");
+    insert_tile("Správa u¾ivatelù", "./users.php");
   }
 }
 
 function tile_edit_profile(){
   if( check_rights(STUDENT) ){
-    insert_tile("Upravit profil", "/profile.php");
+    insert_tile("Upravit profil", "./profile.php");
   }
 }
 
