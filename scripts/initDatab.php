@@ -11,14 +11,14 @@ function controlProcedures($db, $command, $link, $info){
   }
 }
 
-$drop_uzivatele = "DROP TABLE IF EXISTS uzivatele;";
-controlProcedures($db, $drop_uzivatele, $link, "drop uzivatele");
-$drop_kurzy = "DROP TABLE IF EXISTS kurzy;";
-controlProcedures($db, $drop_kurzy, $link, "drop kurzy");
 $drop_mistnosti = "DROP TABLE IF EXISTS mistnosti;";
 controlProcedures($db, $drop_mistnosti, $link, "drop mistnosti");
 $drop_terminy = "DROP TABLE IF EXISTS terminy;";
 controlProcedures($db, $drop_terminy, $link, "drop terminy");
+$drop_kurzy = "DROP TABLE IF EXISTS kurzy;";
+controlProcedures($db, $drop_kurzy, $link, "drop kurzy");
+$drop_uzivatele = "DROP TABLE IF EXISTS uzivatele;";
+controlProcedures($db, $drop_uzivatele, $link, "drop uzivatele");
 
 
 $uzivatele_tb = "CREATE TABLE uzivatele (
