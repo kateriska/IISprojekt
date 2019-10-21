@@ -40,7 +40,12 @@ popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
 typ varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 cena int NOT NULL,
 garant_ID int NOT NULL,
-PRIMARY KEY (Kurzy_ID)
+PRIMARY KEY (Kurzy_ID),
+CONSTRAINT `kurz_ibfk_1`
+  FOREIGN KEY (`garant_ID`)
+  REFERENCES `uzivatel` (`Uzivatel_ID`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 
 controlProcedures($db, $kurzy_tb, $link, "create kurzy");
@@ -82,10 +87,6 @@ CONSTRAINT `termin_ibfk_2`
 controlProcedures($db, $terminy_tb, $link, "create terminy");
 
 /* do tabulky TERMINY cizi klice:
-KEY `lektor_ID` (`lektor_ID`),
-KEY `mistnost_ID` (`mistnost_ID`),
-CONSTRAINT `termin_ibfk_1` FOREIGN KEY (`Kurzy_ID`) REFERENCES `kurzy` (`Kurzy_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-CONSTRAINT `termin_ibfk_2` FOREIGN KEY (`lektor_ID`) REFERENCES `uzivatele` (`Uzivatele_ID`) ON DELETE CASCADE ON UPDATE CASCADE*/
 
 /* do tabulky KURZ cizi klic:
 KEY `garant_ID` (`garant_ID`),
