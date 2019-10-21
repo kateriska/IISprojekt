@@ -34,7 +34,7 @@
   $drop_term = "DROP TABLE IF EXISTS `termin`;";
   controlProcedures($db, $drop_term, $link);
 
-  $fk_check_end = "SET foreign_key_checks = 1;";
+  $fk_check_end = "SET FOREIGN_KEY_CHECKS = 1;";
   $user = "CREATE TABLE `uzivatel` (
   `Uzivatel_ID` int NOT NULL AUTO_INCREMENT,
   `jmeno` varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -45,7 +45,7 @@
   PRIMARY KEY (`Uzivatel_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;";
   controlProcedures($db, $user, $link);
-  
+
   $course = "CREATE TABLE `kurz` (
   `Kurz_ID` varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `nazev` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
