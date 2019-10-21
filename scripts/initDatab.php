@@ -43,7 +43,7 @@ garant_ID int NOT NULL,
 PRIMARY KEY (Kurzy_ID),
 CONSTRAINT `kurz_ibfk_1`
   FOREIGN KEY (`garant_ID`)
-  REFERENCES `uzivatele` (`Uzivatel_ID`)
+  REFERENCES `uzivatele` (`Uzivatele_ID`)
   ON DELETE CASCADE
   ON UPDATE CASCADE
 ) ENGINE=InnoDB";
