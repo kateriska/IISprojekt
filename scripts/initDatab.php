@@ -68,7 +68,7 @@ PRIMARY KEY (Kurzy_ID,datum,cas,mistnost_ID),
 KEY `lektor_ID` (`lektor_ID`),
 KEY `mistnost_ID` (`mistnost_ID`),
 CONSTRAINT `termin_ibfk_1` FOREIGN KEY (`Kurzy_ID`) REFERENCES `kurzy` (`Kurzy_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-CONSTRAINT `termin_ibfk_2` FOREIGN KEY (`lektor_ID`) REFERENCES `uzivatele` (`Uzivatele_ID`) ON DELETE CASCADE ON UPDATE CASCADE*/
+CONSTRAINT `termin_ibfk_2` FOREIGN KEY (`lektor_ID`) REFERENCES `uzivatele` (`Uzivatele_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 
 controlProcedures($db, $terminy_tb, $link, "create terminy");
