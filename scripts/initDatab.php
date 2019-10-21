@@ -5,9 +5,9 @@ require_once('inc.db_handle.php');
 
 function controlProcedures($db, $command, $link, $info){
   if(mysqli_query($db, $command)){
-      echo "Command created successfully($info)\n";
+      echo "Command created successfully($info)\n\n";
   }else{
-      echo "ERROR: command '$command' " . mysqli_error($db);
+      echo "ERROR: command '$command' " . mysqli_error($db) . "\n\n";
   }
 }
 
