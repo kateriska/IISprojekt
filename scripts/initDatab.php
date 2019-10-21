@@ -11,10 +11,10 @@ function controlProcedures($db, $command, $link, $info){
   }
 }
 
-$drop_kurzy = "DROP TABLE IF EXISTS kurzy;";
-controlProcedures($db, $drop_kurzy, $link, "drop kurzy");
 $drop_uzivatele = "DROP TABLE IF EXISTS uzivatele;";
 controlProcedures($db, $drop_uzivatele, $link, "drop uzivatele");
+$drop_kurzy = "DROP TABLE IF EXISTS kurzy;";
+controlProcedures($db, $drop_kurzy, $link, "drop kurzy");
 $drop_mistnosti = "DROP TABLE IF EXISTS mistnosti;";
 controlProcedures($db, $drop_mistnosti, $link, "drop mistnosti");
 $drop_terminy = "DROP TABLE IF EXISTS terminy;";
@@ -65,10 +65,18 @@ typ varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 kapacita int NOT NULL,
 doba_trvani int NOT NULL,
 PRIMARY KEY (Kurzy_ID,datum,cas,mistnost_ID),
-KEY `lektor_ID` (`lektor_ID`),
-KEY `mistnost_ID` (`mistnost_ID`),
-CONSTRAINT `termin_ibfk_1` FOREIGN KEY (`Kurzy_ID`) REFERENCES `kurzy` (`Kurzy_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-CONSTRAINT `termin_ibfk_2` FOREIGN KEY (`lektor_ID`) REFERENCES `uzivatele` (`Uzivatele_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+
+CONSTRAINT `termin_ibfk_1` 
+  FOREIGN KEY (`Kurzy_ID`) 
+  REFERENCES `kurzy` (`Kurzy_ID`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+
+CONSTRAINT `termin_ibfk_2`
+  FOREIGN KEY (`lektor_ID`)
+  REFERENCES `uzivatele` (`Uzivatele_ID`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 
 controlProcedures($db, $terminy_tb, $link, "create terminy");
