@@ -13,7 +13,7 @@ if(isset($_POST['submit_login'])){
    else{
     
     $sql = "SELECT * FROM uzivatele WHERE email=?";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($db);
     if(!mysqli_stmt_prepare($stmt, $sql)){
       header("Location: ./index.php?error=sqlError1");
       exit();
