@@ -22,7 +22,7 @@ $uzivatele_tb = "CREATE TABLE uzivatele (
 Uzivatele_ID int NOT NULL AUTO_INCREMENT,
 jmeno varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 prijmeni varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-heslo varchar(30) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+heslo varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 role int NOT NULL,
 email varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 PRIMARY KEY (Uzivatele_ID)
