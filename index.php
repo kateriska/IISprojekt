@@ -10,7 +10,7 @@
 
 <body>
 <?php
-  session_start(); 
+  session_start();  
   insert_login_bar();
 ?>
 

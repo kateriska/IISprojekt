@@ -1,5 +1,5 @@
 <?php
-
+ 
 const STUDENT          = 1;
 const LECTURER         = 2;
 const GARANT           = 3;

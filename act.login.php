@@ -4,7 +4,7 @@ if(isset($_POST['submit_login'])){
   require_once("dbh.php");
 
   $mail = $_POST['mail'];
-  $pwd = $_POST['pwd'];
+  $pwd = $_POST['pwd']; 
 
    if(empty($mail) || empty($pwd)){
      header("Location: ./index.php?error=emptyFields&mail=" . $mail);
