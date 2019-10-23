@@ -21,10 +21,16 @@ if(isset($_POST['submit_login'])){
       header("Location: ./index.php?error=noUser?mail=" . $mail);
       exit();
     }
-
-    header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".print_r($result));
+    
+    $row = mysqli_fetch_assoc($result);
+    $pwd_check = password_verify($pwd, $row['heslo']);
+    if($pwd_check === false){
+      //wrong pwd
+      header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
+      exit();
+    }
+    header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".$row['heslo']);
     exit();
-    $pwd_check = password_verify($pwd, $result[0]);
     /*$sql = "SELECT * FROM uzivatele WHERE email=?";
     if(!($row = mysqli_fetch_assoc($result))){
       //user not found
@@ -33,11 +39,6 @@ if(isset($_POST['submit_login'])){
     }
 
     $pwd_check = password_verify($pwd, $row['user_pwd']);
-    if($pwd_check === false){
-      //wrong pwd
-      header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
-      exit();
-    }
     else if($pwd_check === true){
       session_start();
       $_SESSION['user_id'] = $row['Uzivatele_id'];
