@@ -9,6 +9,8 @@ function controlProcedures($db, $command, $link, $info){
   }
 }
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
+$drop_zapsane_kurzy = "DROP TABLE IF EXISTS zapsane_kurzy;";
+controlProcedures($db, $drop_zapsane_kurzy, $link, "drop zapsane_kurzy");
 $drop_mistnosti = "DROP TABLE IF EXISTS mistnosti;";
 controlProcedures($db, $drop_mistnosti, $link, "drop mistnosti");
 $drop_terminy = "DROP TABLE IF EXISTS terminy;";
@@ -74,6 +76,24 @@ CONSTRAINT terminy_fk_uzivatele
   ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 controlProcedures($db, $terminy_tb, $link, "create terminy");
+
+$zapsane_kurzy_tb = "CREATE TABLE zapsane_kurzy (
+  Zapsane_kurzy_ID int NOT NULL AUTO_INCREMENT,
+  Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  student_ID int NOT NULL,
+  PRIMARY KEY (Zapsane_kurzy_ID,Kurzy_ID, student_ID),
+  CONSTRAINT zapsane_fk_kurzy
+    FOREIGN KEY (Kurzy_ID)
+    REFERENCES kurzy (Kurzy_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT zapsane_fk_uzivatele
+    FOREIGN KEY (student_ID)
+    REFERENCES uzivatele (Uzivatele_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB";
+controlProcedures($db, $zapsane_kurzy_tb, $link, "create zapsane_kurzy");
 /* do tabulky TERMINY cizi klice:
 /* do tabulky KURZ cizi klic:
 KEY `garant_ID` (`garant_ID`),
