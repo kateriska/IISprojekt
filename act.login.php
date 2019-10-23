@@ -13,7 +13,7 @@ if(isset($_POST['submit_login'])){
    else{
 
     $query = "SELECT * FROM uzivatele WHERE email=$mail";
-    $result = mysqli_query($db, $query)
+    $result = mysqli_query($db, $query);
     if($result === FALSE){
       //USER NOT FOUND
       header("Location: ./index.php?error=noUser?mail=" . $mail);
