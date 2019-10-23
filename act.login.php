@@ -6,9 +6,7 @@ if(isset($_POST['submit_login'])){
   $mail = $_POST['mail'];
   $pwd = $_POST['pwd']; 
 
-  echo("$mail $pwd");
-  header("Location: ./index.php?error=" . $mail . "=".$pwd);
-  exit();
+  
 
    if(empty($mail) || empty($pwd)){
      header("Location: ./index.php?error=emptyFields&mail=" . $mail);
@@ -16,7 +14,7 @@ if(isset($_POST['submit_login'])){
    }
    else{
 
-    $query = "SELECT * FROM uzivatele WHERE email=$mail";
+    $query = "SELECT * FROM uzivatele WHERE email='$mail'";
     $result = mysqli_query($db, $query);
     if($result === FALSE){
       //USER NOT FOUND
@@ -24,7 +22,8 @@ if(isset($_POST['submit_login'])){
       exit();
     }
 
-    printf("RECEIVED %s\n", $result);
+    header("Location: ./index.php?succ=" . $mail . "=".$pwd);
+    exit();
     //$pwd_check = password_verify($pwd, $result[0])
     /*$sql = "SELECT * FROM uzivatele WHERE email=?";
     if(!($row = mysqli_fetch_assoc($result))){
