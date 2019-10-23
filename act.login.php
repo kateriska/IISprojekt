@@ -11,17 +11,18 @@ if(isset($_POST['submit_login'])){
      exit();
    }
    else{
-    
-    $sql = "SELECT * FROM uzivatele WHERE email=?";
-    $stmt = mysqli_stmt_init($db);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-      header("Location: ./index.php?error=sqlError1");
+
+    $query = "SELECT * FROM uzivatele WHERE email=$mail";
+    $result = mysqli_query($db, $query)
+    if(!$result){
+      //USER NOT FOUND
+      header("Location: ./index.php?error=noUser?mail=" . $mail);
       exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $mail);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    printf("RECEIVED %s\n", $result);
+    //$pwd_check = password_verify($pwd, $result[0])
+    /*$sql = "SELECT * FROM uzivatele WHERE email=?";
     if(!($row = mysqli_fetch_assoc($result))){
       //user not found
       header("Location: ./index.php?error=noUser?mail=" . $mail);
@@ -46,7 +47,7 @@ if(isset($_POST['submit_login'])){
       //some other problem
       header("Location: ./index.php?error=boolError?mail=" . $mail);
       exit();
-    }
+    }*/
 
     // 
 
