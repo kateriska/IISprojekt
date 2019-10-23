@@ -22,7 +22,7 @@ if(isset($_POST['submit_login'])){
       exit();
     }
 
-    header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".$result);
+    header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".print_r($result));
     exit();
     $pwd_check = password_verify($pwd, $result[0]);
     /*$sql = "SELECT * FROM uzivatele WHERE email=?";
