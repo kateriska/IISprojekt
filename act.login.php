@@ -24,7 +24,7 @@ if(isset($_POST['submit_login'])){
 
     header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".$result);
     exit();
-    $pwd_check = password_verify($pwd, $result[0])
+    $pwd_check = password_verify($pwd, $result[0]);
     /*$sql = "SELECT * FROM uzivatele WHERE email=?";
     if(!($row = mysqli_fetch_assoc($result))){
       //user not found
