@@ -8,6 +8,7 @@ if(isset($_POST['submit_login'])){
 
   echo("$mail $pwd");
   header("Location: ./index.php?error=" . $mail . "=".$pwd);
+  exit();
 
    if(empty($mail) || empty($pwd)){
      header("Location: ./index.php?error=emptyFields&mail=" . $mail);
