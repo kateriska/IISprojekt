@@ -102,7 +102,7 @@ function course_get_info(){
   }
   require_once("dbh.php");
   $id = $_GET['id'];
-  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele WHERE Kurzy_ID='$id'";
+  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
