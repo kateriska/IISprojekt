@@ -1,6 +1,6 @@
 <?php
 if(!isset($_POST['user_create_submit'])){
-  header("Location: ./user_create.php");
+  header("Location: ./user_create.php?inv=alid");
   exit();
 }
 
