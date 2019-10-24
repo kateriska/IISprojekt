@@ -74,7 +74,7 @@ function table_all_courses(){
   $r_table = "<table id='courses'>";
   while($row = mysqli_fetch_assoc($result)){
     $course_id = $row['Kurzy_ID'];
-    $r_table .= "<tr><td><b>$course_id</b></td><td><a href='./course?id=$row['Kurzy_ID']'>".$row['nazev']."</a></td><td>".$row['typ']."</td><td>".$row['cena']."</td></tr>"; 
+    $r_table .= "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>".$row['nazev']."</a></td><td>".$row['typ']."</td><td>".$row['cena']."</td></tr>"; 
   }
   $r_table .= "</table>";
   echo($r_table);
