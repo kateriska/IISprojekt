@@ -10,6 +10,10 @@ function insert_tile($name, $url){
   echo("<a href='./$url' class='tile'>&rarr; $name</a>");
 }
 
+function insert_reverse_tile($name, $url){
+  echo("<a href='./$url' class='tile'>&larr; $name</a>");
+}
+
 function insert_create_tile($name, $url){
   echo("<a href='./$url' class='tile'>+ $name</a>");
 }
@@ -107,7 +111,9 @@ function course_get_info(){
   $row = mysqli_fetch_assoc($result);
   if(!$row){
     $r_str = "Kurz $id nenalezen!";
-    echo($r_str);mysqli_free_result($result);return FALSE;
+    echo($r_str);mysqli_free_result($result);
+    insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
+    return FALSE;
   }
 
   $nazev = $row['nazev'];
