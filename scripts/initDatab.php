@@ -78,10 +78,9 @@ CONSTRAINT terminy_fk_uzivatele
 controlProcedures($db, $terminy_tb, $link, "create terminy");
 
 $zapsane_kurzy_tb = "CREATE TABLE zapsane_kurzy (
-  Zapsane_kurzy_ID int NOT NULL AUTO_INCREMENT,
   Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   student_ID int NOT NULL,
-  PRIMARY KEY (Zapsane_kurzy_ID,Kurzy_ID, student_ID),
+  PRIMARY KEY (Kurzy_ID, student_ID),
   CONSTRAINT zapsane_fk_kurzy
     FOREIGN KEY (Kurzy_ID)
     REFERENCES kurzy (Kurzy_ID)

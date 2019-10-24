@@ -52,12 +52,12 @@ $terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lekto
 ('VID', '2019-10-28', '11:00:00.000000', 'H009', 8, 'Prednaska k problematice a demonstrace modeloveho prikladu a programu. Odkazy ke stazeni probirane latky budou doplneny.', 'prednaska', 90, 60);";
 controlProcedures($db, $terminy_insert, $link, "insert into terminy");
 
-$zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Zapsane_kurzy_ID, Kurzy_ID, student_ID) VALUES
-(1, 'VID',5),
-(2, 'VID',7),
-(2, 'IMD',5),
-(2, 'CADZ',6),
-(2, 'VID',6);";
+$zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Kurzy_ID, student_ID) VALUES
+('VID',5),
+('VID',7),
+('IMD',5),
+('CADZ',6),
+('VID',6);";
 controlProcedures($db, $zapsane_kurzy_insert, $link, "insert into zapsane_kurzy");
 
 ?>
