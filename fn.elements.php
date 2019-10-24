@@ -13,7 +13,7 @@ function insert_tile($name, $url){
 function insert_login_bar(){
   if(isset($_SESSION['user_id'])){
     echo("<container id='login_bar'>
-          <form id='login' action='act.logout.php' method='post'>
+          <form id='logout' action='act.logout.php' method='post'>
             <button type='submit' name='submit_logout'>Logout</button>
           </form>
           </container>");
