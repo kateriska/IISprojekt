@@ -60,6 +60,10 @@ function tile_edit_profile(){
   }
 }
 
+function table_all_courses(){
+  
+}
+
 
 
 ?>

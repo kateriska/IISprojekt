@@ -25,8 +25,6 @@ if(isset($_POST['submit_login'])){
 
     $row = mysqli_fetch_assoc($result);
 
-
-
     $pwd_check = pwd_verify($pwd, $row['heslo']);
     if($pwd_check === FALSE){
       //wrong pwd
