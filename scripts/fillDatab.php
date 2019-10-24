@@ -30,6 +30,7 @@ $uzivatele_insert = "INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo
 (8, 'Lucie', 'Otahalova', '', 4, 'lucie.otahalova@post.cz'),
 (9, 'Zaneta', 'Formankova', '', 3, 'formankova@email.cz'),
 (10, 'Zuzana', 'Stivinova', '', 2, 'stivinova@seznam.cz');";
+//HESLA: vždy 1. písmeno jména a 3 písmena příjmení (epal, amal,...)
 controlProcedures($db, $uzivatele_insert, $link, "insert into uzivatele");
 
 $kurzy_insert = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID) VALUES

@@ -13,6 +13,25 @@
   session_start();  
   insert_login_bar();
   require_once('fn.pwd_hash.php');
+
+  $hash = pwd_hash('epal');
+  echo($hash.'<br>');
+  $hash = pwd_hash('amal');
+  echo($hash.'<br>');
+  $hash = pwd_hash('ista');
+  echo($hash.'<br>');
+  $hash = pwd_hash('khum');
+  echo($hash.'<br>');
+  $hash = pwd_hash('anov');
+  echo($hash.'<br>');
+  $hash = pwd_hash('ahaj');
+  echo($hash.'<br>');
+  $hash = pwd_hash('lota');
+  echo($hash.'<br>');
+  $hash = pwd_hash('zfor');
+  echo($hash.'<br>');
+  $hash = pwd_hash('zsti');
+  echo($hash.'<br>');
 ?>
 
   <container class="center">
