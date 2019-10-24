@@ -22,6 +22,10 @@ function insert_create_tile($name, $url){
   echo("<a href='./$url' class='tile'>+ $name</a>");
 }
 
+function insert_delete_tile($name, $url){
+  echo("<a href='./$url' class='tile'>× $name</a>");
+}
+
 function insert_login_bar(){
   if(isset($_SESSION['user_id'])){
     echo("<container id='login_bar'>
@@ -211,7 +215,7 @@ function get_modifiable_user_details($id){
   $firstname = $row['jmeno'];
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
-  $r_str = "<form action=act.user_update.php method='post'>
+  $r_str = "<h2>Upravit u¾ivatele</h2><form action=act.user_update.php method='post'>
               Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
               Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
               Role:<br><select name='role'>
@@ -221,7 +225,27 @@ function get_modifiable_user_details($id){
                 <option value='1'$s4>Vedoucí</option>
                 <option value='1'$s5>Administrátor</option>
               </select><br>
-              Email:<br><input type='text' name='mail' value='$mail'><br>";
+              Email:<br><input type='text' name='mail' value='$mail'><br>
+              <input type='hidden' name='id' value='$id'>
+              <button type='submit' value='user_edit_submit'>Potvrdit zmìny</button>
+            </form>";
+  echo($r_str);
+}
+
+function get_user_set_pwd($id){
+  $r_str = "<h2>Zmìnit heslo u¾ivatele</h2><form action=act.user_pwd_update.php method='post'>
+              Nové heslo:<br><input type='text' name='pwd'><br>
+              <input type='hidden' name='id' value='$id'>
+              <button type='submit' value='user_set_pwd_submit'>Potvrdit zmìnu</button>
+            </form>";
+  echo($r_str);
+}
+
+function get_user_delete($id){
+  $r_str = "<h2>Smazat u¾ivatele</h2><form action=act.user_delete.php method='post'>
+              <input type='hidden' name='id' value='$id'>
+              <button type='submit' value='user_delete_submit'>Smazat u¾ivatele</button>
+            </form>";
   echo($r_str);
 }
 ?>
