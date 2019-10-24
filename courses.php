@@ -16,6 +16,7 @@
 
   <container class="center">
 <?php 
+  tile_create_course();
   table_all_courses();
 ?>
   </container>

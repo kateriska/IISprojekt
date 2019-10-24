@@ -10,6 +10,10 @@ function insert_tile($name, $url){
   echo("<a href='./$url' class='tile'>&rarr; $name</a>");
 }
 
+function insert_create_tile($name, $url){
+  echo("<a href='./$url' class='tile'>+ $name</a>");
+}
+
 function insert_login_bar(){
   if(isset($_SESSION['user_id'])){
     echo("<container id='login_bar'>
@@ -79,6 +83,12 @@ function table_all_courses(){
   $r_table .= "</table>";
   echo($r_table);
   mysqli_free_result($result);
+}
+
+function tile_create_course(){
+  if( check_rights(GARANT) ){
+    insert_create_tile("Zalo¾it nový kurz", "./course_create.php");
+  }
 }
 
 
