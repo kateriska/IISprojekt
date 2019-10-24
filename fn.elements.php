@@ -11,6 +11,9 @@ function insert_tile($name, $url){
 }
 
 function insert_login_bar(){
+  echo ">>>";
+  echo $_SESSION['user_id'];
+  echo "<<<";
   if(isset($_SESSION['user_id'])){
     echo("<container id='login_bar'>
           <form id='login' action='act.logout.php' method='post'>
