@@ -146,6 +146,6 @@ th{
   text-align: left;
 }
 
-th:hover{
+tr:hover{
   background-color: lightgrey;
 }
