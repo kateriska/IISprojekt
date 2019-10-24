@@ -91,6 +91,34 @@ function tile_create_course(){
   }
 }
 
+function course_get_info(){
+  if( !isset($_GET['id']) ){
+    header("Location: ./courses.php");
+    exit();
+  }
+  require_once("dbh.php");
+  $id = $_GET['id'];
+  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele WHERE Kurzy_ID='$id'";
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    mysqli_free_result($result);return FALSE;
+  }
+  $row = mysqli_fetch_assoc($result);
+  if(!$row){
+    $r_str = "Kurz $id nenalezen!";
+    echo($r_str);mysqli_free_result($result);return FALSE;
+  }
 
+  $nazev = $row['nazev'];
+  $garant_name = $row['jmeno'] ." ". $row['prijmeni'];
+  $garant_mail = $row['email'];
+  $typ = $row['typ'];
+  $cena = $row['cena'];
+  $popis = $row['popis'];
+
+  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br><b>Cena: </b>$cena<br>$popis";
+  echo($r_str);mysqli_free_result($result);return TRUE;
+}
 
 ?>
