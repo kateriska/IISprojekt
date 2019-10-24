@@ -18,6 +18,7 @@
 <?php 
   tile_create_course();
   table_all_courses();
+  insert_reverse_tile("Zpět na hlavní přehled", "./index.php");
 ?>
   </container>
 </body>

@@ -119,11 +119,57 @@ function course_get_info(){
   $garant_name = $row['jmeno'] ." ". $row['prijmeni'];
   $garant_mail = $row['email'];
   $typ = $row['typ'];
-  $cena = $row['cena'];
+  $cena_text = "";
+  if($row['cena'] != 0){
+    $cena_text = "<b>Cena: </b>".$row['cena']."<br>";
+  }
   $popis = $row['popis'];
 
-  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br><b>Cena: </b>$cena<br>$popis";
+  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis";
   echo($r_str);mysqli_free_result($result);return TRUE;
+}
+
+function role_to_text($role){
+  if($role == 1){
+    return 'student';
+  }
+  if($role == 2){
+    return 'lektor';
+  }
+  if($role == 3){
+    return 'garant';
+  }
+  if($role == 4){
+    return 'vedoucí';
+  }
+  if($role == 5){
+    return 'administrátor';
+  }
+  return "";
+}
+
+function table_users(){
+  require_once("dbh.php");
+
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni, role, email FROM kurzy";
+
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    mysqli_free_result($result);return;
+  }
+
+  $r_table = "<table id='users'><tr><th>Jméno</th><th>Role</th><th>Email</th></tr>";
+  while($row = mysqli_fetch_assoc($result)){
+    $id = $row['Uzivatele_ID'];
+    $jmeno = $row['jmeno'] . $row['prijmeni'];
+    $role = role_to_text($row['role']);
+    $email = $row['email'];
+    $r_table .= "<tr><td><a href='./user?id=$id'>$jmeno</a></td><td>$role</td><td><a href='mailto:$email'>$email</a></td></tr>"; 
+  }
+  $r_table .= "</table>";
+  echo($r_table);
+  mysqli_free_result($result);
 }
 
 ?>

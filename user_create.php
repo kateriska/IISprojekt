@@ -11,16 +11,17 @@
 <body>
 <?php
   session_start();  
+  if(!check_rights(ADMIN)){
+    header("Location: ./index.php");
+    exit();
+  }
   insert_login_bar();
 ?>
 
   <container class="center">
-  <?php 
-    course_get_info();
-    //course_get_participant_info();           TODO: tabulka terminu s hodnocenim, mistnosti, lektorem a celkove hodnoceni.
-    //course_get_course_files();               TODO: soubory pro vsechny/registrovane/zapsane
-    insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
-  ?>
+<?php 
+  //TODO
+?>
   </container>
 </body>
 
