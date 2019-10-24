@@ -179,7 +179,7 @@ function get_modifiable_user_details($id){
   }
 
   $row = mysqli_fetch_assoc($result);
-  if(!$row){
+  if(!$row){  //USER NOT FOUND
     header("Location: ./users.php");
     exit();
   }
@@ -201,6 +201,7 @@ function get_modifiable_user_details($id){
     case 5:
       $s5 = " selected";
       break;
+  }
   $firstname = $row['jmeno'];
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
