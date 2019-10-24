@@ -20,7 +20,7 @@ if(isset($_POST['submit_login'])){
     if($result === FALSE){
       //USER NOT FOUND
       header("Location: ./index.php?error=noUser?mail=" . $mail);
-      exit();
+      mysqli_free_result($result);exit();
     }
 
     $row = mysqli_fetch_assoc($result);
@@ -29,17 +29,17 @@ if(isset($_POST['submit_login'])){
     if($pwd_check === FALSE){
       //wrong pwd
       header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
-      exit();
+      mysqli_free_result($result); exit();
     } else if($pwd_check === TRUE){
       header("Location: ./index.php?success=login");
       session_start();
       $_SESSION['user_id'] = $row['Uzivatele_ID'];
       $_SESSION['role'] = $row['role'];
-      exit();
+      mysqli_free_result($result);exit();
     } else{
       //some other problem
       header("Location: ./index.php?error=boolError?mail=" . $mail);
-      exit();
+      mysqli_free_result($result);exit();
     }
    }
 }

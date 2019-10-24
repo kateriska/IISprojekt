@@ -61,7 +61,23 @@ function tile_edit_profile(){
 }
 
 function table_all_courses(){
-  
+  require_once("dbh.php");
+
+  $query = "SELECT Kurzy_ID, nazev, typ, cena FROM kurzy";
+
+  result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    mysqli_free_result($result);return;
+  }
+
+  $r_table = "<table id='courses'>";
+  while($row = mysqli_fetch_assoc($result)){
+    $r_table .= "<tr><td>$row['Kurzy_ID']</td><td>$row['nazev']</td><td>$row['typ']</td><td>$row['cena']</td></tr>"; 
+  }
+  $r_table .= "</table>"
+  echo($r_table);
+  mysqli_free_result($result);
 }
 
 
