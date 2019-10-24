@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['submit_login'])){
+if(isset($_POST['submit_logout'])){
   header("Location: ./index.php?success=logout");
       session_start();
       unset($_SESSION['user_id']);
