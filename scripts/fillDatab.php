@@ -12,16 +12,24 @@ function controlProcedures($db, $command, $link, $info)
   }
 }
 
+/*
+role:
+1 - student
+2 - lektor
+3 - vedouci
+4 - garant
+5 - admin
+*/
 $uzivatele_insert = "INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo, role, email) VALUES
 (2, 'Eleanora', 'Palkova', '', 2, 'palkova@seznam.cz'),
 (3, 'Andrej', 'Maly', '', 3, 'maly.andrej@seznam.cz'),
-(4, 'Iveta', 'Stara', '', 4, 'stara@gmail.com'),
-(5, 'Katerina', 'Humpolcova', '', 5, 'humpolcova@gmail.com'),
-(6, 'Anna', 'Novotna', '', 5, 'novotna.anna@centrum.cz'),
-(7, 'Adam', 'Hajek', '', 4, 'hajek@email.cz'),
+(4, 'Iveta', 'Stara', '', 2, 'stara@gmail.com'),
+(5, 'Katerina', 'Humpolcova', '', 1, 'humpolcova@gmail.com'),
+(6, 'Anna', 'Novotna', '', 1, 'novotna.anna@centrum.cz'),
+(7, 'Adam', 'Hajek', '', 1, 'hajek@email.cz'),
 (8, 'Lucie', 'Otahalova', '', 4, 'lucie.otahalova@post.cz'),
 (9, 'Zaneta', 'Formankova', '', 3, 'formankova@email.cz'),
-(10, 'Zuzana', 'Stivinova', '', 5, 'stivinova@seznam.cz');";
+(10, 'Zuzana', 'Stivinova', '', 2, 'stivinova@seznam.cz');";
 controlProcedures($db, $uzivatele_insert, $link, "insert into uzivatele");
 
 $kurzy_insert = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID) VALUES
@@ -42,5 +50,13 @@ $terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lekto
 ('IMD', '2019-11-28', '15:00:00.000000', 'G505', 4, 'Cviceni v laboratori. Budete seznameni s laboratornim radem. Prosim, noste si psaci potreby a pripadne notebook.', 'cviceni', 20, 120),
 ('VID', '2019-10-28', '11:00:00.000000', 'H009', 8, 'Prednaska k problematice a demonstrace modeloveho prikladu a programu. Odkazy ke stazeni probirane latky budou doplneny.', 'prednaska', 90, 60);";
 controlProcedures($db, $terminy_insert, $link, "insert into terminy");
+
+$zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Zapsane_kurzy_ID, Kurzy_ID, student_ID) VALUES
+(1, 'VID',5),
+(2, 'VID',7),
+(2, 'IMD',5),
+(2, 'CADZ',6),
+(2, 'VID',6);";
+controlProcedures($db, $zapsane_kurzy_insert, $link, "insert into zapsane_kurzy");
 
 ?>
