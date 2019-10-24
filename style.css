@@ -125,6 +125,8 @@ input, button{
 }
 
 #logout button{
+  float: right;
+  display: block;
   font-size: medium;
   margin-right: 10px;
   margin-left: 1%;
