@@ -215,15 +215,15 @@ function get_modifiable_user_details($id){
   $firstname = $row['jmeno'];
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
-  $r_str = "<h2>Upravit u¾ivatele</h2><form action=act.user_update.php method='post'>
+  $r_str = "<h2>Upravit údaje</h2><form action=act.user_update.php method='post'>
               Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
               Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
               Role:<br><select name='role'>
                 <option value='1'$s1>Student</option>
-                <option value='1'$s2>Lektor</option>
-                <option value='1'$s3>Garant</option>
-                <option value='1'$s4>Vedoucí</option>
-                <option value='1'$s5>Administrátor</option>
+                <option value='2'$s2>Lektor</option>
+                <option value='3'$s3>Garant</option>
+                <option value='4'$s4>Vedoucí</option>
+                <option value='5'$s5>Administrátor</option>
               </select><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
               <input type='hidden' name='id' value='$id'>
