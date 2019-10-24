@@ -76,7 +76,7 @@ function table_all_courses(){
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
-    mysqli_free_result($result);return;
+    return;
   }
 
   $r_table = "<table id='courses'><tr><th>ID</th><th>Název</th><th>Typ</th><th>Cena</th></tr>";
@@ -106,7 +106,7 @@ function course_get_info(){
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
-    mysqli_free_result($result);return FALSE;
+    return FALSE;
   }
   $row = mysqli_fetch_assoc($result);
   if(!$row){
@@ -171,4 +171,50 @@ function table_users(){
   mysqli_free_result($result);
 }
 
+function get_modifiable_user_details($id){
+  $query = "SELECT jmeno, prijmeni, `role`, email FROM uzivatele WHERE Uzivatele_ID=$id";
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");return;
+  }
+
+  $row = mysqli_fetch_assoc($result);
+  if(!$row){
+    header("Location: ./users.php");
+    exit();
+  }
+
+  $role = $row['role'];
+  switch ($role) {
+    case 1:
+      $s1 = " selected";
+      break;
+    case 2:
+      $s2 = " selected";
+      break;
+    case 3:
+      $s3 = " selected";
+      break;
+    case 4:
+      $s4 = " selected";
+      break;
+    case 5:
+      $s5 = " selected";
+      break;
+  $firstname = $row['jmeno'];
+  $lastname = $row['prijmeni'];
+  $mail = $row['email'];
+  $r_str = "<form action=act.user_update.php method='post'>
+              Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
+              Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
+              Role:<br><select name='role'>
+                <option value='1'$s1>Student</option>
+                <option value='1'$s2>Lektor</option>
+                <option value='1'$s3>Garant</option>
+                <option value='1'$s4>Vedoucí</option>
+                <option value='1'$s5>Administrátor</option>
+              </select><br>
+              Email:<br><input type='text' name='mail' value='$mail'><br>";
+  echo($r_str);
+}
 ?>
