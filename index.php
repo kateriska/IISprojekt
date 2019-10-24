@@ -13,16 +13,6 @@
   session_start();  
   insert_login_bar();
   require_once('fn.pwd_hash.php');
-  $hash = pwd_crypt('admin');
-  echo $hash;
-
-  if(crypt('admin', $hash) == $hash){
-    echo(" TRUE"); 
-  }
-  else{
-    echo(" FALSE");
-  }
-  
 ?>
 
   <container class="center">
