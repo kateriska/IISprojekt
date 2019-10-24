@@ -184,6 +184,7 @@ function get_modifiable_user_details($id){
     header("Location: ./users.php?info=$id");
     exit();
   }
+  $s1, $s2, $s3, $s4, $s5;
 
   $role = $row['role'];
   switch ($role) {
