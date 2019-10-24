@@ -161,7 +161,7 @@ function table_users(){
   $r_table = "<table id='users'><tr><th>Jméno</th><th>Role</th><th>Email</th></tr>";
   while($row = mysqli_fetch_assoc($result)){
     $id = $row['Uzivatele_ID'];
-    $jmeno = $row['jmeno'] . $row['prijmeni'];
+    $jmeno = $row['jmeno'] ." ". $row['prijmeni'];
     $role = role_to_text($row['role']);
     $email = $row['email'];
     $r_table .= "<tr><td><a href='./user?id=$id'>$jmeno</a></td><td>$role</td><td><a href='mailto:$email'>$email</a></td></tr>"; 

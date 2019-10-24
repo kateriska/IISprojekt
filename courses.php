@@ -12,13 +12,13 @@
 <?php
   session_start();  
   insert_login_bar();
-?>
+?> 
 
   <container class="center">
 <?php 
   tile_create_course();
   table_all_courses();
-  insert_reverse_tile("ZpÄ›t na hlavnÃ­ pÅ™ehled", "./index.php");
+  insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");
 ?>
   </container>
 </body>
