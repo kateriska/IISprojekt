@@ -2,6 +2,7 @@
 if(isset($_POST['submit_login'])){
 
   require_once("dbh.php");
+  require_once("fn.pwd_hash.php");
 
   $mail = $_POST['mail'];
   $pwd = $_POST['pwd']; 
@@ -21,10 +22,13 @@ if(isset($_POST['submit_login'])){
       header("Location: ./index.php?error=noUser?mail=" . $mail);
       exit();
     }
-    
+
     $row = mysqli_fetch_assoc($result);
-    $pwd_check = password_verify($pwd, $row['heslo']);
-    if($pwd_check === false){
+
+
+
+    $pwd_check = pwd_verify($pwd, $row['heslo']);
+    if($pwd_check === FALSE){
       //wrong pwd
       header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
       exit();

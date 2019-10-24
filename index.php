@@ -12,6 +12,14 @@
 <?php
   session_start();  
   insert_login_bar();
+  require_once('fn.pwd_hash.php');
+  $hash = pwd_crypt('admin');
+  echo $hash;
+  $hash = pwd_crypt('admin');
+  echo $hash;
+  $hash = pwd_crypt('admin');
+  echo $hash;
+  
 ?>
 
   <container class="center">
