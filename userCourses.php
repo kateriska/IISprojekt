@@ -30,8 +30,10 @@ function show_my_courses_garant($user_id, $db)
   }
   else
   {
-    echo "0 results";
+    echo "<b>Nemate zastitovane zadne kurzy</b>";
+    echo "<br />";
   }
+  echo "<br />";
 }
 
 function show_my_courses_lektor($user_id, $db)
@@ -65,8 +67,10 @@ function show_my_courses_lektor($user_id, $db)
   }
   else
   {
-    echo "0 results";
+    echo "<b>Nemate vyucovane zadne kurzy</b>";
+    echo "<br />";
   }
+  echo "<br />";
 }
 
 function show_my_courses_student($user_id, $db)
@@ -100,16 +104,21 @@ function show_my_courses_student($user_id, $db)
   }
   else
   {
-    echo "0 results";
+    echo "<b>Nemate zapsane zadne kurzy</b>";
+    echo "<br />";
   }
+  echo "<br />";
 }
 
 require_once("dbh.php");
 echo "Vypis pro garanta:\n";
+echo "<br />";
 show_my_courses_garant(9, $db);
 echo "Vypis pro lektora:\n";
+echo "<br />";
 show_my_courses_lektor(4, $db);
 echo "Vypis pro studenta:\n";
+echo "<br />";
 show_my_courses_student(5, $db);
 
 ?>
