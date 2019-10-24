@@ -151,12 +151,11 @@ function role_to_text($role){
 function table_users(){
   require_once("dbh.php");
 
-  $query = "SELECT Uzivatele_ID, jmeno, prijmeni, role, email FROM kurzy";
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni, `role`, email FROM uzivatele";
 
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
-    echo("CHYBA SQL");
-    mysqli_free_result($result);return;
+    echo("CHYBA SQL");return;
   }
 
   $r_table = "<table id='users'><tr><th>Jméno</th><th>Role</th><th>Email</th></tr>";

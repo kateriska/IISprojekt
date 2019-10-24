@@ -20,9 +20,9 @@
 
   <container class="center">
 <?php 
-  insert_create_tile("VytvoÅ™it novÃ©ho uÅ¾ivatele", "./user_create.php");
+  insert_create_tile("Vytvoøit nového u¾ivatele", "./user_create.php");
   table_users();
-  insert_reverse_tile("ZpÄ›t na hlavnÃ­ pÅ™ehled", "./index.php");
+  insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");
 ?>
   </container>
 </body>
