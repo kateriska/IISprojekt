@@ -16,8 +16,8 @@ function controlProcedures($db, $command, $link, $info)
 role:
 1 - student
 2 - lektor
-3 - vedouci
-4 - garant
+3 - garant
+4 - vedouci
 5 - admin
 */
 $uzivatele_insert = 'INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo, role, email) VALUES
@@ -60,4 +60,8 @@ $zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Kurzy_ID, student_ID) VALUES
 ('VID',6);";
 controlProcedures($db, $zapsane_kurzy_insert, $link, "insert into zapsane_kurzy");
 
+$soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev, url, restrikce) VALUES
+('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 'Uvodni material k prvnim hodinam', 'www.kurzy/cadz.pdf', 'pro zapsane'),
+('CADZ', '2019-11-30', '15:00:00.000000', '', 'Sablona k DU', 'www.cad.cz/sablona.pdf', 'pro zapsane');";
+controlProcedures($db, $soubory_insert, $link, "insert into soubory");
 ?>
