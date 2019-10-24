@@ -65,7 +65,7 @@ function table_all_courses(){
 
   $query = "SELECT Kurzy_ID, nazev, typ, cena FROM kurzy";
 
-  result = mysqli_query($db, $query);
+  $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
     mysqli_free_result($result);return;
