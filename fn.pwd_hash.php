@@ -13,7 +13,7 @@ function pwd_verify($pwd, $hash){
   if($hash === crypt($pwd)){
     return TRUE;
   }else{
-    return FALSE:
+    return FALSE;
   }
 }
 
