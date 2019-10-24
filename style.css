@@ -123,3 +123,12 @@ input, button{
   max-width: 150px;
   min-width: 60px;
 }
+
+#logout button{
+  font-size: medium;
+  margin-right: 10px;
+  margin-left: 1%;
+  padding: 8px;
+  max-width: 150px;
+  min-width: 60px;
+}
