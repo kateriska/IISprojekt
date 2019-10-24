@@ -10,7 +10,7 @@ function pwd_crypt($pwd, $rounds = 9){
 }
 
 function pwd_verify($pwd, $hash){
-  if($hash === crypt($pwd)){
+  if(crypt($pwd, $hash) == $hash){
     return TRUE;
   }else{
     return FALSE;
