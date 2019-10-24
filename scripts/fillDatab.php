@@ -20,16 +20,16 @@ role:
 4 - garant
 5 - admin
 */
-$uzivatele_insert = "INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo, role, email) VALUES
-(2, 'Eleanora', 'Palkova', '$2y$09$g0mOz171ScW7LrxuW7tHc.DPZJ.Dsb/ri/fZNoOn.ylymsJ0ihpzG', 2, 'palkova@seznam.cz'),
-(3, 'Andrej', 'Maly', '$2y$09$v80chHDC5wNPrx7DqOrP3.koBH1M751z6g2zF6i1meoaJPsKN4/M6', 3, 'maly.andrej@seznam.cz'),
-(4, 'Iveta', 'Stara', '$2y$09$cUgTuud1ktdQLpX3aCq8Kub8tGGINopODIjyNPIuLkZw1anfCn4Jq', 2, 'stara@gmail.com'),
-(5, 'Katerina', 'Humpolcova', '$2y$09$pLrhckRmzoJEDj7q87EDJ.iNL90ddyxY.bMBkx6wh8XEfnSQiyseK', 1, 'humpolcova@gmail.com'),
-(6, 'Anna', 'Novotna', '$2y$09$51v56vv5V5taUxoRR276suOFY1lwbT1yG2Ye01i9xe/7xSApBcsyi', 1, 'novotna.anna@centrum.cz'),
-(7, 'Adam', 'Hajek', '$2y$09$pyyWLIMoqMlaHeUVcbg6pu9kYginRst0kU4lCPX/zEytVtL/lS2Ci', 1, 'hajek@email.cz'),
-(8, 'Lucie', 'Otahalova', '$2y$09$ht2QP4ilxoBNrzkvdgDF9O.iI6Gx9x2Po4GJWojWlVKATm6uS33T2', 4, 'lucie.otahalova@post.cz'),
-(9, 'Zaneta', 'Formankova', '$2y$09$FnXWZDMfwjOmpv26WlApHeJRnzi8jmk7/tNgOGBbK8kw3bErXTqS2', 3, 'formankova@email.cz'),
-(10, 'Zuzana', 'Stivinova', '$2y$09$5Z6u4IQ1flPP1fXMoRs5NuPdsx2HOOaMN2R6w7j3VRdnK/SqXQida', 2, 'stivinova@seznam.cz');";
+$uzivatele_insert = 'INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo, role, email) VALUES
+(2, "Eleanora", "Palkova", "$2y$09$g0mOz171ScW7LrxuW7tHc.DPZJ.Dsb/ri/fZNoOn.ylymsJ0ihpzG", 2, "palkova@seznam.cz"),
+(3, "Andrej", "Maly", "$2y$09$v80chHDC5wNPrx7DqOrP3.koBH1M751z6g2zF6i1meoaJPsKN4/M6", 3, "maly.andrej@seznam.cz"),
+(4, "Iveta", "Stara", "$2y$09$cUgTuud1ktdQLpX3aCq8Kub8tGGINopODIjyNPIuLkZw1anfCn4Jq", 2, "stara@gmail.com"),
+(5, "Katerina", "Humpolcova", "$2y$09$pLrhckRmzoJEDj7q87EDJ.iNL90ddyxY.bMBkx6wh8XEfnSQiyseK", 1, "humpolcova@gmail.com"),
+(6, "Anna", "Novotna", "$2y$09$51v56vv5V5taUxoRR276suOFY1lwbT1yG2Ye01i9xe/7xSApBcsyi", 1, "novotna.anna@centrum.cz"),
+(7, "Adam", "Hajek", "$2y$09$pyyWLIMoqMlaHeUVcbg6pu9kYginRst0kU4lCPX/zEytVtL/lS2Ci", 1, "hajek@email.cz"),
+(8, "Lucie", "Otahalova", "$2y$09$ht2QP4ilxoBNrzkvdgDF9O.iI6Gx9x2Po4GJWojWlVKATm6uS33T2", 4, "lucie.otahalova@post.cz"),
+(9, "Zaneta", "Formankova", "$2y$09$FnXWZDMfwjOmpv26WlApHeJRnzi8jmk7/tNgOGBbK8kw3bErXTqS2", 3, "formankova@email.cz"),
+(10, "Zuzana", "Stivinova", "$2y$09$5Z6u4IQ1flPP1fXMoRs5NuPdsx2HOOaMN2R6w7j3VRdnK/SqXQida", 2, "stivinova@seznam.cz");';
 //HESLA: vždy 1. písmeno jména a 3 písmena příjmení (epal, amal,...)
 controlProcedures($db, $uzivatele_insert, $link, "insert into uzivatele");
 

@@ -99,7 +99,7 @@ controlProcedures($db, $zapsane_kurzy_tb, $link, "create zapsane_kurzy");
 KEY `garant_ID` (`garant_ID`),
 CONSTRAINT `kurz_ibfk_1` FOREIGN KEY (`garant_ID`) REFERENCES `uzivatel` (`Uzivatel_ID`) ON DELETE CASCADE ON UPDATE CASCADE*/
 // fill admin data:
-$admin_insert = "INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ('Marek', 'Prokop', '$2y$09$qFiksEt6EFcpk1B6seDjPOWQtg67epB3o9eoHX1hAfFOri5GmvMWS', 5, 'admin');";
+$admin_insert = 'INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ("Marek", "Prokop", "$2y$09$qFiksEt6EFcpk1B6seDjPOWQtg67epB3o9eoHX1hAfFOri5GmvMWS", 5, "admin");';
 //email = admin, heslo = admin
 controlProcedures($db, $admin_insert, $link, "insert admin");
 ?>
