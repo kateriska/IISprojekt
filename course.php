@@ -18,6 +18,7 @@
   <?php 
     course_get_info();
     insert_reverse_tile("Zpět na seznam kurzů", "./courses.php");
+    echo("AHOJ");
   ?>
   </container>
 </body>
