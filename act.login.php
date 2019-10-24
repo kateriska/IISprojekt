@@ -33,7 +33,7 @@ if(isset($_POST['submit_login'])){
       header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
       exit();
     } else if($pwd_check === TRUE){
-      header("Location: ./index.php?success=login");
+      header("Location: ./index.php?success=login".$row['Uzivatele_id'].$row['role']);
       session_start();
       $_SESSION['user_id'] = $row['Uzivatele_id'];
       $_SESSION['role'] = $row['role'];
