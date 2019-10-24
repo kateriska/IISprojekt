@@ -32,7 +32,7 @@
       </select><br>
       Email:<br><input type='text' name='mail'><br>
       Heslo:<br><input type='password' name='pwd'><br>
-      <button type='submit' value='user_edit_submit'>Vytvoøit</button>
+      <button type='submit' value='user_create_submit'>Vytvoøit</button>
     </form>
   </container>
 </body>
