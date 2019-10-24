@@ -1,5 +1,5 @@
 <?php
-if(!isset($_POST['user_create_submit'])){
+if(isset($_POST['user_create_submit'])){
   header("Location: ./user_create.php?inv=alid");
   exit();
 }
