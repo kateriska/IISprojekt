@@ -32,35 +32,18 @@ if(isset($_POST['submit_login'])){
       //wrong pwd
       header("Location: ./index.php?error=wrongPwd?mail=" . $mail);
       exit();
-    }
-    header("Location: ./index.php?succ=" . $mail . "=".$pwd."=".$row['heslo']);
-    exit();
-    /*$sql = "SELECT * FROM uzivatele WHERE email=?";
-    if(!($row = mysqli_fetch_assoc($result))){
-      //user not found
-      header("Location: ./index.php?error=noUser?mail=" . $mail);
-      exit();
-    }
-
-    $pwd_check = password_verify($pwd, $row['user_pwd']);
-    else if($pwd_check === true){
+    } else if($pwd_check === TRUE){
+      header("Location: ./index.php?success=login");
       session_start();
       $_SESSION['user_id'] = $row['Uzivatele_id'];
       $_SESSION['role'] = $row['role'];
-
-      header("Location: ./index.php?success=login");
       exit();
-    }
-    else{
+    } else{
       //some other problem
       header("Location: ./index.php?error=boolError?mail=" . $mail);
       exit();
-    }*/
-
-    // 
-
+    }
    }
-
 }
 else{
   header("Location: ./index.php");
