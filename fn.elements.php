@@ -14,6 +14,10 @@ function insert_reverse_tile($name, $url){
   echo("<a href='./$url' class='tile'>&larr; $name</a>");
 }
 
+function inser_up_tile($name, $url){
+  echo("<a href='./$url' class='tile'>&uarr; $name</a>");
+}
+
 function insert_create_tile($name, $url){
   echo("<a href='./$url' class='tile'>+ $name</a>");
 }
