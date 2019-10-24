@@ -134,3 +134,9 @@ input, button{
   max-width: 150px;
   min-width: 60px;
 }
+
+table{
+  background-color: white;
+  border: solid 2px black;
+  border-radius: 5px;
+}
