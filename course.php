@@ -17,8 +17,7 @@
   <container class="center">
   <?php 
     course_get_info();
-    insert_reverse_tile("ZpÄ›t na seznam kurzÅ¯", "./courses.php");
-    echo("AHOJ");
+    insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
   ?>
   </container>
 </body>
