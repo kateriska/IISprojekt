@@ -173,7 +173,7 @@ function table_users(){
 
 function get_modifiable_user_details($id){
   require_once("dbh.php");
-  $query = "SELECT * FROM uzivatele";// WHERE Uzivatele_ID='$id'";
+  $query = "SELECT jmeno, prijmeni, `role` , email FROM uzivatele WHERE Uzivatele_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");return;
