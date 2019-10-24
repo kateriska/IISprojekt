@@ -14,11 +14,11 @@
   insert_login_bar();
   require_once('fn.pwd_hash.php');
   $hash = pwd_crypt('admin');
-  echo $hash;
+  echo $hash;echo "\n";
   $hash = pwd_crypt('admin');
-  echo $hash;
+  echo $hash;echo "\n";
   $hash = pwd_crypt('admin');
-  echo $hash;
+  echo $hash;echo "\n";
   
 ?>
 
