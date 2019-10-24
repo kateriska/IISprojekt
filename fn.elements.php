@@ -179,7 +179,7 @@ function get_modifiable_user_details($id){
   }
 
   $row = mysqli_fetch_assoc($result);
-  if(!$row){  //USER NOT FOUND
+  if($row){  //USER NOT FOUND
     header("Location: ./users.php?info=$id");
     exit();
   }
