@@ -9,6 +9,8 @@ function controlProcedures($db, $command, $link, $info){
   }
 }
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
+$drop_soubory = "DROP TABLE IF EXISTS soubory;";
+controlProcedures($db, $drop_soubory, $link, "drop soubory");
 $drop_zapsane_kurzy = "DROP TABLE IF EXISTS zapsane_kurzy;";
 controlProcedures($db, $drop_zapsane_kurzy, $link, "drop zapsane_kurzy");
 $drop_mistnosti = "DROP TABLE IF EXISTS mistnosti;";
@@ -31,7 +33,7 @@ PRIMARY KEY (Uzivatele_ID)
 ) ENGINE=InnoDB";
 controlProcedures($db, $uzivatele_tb, $link, "create uzivatele");
 $kurzy_tb = "CREATE TABLE kurzy (
-Kurzy_ID varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 nazev varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
 typ varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -57,7 +59,7 @@ $terminy_tb = "CREATE TABLE terminy (
 Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 datum date NOT NULL,
 cas time(6) NOT NULL,
-mistnost_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+mistnost_ID varchar(15) COLLATE utf8mb4_unicode_520_ci,
 lektor_ID int NOT NULL,
 popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
 typ varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -93,10 +95,25 @@ $zapsane_kurzy_tb = "CREATE TABLE zapsane_kurzy (
     ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 controlProcedures($db, $zapsane_kurzy_tb, $link, "create zapsane_kurzy");
-/* do tabulky TERMINY cizi klice:
-/* do tabulky KURZ cizi klic:
-KEY `garant_ID` (`garant_ID`),
-CONSTRAINT `kurz_ibfk_1` FOREIGN KEY (`garant_ID`) REFERENCES `uzivatel` (`Uzivatel_ID`) ON DELETE CASCADE ON UPDATE CASCADE*/
+
+$soubory_tb = "CREATE TABLE soubory (
+  Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  datum date,
+  cas time(6),
+  mistnost_ID varchar(15) COLLATE utf8mb4_unicode_520_ci,
+  nazev varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  url varchar(80) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  restrikce varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  PRIMARY KEY (Kurzy_ID, datum, cas, mistnost_ID),
+  CONSTRAINT soubory_fk_mistnosti
+    FOREIGN KEY (Kurzy_ID, datum, cas, mistnost_ID)
+    REFERENCES terminy (Kurzy_ID, datum, cas, mistnost_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  ) ENGINE=InnoDB";
+  controlProcedures($db, $soubory_tb, $link, "create soubory");
+
+
 // fill admin data:
 $admin_insert = 'INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ("Marek", "Prokop", "$2y$09$qFiksEt6EFcpk1B6seDjPOWQtg67epB3o9eoHX1hAfFOri5GmvMWS", 5, "admin");';
 //email = admin, heslo = admin
