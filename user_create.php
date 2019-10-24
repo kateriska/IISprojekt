@@ -19,20 +19,20 @@
 ?>
 
   <container class="center">
-  <h1>VytvoÅ™it novÃ©ho uÅ¾ivatele</h1>
+  <h1>Vytvoøit nového u¾ivatele</h1>
     <form action=act.user_create.php method='post'>
-      JmÃ©no:<br><input type='text' name='firstname'><br>
-      PÅ™Ã­jmenÃ­:<br><input type='text' name='lastname'><br>
+      Jméno:<br><input type='text' name='firstname'><br>
+      Pøíjmení:<br><input type='text' name='lastname'><br>
       Role:<br><select name='role'>
         <option value='1' selected>Student</option>
         <option value='2'>Lektor</option>
         <option value='3'>Garant</option>
-        <option value='4'>VedoucÃ­</option>
-        <option value='5'>AdministrÃ¡tor</option>
+        <option value='4'>Vedoucí</option>
+        <option value='5'>Administrátor</option>
       </select><br>
       Email:<br><input type='text' name='mail'><br>
       Heslo:<br><input type='password' name='pwd'><br>
-      <button type='submit' value='user_edit_submit'>VytvoÅ™it</button>
+      <button type='submit' value='user_edit_submit'>Vytvoøit</button>
     </form>
   </container>
 </body>
