@@ -4,16 +4,17 @@ if(!isset($_POST['user_create_submit'])){
   exit();
 }
 
+
+if(!isset($_POST['firstname']) || !isset($_POST['lastname']) || !isset($_POST['role']) || !isset($_POST['mail']) || !isset($_POST['pwd']) ){
+  header("Location: ./user_create.php?err=empty_fields");
+  exit();
+}
+
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 $role = $_POST['role'];
 $mail = $_POST['mail'];
 $pwd = $_POST['pwd'];
-
-if(!isset($firstname) || !isset($lastname) || !isset($role) || !isset($mail) || !isset($pwd) ){
-  header("Location: ./user_create.php?err=empty_fields");
-  exit();
-}
 
 require_once("fn.pwd_hash.php");
 require_once("dbh.php");
