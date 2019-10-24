@@ -112,7 +112,6 @@ function course_get_info(){
   if(!$row){
     $r_str = "Kurz $id nenalezen!";
     echo($r_str);mysqli_free_result($result);
-    insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
     return FALSE;
   }
 

@@ -17,6 +17,7 @@
   <container class="center">
   <?php 
     course_get_info();
+    insert_reverse_tile("Zpět na seznam kurzů", "./courses.php");
   ?>
   </container>
 </body>
