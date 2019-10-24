@@ -172,6 +172,7 @@ function table_users(){
 }
 
 function get_modifiable_user_details($id){
+  require_once("dbh.php");
   $query = "SELECT * FROM uzivatele";// WHERE Uzivatele_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
@@ -179,7 +180,7 @@ function get_modifiable_user_details($id){
   }
 
   $row = mysqli_fetch_assoc($result);
-  if($row){  //USER NOT FOUND
+  if(!$row){  //USER NOT FOUND
     header("Location: ./users.php?info=$id");
     exit();
   }
