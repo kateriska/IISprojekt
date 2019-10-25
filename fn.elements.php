@@ -227,7 +227,7 @@ function get_modifiable_user_details($id){
               </select><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' value='user_edit_submit'>Potvrdit zmìny</button>
+              <button type='submit' name='user_edit_submit'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
 }
@@ -236,7 +236,7 @@ function get_user_set_pwd($id){
   $r_str = "<h2>Zmìnit heslo u¾ivatele</h2><form action=act.user_pwd_update.php method='post'>
               Nové heslo:<br><input type='text' name='pwd'><br>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' value='user_set_pwd_submit'>Potvrdit zmìnu</button>
+              <button type='submit' name='user_set_pwd_submit'>Potvrdit zmìnu</button>
             </form>";
   echo($r_str);
 }
