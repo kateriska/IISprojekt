@@ -5,6 +5,8 @@ if(!isset($_POST['user_delete_submit'])){
   exit();
 }
 
+session_start();
+
 if( $id == $_SESSION('user_id') ){
   header("Location: ./user.php?id=$id&err=no_selfdelete");
   exit();
