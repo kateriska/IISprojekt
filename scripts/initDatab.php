@@ -9,6 +9,8 @@ function controlProcedures($db, $command, $link, $info){
   }
 }
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
+$drop_ke_schvaleni_kurz = "DROP TABLE IF EXISTS ke_schvaleni_kurz;";
+controlProcedures($db, $drop_ke_schvaleni_kurz, $link, "drop ke_schvaleni_kurz");
 $drop_soubory = "DROP TABLE IF EXISTS soubory;";
 controlProcedures($db, $drop_soubory, $link, "drop soubory");
 $drop_zapsane_kurzy = "DROP TABLE IF EXISTS zapsane_kurzy;";
@@ -39,9 +41,15 @@ popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
 typ varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 cena int NOT NULL,
 garant_ID int NOT NULL,
+vedouci_ID int NOT NULL,
 PRIMARY KEY (Kurzy_ID),
 CONSTRAINT kurzy_fk_uzivatele
   FOREIGN KEY (garant_ID)
+  REFERENCES uzivatele (Uzivatele_ID)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+CONSTRAINT kurzy_fk_uzivatele2
+  FOREIGN KEY (vedouci_ID)
   REFERENCES uzivatele (Uzivatele_ID)
   ON DELETE CASCADE
   ON UPDATE CASCADE
@@ -65,6 +73,7 @@ popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
 typ varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 kapacita int NOT NULL,
 doba_trvani int NOT NULL,
+schvaleno varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 PRIMARY KEY (Kurzy_ID,datum,cas,mistnost_ID),
 CONSTRAINT terminy_fk_kurzy
   FOREIGN KEY (Kurzy_ID)
@@ -112,6 +121,23 @@ $soubory_tb = "CREATE TABLE soubory (
     ON UPDATE CASCADE
   ) ENGINE=InnoDB";
   controlProcedures($db, $soubory_tb, $link, "create soubory");
+
+$ke_schvaleni_kurz_tb = "CREATE TABLE ke_schvaleni_kurz (
+  Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  nazev varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  popis text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  typ varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  cena int NOT NULL,
+  garant_ID int NOT NULL,
+  vedouci_ID int NOT NULL,
+  PRIMARY KEY (Kurzy_ID),
+  CONSTRAINT ke_schvaleni_kurz_fk_kurz
+    FOREIGN KEY (Kurzy_ID)
+    REFERENCES kurzy (Kurzy_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  ) ENGINE=InnoDB";
+  controlProcedures($db, $ke_schvaleni_kurz_tb, $link, "create ke_schvaleni_kurz ");
 
 
 // fill admin data:
