@@ -16,7 +16,7 @@ if( $id == '' || $address == '' || $type == ''  || $capacity == '' ){
 
 require_once("dbh.php");
 
-$query = "INSERT INTO mistnostni (Mistnosti_ID, adresa, typ, kapacita) VALUES ('$id', '$address', '$type', '$capacity');";
+$query = "INSERT INTO mistnosti (Mistnosti_ID, adresa, typ, kapacita) VALUES ('$id', '$address', '$type', '$capacity');";
 
 if(mysqli_query($db, $query)){
   header("Location: ./rooms.php?succ=created");
