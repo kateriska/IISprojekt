@@ -23,7 +23,7 @@ function insert_create_tile($name, $url){
 }
 
 function insert_delete_tile($name, $url){
-  echo("<a href='./$url' class='tile'>ï¿½ $name</a>");
+  echo("<a href='./$url' class='tile'>? $name</a>");
 }
 
 function insert_login_bar(){
@@ -55,18 +55,18 @@ function check_rights($role){
 
 
 function tile_show_all_courses(){
-  insert_tile("Zobrazit vï¿½echny kurzy", "./courses.php");
+  insert_tile("Zobrazit v¹echny kurzy", "./courses.php");
 }
 
 function tile_manage_rooms(){
   if( check_rights(FACILITY_MANAGER) ){
-    insert_tile("Sprï¿½va mï¿½stnostï¿½", "./rooms.php");
+    insert_tile("Správa místností", "./rooms.php");
   }
 }
 
 function tile_manage_users(){
   if( check_rights(ADMIN) ){
-    insert_tile("Sprï¿½va uï¿½ivatelï¿½", "./users.php");
+    insert_tile("Správa u¾ivatelù", "./users.php");
   }
 }
 
@@ -87,7 +87,7 @@ function table_all_courses(){
     return;
   }
 
-  $r_table = "<table id='courses'><tr><th>ID</th><th>Nï¿½zev</th><th>Typ</th><th>Cena</th></tr>";
+  $r_table = "<table id='courses'><tr><th>ID</th><th>Název</th><th>Typ</th><th>Cena</th></tr>";
   while($row = mysqli_fetch_assoc($result)){
     $course_id = htmlspecialchars($row['Kurzy_ID']);
     $nazev = htmlspecialchars($row['nazev']);
@@ -102,7 +102,7 @@ function table_all_courses(){
 
 function tile_create_course(){
   if( check_rights(GARANT) ){
-    insert_create_tile("Zaloï¿½it novï¿½ kurz", "./course_create.php");
+    insert_create_tile("Zalo¾it nový kurz", "./course_create.php");
   }
 }
 
@@ -151,10 +151,10 @@ function role_to_text($role){
     return 'garant';
   }
   if($role == 4){
-    return 'vedoucï¿½';
+    return 'vedoucí';
   }
   if($role == 5){
-    return 'administrï¿½tor';
+    return 'administrátor';
   }
   return "";
 }
@@ -169,7 +169,7 @@ function table_users(){
     echo("CHYBA SQL");return;
   }
 
-  $r_table = "<table id='users'><tr><th>Jmï¿½no</th><th>Role</th><th>Email</th></tr>";
+  $r_table = "<table id='users'><tr><th>Jméno</th><th>Role</th><th>Email</th></tr>";
   while($row = mysqli_fetch_assoc($result)){
     $id = htmlspecialchars($row['Uzivatele_ID']);
     $jmeno = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
@@ -218,28 +218,28 @@ function get_modifiable_user_details($id){
   $firstname = $row['jmeno'];
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
-  $r_str = "<h2>Upravit ï¿½daje</h2><form action=act.user_update.php method='post'>
-              Jmï¿½no:<br><input type='text' name='firstname' value='$firstname'><br>
-              Pï¿½ï¿½jmenï¿½:<br><input type='text' name='lastname' value='$lastname'><br>
+  $r_str = "<h2>Upravit údaje</h2><form action=act.user_update.php method='post'>
+              Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
+              Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
               Role:<br><select name='role'>
                 <option value='1'$s1>Student</option>
                 <option value='2'$s2>Lektor</option>
                 <option value='3'$s3>Garant</option>
-                <option value='4'$s4>Vedoucï¿½</option>
-                <option value='5'$s5>Administrï¿½tor</option>
+                <option value='4'$s4>Vedoucí</option>
+                <option value='5'$s5>Administrátor</option>
               </select><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' name='user_edit_submit'>Potvrdit zmï¿½ny</button>
+              <button type='submit' name='user_edit_submit'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
 }
 
 function get_user_set_pwd($id){
-  $r_str = "<h2>Zmï¿½nit heslo uï¿½ivatele</h2><form action=act.user_pwd_update.php method='post'>
-              Novï¿½ heslo:<br><input type='text' name='pwd'><br>
+  $r_str = "<h2>Zmìnit heslo u¾ivatele</h2><form action=act.user_pwd_update.php method='post'>
+              Nové heslo:<br><input type='text' name='pwd'><br>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' name='user_set_pwd_submit'>Potvrdit zmï¿½nu</button>
+              <button type='submit' name='user_set_pwd_submit'>Potvrdit zmìnu</button>
             </form>";
   echo($r_str);
 }
@@ -248,9 +248,9 @@ function get_user_delete($id){
   if($id == $_SESSION['user_id']){
     return;
   }
-  $r_str = "<h2>Smazat uï¿½ivatele</h2><form action=act.user_delete.php method='post'>
+  $r_str = "<h2>Smazat u¾ivatele</h2><form action=act.user_delete.php method='post'>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' name='user_delete_submit'>Smazat uï¿½ivatele</button>
+              <button type='submit' name='user_delete_submit'>Smazat u¾ivatele</button>
             </form>";
   echo($r_str);
 }
