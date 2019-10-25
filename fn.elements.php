@@ -3,7 +3,7 @@
 const STUDENT          = 1;
 const LECTURER         = 2;
 const GARANT           = 3;
-const FACILITY_MANAGER = 4;
+const DEPARTMENT_HEAD  = 4;
 const ADMIN            = 5;
 
 function insert_tile($name, $url){
@@ -59,7 +59,7 @@ function tile_show_all_courses(){
 }
 
 function tile_manage_rooms(){
-  if( check_rights(FACILITY_MANAGER) ){
+  if( check_rights(DEPARTMENT_HEAD) ){
     insert_tile("Správa místností", "./rooms.php");
   }
 }
@@ -253,5 +253,28 @@ function get_user_delete($id){
               <button type='submit' name='user_delete_submit'>Smazat u¾ivatele</button>
             </form>";
   echo($r_str);
+}
+
+function table_rooms(){
+  require_once("dbh.php");
+
+  $query = "SELECT * FROM mistnosti";
+
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");return;
+  }
+
+  $r_table = "<table id='rooms'><tr><th>ID</th><th>Adresa</th><th>Typ</th><th>Kapacita</th></tr>";
+  while($row = mysqli_fetch_assoc($result)){
+    $id = htmlspecialchars($row['Mistnosti_ID']);
+    $address = htmlspecialchars($row['adresa']);
+    $type =  htmlspecialchars($row['typ'])
+    $capacity = htmlspecialchars($row['kapacita']);
+    $r_table .= "<tr><td><a href='./room?id=$id'>$id</a></td><td>$address</td><td>$type</td><td>$capacity</td></tr>"; 
+  }
+  $r_table .= "</table><br>";
+  echo($r_table);
+  mysqli_free_result($result);
 }
 ?>
