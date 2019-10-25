@@ -33,10 +33,10 @@ $uzivatele_insert = 'INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo
 //HESLA: vždy 1. písmeno jména a 3 písmena příjmení (epal, amal,...)
 controlProcedures($db, $uzivatele_insert, $link, "insert into uzivatele");
 
-$kurzy_insert = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID) VALUES
-('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 9),
-('IMD', 'Uvod do medicinskych databazi', 'Seznamuje se zakladem tvorby databazi v medicinskem prostredi, vhodne pro studenty informatiky nebo bionformatiky', 'Medicinska informatika', 5900, 3),
-('VID', 'Zaklady tvorby video-obsahu', 'Vhodne pro zajemce o nataceni videi, kratkych filmu, strihani videa atd.', 'Multimedia', 5000, 3);";
+$kurzy_insert = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) VALUES
+('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 3, 8),
+('IMD', 'Uvod do medicinskych databazi', 'Seznamuje se zakladem tvorby databazi v medicinskem prostredi, vhodne pro studenty informatiky nebo bionformatiky', 'Medicinska informatika', 5900, 3, 8),
+('VID', 'Zaklady tvorby video-obsahu', 'Vhodne pro zajemce o nataceni videi, kratkych filmu, strihani videa atd.', 'Multimedia', 5000, 9, 8);";
 controlProcedures($db, $kurzy_insert, $link, "insert into kurzy");
 
 $mistnosti_insert = "INSERT INTO mistnosti (Mistnosti_ID, adresa, typ, kapacita) VALUES
@@ -45,11 +45,11 @@ $mistnosti_insert = "INSERT INTO mistnosti (Mistnosti_ID, adresa, typ, kapacita)
 ('H009', 'Hutarova 183/6, Brno', 'poslucharna', 120);";
 controlProcedures($db, $mistnosti_insert, $link, "insert into mistnosti");
 
-$terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lektor_ID, popis, typ, kapacita, doba_trvani) VALUES
-('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 4, 'Konani seminare. Vizte web stranky www.kurzy/cadz.pdf s uvodnim materialem', 'prednaska', 60, 120),
-('CADZ', '2019-11-30', '15:00:00.000000', '', 8, 'Domaci ukol k pouziti zakladnich prikazu. Vizte sablonu na odkaze: www.cad.cz/sablona.pdf. Ukol bude opravovan uvedenym lektorem.', 'domaci ukol', 50, 0),
-('IMD', '2019-11-28', '15:00:00.000000', 'G505', 4, 'Cviceni v laboratori. Budete seznameni s laboratornim radem. Prosim, noste si psaci potreby a pripadne notebook.', 'cviceni', 20, 120),
-('VID', '2019-10-28', '11:00:00.000000', 'H009', 8, 'Prednaska k problematice a demonstrace modeloveho prikladu a programu. Odkazy ke stazeni probirane latky budou doplneny.', 'prednaska', 90, 60);";
+$terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lektor_ID, popis, typ, kapacita, doba_trvani, schvaleno) VALUES
+('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 4, 'Konani seminare. Vizte web stranky www.kurzy/cadz.pdf s uvodnim materialem', 'prednaska', 60, 120, 'ne'),
+('CADZ', '2019-11-30', '15:00:00.000000', '', 8, 'Domaci ukol k pouziti zakladnich prikazu. Vizte sablonu na odkaze: www.cad.cz/sablona.pdf. Ukol bude opravovan uvedenym lektorem.', 'domaci ukol', 50, 0,'ne'),
+('IMD', '2019-11-28', '15:00:00.000000', 'G505', 4, 'Cviceni v laboratori. Budete seznameni s laboratornim radem. Prosim, noste si psaci potreby a pripadne notebook.', 'cviceni', 20, 120,'ne'),
+('VID', '2019-10-28', '11:00:00.000000', 'H009', 8, 'Prednaska k problematice a demonstrace modeloveho prikladu a programu. Odkazy ke stazeni probirane latky budou doplneny.', 'prednaska', 90, 60,'ne');";
 controlProcedures($db, $terminy_insert, $link, "insert into terminy");
 
 $zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Kurzy_ID, student_ID) VALUES
@@ -64,4 +64,8 @@ $soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev
 ('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 'Uvodni material k prvnim hodinam', 'www.kurzy/cadz.pdf', 'pro zapsane'),
 ('CADZ', '2019-11-30', '15:00:00.000000', '', 'Sablona k DU', 'www.cad.cz/sablona.pdf', 'pro zapsane');";
 controlProcedures($db, $soubory_insert, $link, "insert into soubory");
+
+$ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) VALUES
+('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 3, 8);";
+controlProcedures($db, $ke_schvaleni_kurz_insert, $link, "insert into ke_schvaleni_kurz");
 ?>
