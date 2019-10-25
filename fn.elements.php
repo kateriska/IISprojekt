@@ -269,7 +269,7 @@ function table_rooms(){
   while($row = mysqli_fetch_assoc($result)){
     $id = htmlspecialchars($row['Mistnosti_ID']);
     $address = htmlspecialchars($row['adresa']);
-    $type =  htmlspecialchars($row['typ'])
+    $type =  htmlspecialchars($row['typ']);
     $capacity = htmlspecialchars($row['kapacita']);
     $r_table .= "<tr><td><a href='./room?id=$id'>$id</a></td><td>$address</td><td>$type</td><td>$capacity</td></tr>"; 
   }
