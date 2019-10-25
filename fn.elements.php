@@ -242,9 +242,12 @@ function get_user_set_pwd($id){
 }
 
 function get_user_delete($id){
+  if($id == $_SESSION['user_id']){
+    return;
+  }
   $r_str = "<h2>Smazat u¾ivatele</h2><form action=act.user_delete.php method='post'>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' value='user_delete_submit'>Smazat u¾ivatele</button>
+              <button type='submit' name='user_delete_submit'>Smazat u¾ivatele</button>
             </form>";
   echo($r_str);
 }
