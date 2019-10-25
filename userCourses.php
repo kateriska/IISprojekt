@@ -109,7 +109,7 @@ function show_my_courses_student($user_id, $db)
   }
   echo "<br />";
 }
-
+/*
 require_once("dbh.php");
 echo "Vypis pro garanta:\n";
 echo "<br />";
@@ -120,5 +120,5 @@ show_my_courses_lektor(4, $db);
 echo "Vypis pro studenta:\n";
 echo "<br />";
 show_my_courses_student(5, $db);
-
+*/
 ?>
