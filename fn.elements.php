@@ -277,4 +277,30 @@ function table_rooms(){
   echo($r_table);
   mysqli_free_result($result);
 }
+
+function get_modifiable_room_details($id){
+  require_once("dbh.php");
+  $query = "SELECT * FROM mistnosti WHERE Mistnosti_ID='$id'";
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");return;
+  }
+
+  $row = mysqli_fetch_assoc($result);
+  if(!$row){  //ROOM NOT FOUND
+    header("Location: ./rooms.php?info=$id");
+    exit();
+  }
+  $address = $row['adresa'];
+  $type = $row['typ'];
+  $capacity = $row['kapacita'];
+  $r_str = "<h2>Upravit údaje</h2><form action=act.room_update.php method='post'>
+              ID:<br><input type='text' name='id' value='$id'><br>
+              Adresa:<br><input type='text' name='address' value='$address'><br>
+              Typ:<br><input type='text' name='type' value='$type'><br>
+              Kapacita:<br><input type='number' name='capacity' value='$capacity'><br>
+              <button type='submit' name='room_edit_submit'>Potvrdit zmìny</button>
+            </form>";
+  echo($r_str);
+}
 ?>
