@@ -17,12 +17,14 @@
 
   <container class="center">
 <?php 
-  $id = $_SESSION['user_id'];
   require_once('dbh.php');
-  //show_pending_student_registrations($id, $db);       //G
-  show_my_courses_student($id, $db);                  //S
-  show_my_courses_lecturer($id, $db);                 //L
-  show_my_courses_garant($id, $db);                   //G
+  if(isset($_SESSION['user_id'])){
+    $id = $_SESSION['user_id'];
+    //show_pending_student_registrations($id, $db);       //G
+    show_my_courses_student($id, $db);                  //S
+    show_my_courses_lecturer($id, $db);                 //L
+    show_my_courses_garant($id, $db);                   //G
+  }
   tile_manage_rooms();                        //M
   tile_manage_users();                        //A
   tile_show_all_courses();                    //N
