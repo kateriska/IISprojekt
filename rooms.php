@@ -20,7 +20,7 @@
 
   <container class="center">
 <?php 
-  insert_create_tile("Zadat novou místnost u¾ivatele", "./room_create.php");
+  insert_create_tile("Zadat novou místnost", "./room_create.php");
   table_rooms();
   insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");
 ?>
