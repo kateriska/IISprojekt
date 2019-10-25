@@ -4,7 +4,7 @@ if(!isset($_POST['room_create_submit'])){
   exit();
 }
 
-$id = $_POST['room_id'];
+$id = strtoupper($_POST['room_id']);
 $address = $_POST['address'];
 $type = $_POST['type'];
 $capacity = $_POST['capacity'];
