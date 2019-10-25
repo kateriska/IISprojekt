@@ -15,6 +15,10 @@
     header("Location: ./index.php");
     exit();
   }
+  if($_GET['id'] == ""){
+    header("Location: ./users.php");
+    exit();
+  }
   insert_login_bar();
 ?>
 
