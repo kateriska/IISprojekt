@@ -34,6 +34,9 @@
       Heslo:<br><input type='password' name='pwd'><br>
       <button type='submit' name='user_create_submit'>Vytvoøit</button>
     </form>
+    <?php
+      insert_reverse_tile("Zpìt na seznam u¾ivatelù", "./users.php");
+    ?>
   </container>
 </body>
 
