@@ -348,7 +348,7 @@ function course_compare_draft(){
   }
   $row = mysqli_fetch_assoc($result);
   if(!$row){
-    echo("Kurz $id nenalezen!");mysqli_free_result($result);
+    echo("Kurz $id - draft nenalezen!");mysqli_free_result($result);
     return FALSE;
   }
 
@@ -357,20 +357,34 @@ function course_compare_draft(){
   $garant_mail = htmlspecialchars($row['email']);
   $typ = htmlspecialchars($row['typ']);
   $head_id = $row['vedouci_ID'];
-  $cena_text = "";
-  
-  session_start();
-  if($head_id != $_SESSION['user_id']){
-    header("Location: ./index.php?err=noauth");
-    exit();
-  }
-  
-  if($row['cena'] != 0){
-    $cena_text = "<b>Cena: </b>".htmlspecialchars($row['cena'])."<br>";
-  }
   $popis = htmlspecialchars($row['popis']);
+  $cena = htmlspecialchars($row['cena']);
+  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$popis<br>";
+  echo($r_str);
+    
+  //
+  $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $d_result = mysqli_query($db, $d_query);
+  if($d_result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  $d_row = mysqli_fetch_assoc($result);
+  if(!$d_row){
+    echo("Kurz $id nenalezen!");mysqli_free_result($d_result);
+    return FALSE;
+  }
 
-  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>";
+  $d_nazev = htmlspecialchars($d_row['nazev']);
+  $d_garant_name = htmlspecialchars($d_row['jmeno']) ." ". htmlspecialchars($d_row['prijmeni']);
+  $d_garant_mail = htmlspecialchars($d_row['email']);
+  $d_typ = htmlspecialchars($d_row['typ']);
+  $d_popis = htmlspecialchars($d_row['popis']);
+  $d_cena = htmlspecialchars($d_row['cena']);
+  //
+  
+
+  $r_str = "<h1>$id - $d_nazev</h1><br><b>Garant:</b> $d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)<br><b>Typ: </b>$d_typ<br>$d_popis<br>";
   echo($r_str);mysqli_free_result($result);return TRUE;
 }
 
