@@ -294,8 +294,8 @@ function get_modifiable_room_details($id){
   $address = $row['adresa'];
   $type = $row['typ'];
   $capacity = $row['kapacita'];
-  $r_str = "<h2>Upravit údaje</h2><form action=act.room_update.php method='post'>
-              ID:<br><input type='text' name='id' value='$id'><br>
+  $r_str = "<h2>Upravit údaje místnosti $id</h2><form action=act.room_update.php method='post'>
+              <input type='hidden' name='id' value='$id'>
               Adresa:<br><input type='text' name='address' value='$address'><br>
               Typ:<br><input type='text' name='type' value='$type'><br>
               Kapacita:<br><input type='number' name='capacity' value='$capacity'><br>
@@ -305,7 +305,7 @@ function get_modifiable_room_details($id){
 }
 
 function get_room_delete($id){
-  $r_str = "<h2>Smazat místnost</h2><form action=act.room_delete.php method='post'>
+  $r_str = "<h2>Smazat místnost $id</h2><form action=act.room_delete.php method='post'>
               <input type='hidden' name='id' value='$id'>
               <button type='submit' name='user_delete_submit'>Smazat místnost</button>
             </form>";
