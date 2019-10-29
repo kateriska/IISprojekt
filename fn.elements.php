@@ -340,7 +340,7 @@ function course_compare_draft(){
 
   require_once("dbh.php");
   $id = $_GET['id'];
-  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
@@ -363,7 +363,7 @@ function course_compare_draft(){
   echo($r_str);
     
   //
-  $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $d_result = mysqli_query($db, $d_query);
   if($d_result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
