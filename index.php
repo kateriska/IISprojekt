@@ -21,6 +21,7 @@
   if(isset($_SESSION['user_id'])){
     $id = $_SESSION['user_id'];
     //show_pending_student_registrations($id, $db);       //G
+    show_pending_approval_users($id, $db);              //M
     show_my_courses_student($id, $db);                  //S
     show_my_courses_lecturer($id, $db);                 //L
     show_my_courses_garant($id, $db);                   //G

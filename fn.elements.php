@@ -311,4 +311,8 @@ function get_room_delete($id){
             </form>";
   echo($r_str);
 }
+
+function show_pending_approval_courses($id, $db){
+  echo("ahoj");
+}
 ?>
