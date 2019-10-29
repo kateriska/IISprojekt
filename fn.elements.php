@@ -369,7 +369,7 @@ function course_compare_draft(){
     echo("CHYBA SQL");
     return FALSE;
   }
-  $d_row = mysqli_fetch_assoc($result);
+  $d_row = mysqli_fetch_assoc($d_result);
   if(!$d_row){
     echo("Kurz $id nenalezen!");mysqli_free_result($d_result);
     return FALSE;
