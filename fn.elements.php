@@ -356,12 +356,11 @@ function course_compare_draft(){
   $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
   $garant_mail = htmlspecialchars($row['email']);
   $typ = htmlspecialchars($row['typ']);
-  $head_id = $row['vedouci_ID'];
   $popis = htmlspecialchars($row['popis']);
   $cena = htmlspecialchars($row['cena']);
   $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$popis<br>";
   echo($r_str);
-    
+  
   //
   $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $d_result = mysqli_query($db, $d_query);
@@ -374,7 +373,8 @@ function course_compare_draft(){
     echo("Kurz $id nenalezen!");mysqli_free_result($d_result);
     return FALSE;
   }
-
+  
+  $d_head_id = $row['vedouci_ID'];
   $d_nazev = htmlspecialchars($d_row['nazev']);
   $d_garant_name = htmlspecialchars($d_row['jmeno']) ." ". htmlspecialchars($d_row['prijmeni']);
   $d_garant_mail = htmlspecialchars($d_row['email']);
