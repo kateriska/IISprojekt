@@ -314,9 +314,7 @@ function get_room_delete($id){
 
 function show_pending_approval_courses($id, $db){
   $query = "SELECT Kurzy_ID, nazev, typ, garant_ID, email FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID = uzivatele.Uzivatele_ID WHERE vedouci_ID='$id'";
-  echo($query);
   $result = mysqli_query($db, $query);
-  echo("ahjo");
   if ($result->num_rows > 0) {
     echo "<h1>Následující kurzy vy¾adují schválení:</h1>
           <table class='to_approve'>
@@ -328,12 +326,10 @@ function show_pending_approval_courses($id, $db){
       $typ =  $row['typ'];
       $garant = $row['garant_ID'];
       $email = $row['email'];
-      echo "<tr><td><b>$course_id</b></td><td><a href='./course_draft?id=$course_id'>$nazev</a></td><td>$typ</td><td><a href='mailto:$email'>$typ</td></tr>";
+      echo "<tr><td><b>$course_id</b></td><td><a href='./course_draft?id=$course_id'>$nazev</a></td><td>$typ</td><td><a href='mailto:$email'>$garant</td></tr>";
     }
     echo "</table> <br>";
   }
-  echo("ahjosdds");
-
 }
 
 ?>
