@@ -19,7 +19,7 @@ $query = "DELETE FROM uzivatele WHERE Uzivatele_ID='$id'";
 if(mysqli_query($db, $query)){
   header("Location: ./users.php?succ=deleted");
 }else{
-  header("Location: ./user_create.php?id=$id&err=or");
+  header("Location: ./user_update.php?id=$id&err=or");
 }
 exit();
 ?>
