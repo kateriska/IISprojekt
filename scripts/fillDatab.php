@@ -45,7 +45,7 @@ $mistnosti_insert = "INSERT INTO mistnosti (Mistnosti_ID, adresa, typ, kapacita)
 ('H009', 'Hutarova 183/6, Brno', 'poslucharna', 120);";
 controlProcedures($db, $mistnosti_insert, $link, "insert into mistnosti");
 
-$terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lektor_ID, popis, typ, kapacita, doba_trvani, schvaleno) VALUES
+$terminy_insert = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lektor_ID, popis, typ_termin, kapacita, doba_trvani, schvaleno) VALUES
 ('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 4, 'Konani seminare. Vizte web stranky www.kurzy/cadz.pdf s uvodnim materialem', 'prednaska', 60, 120, 'ne'),
 ('CADZ', '2019-11-30', '15:00:00.000000', '', 8, 'Domaci ukol k pouziti zakladnich prikazu. Vizte sablonu na odkaze: www.cad.cz/sablona.pdf. Ukol bude opravovan uvedenym lektorem.', 'domaci ukol', 50, 0,'ne'),
 ('IMD', '2019-11-28', '15:00:00.000000', 'G505', 4, 'Cviceni v laboratori. Budete seznameni s laboratornim radem. Prosim, noste si psaci potreby a pripadne notebook.', 'cviceni', 20, 120,'ne'),
