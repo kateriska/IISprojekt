@@ -1,7 +1,7 @@
 <?php
 function show_my_courses_garant($user_id, $db)
 {
-  $query = "SELECT * FROM kurzy, uzivatele WHERE kurzy.garant_ID = '$user_id' AND uzivatele.Uzivatele_ID = '$user_id'";
+  $query = "SELECT * FROM kurzy, terminy, uzivatele WHERE terminy.lektor_ID = '$user_id' AND terminy.Kurzy_ID = kurzy.Kurzy_ID AND terminy.lektor_ID = uzivatele.Uzivatele_ID AND uzivatele.Uzivatele_ID = '$user_id'";
   $result = mysqli_query($db, $query);
   if ($result->num_rows > 0) {
     echo "<b>Vámi za¹ti»ované kurzy:</b>";
@@ -21,11 +21,10 @@ function show_my_courses_garant($user_id, $db)
     echo "</table>";
   }
 
-  echo "<br />";
 }
 function show_my_courses_lecturer($user_id, $db)
 {
-  $query = "SELECT * FROM kurzy, terminy, uzivatele WHERE terminy.lektor_ID = '$user_id' AND terminy.Kurzy_ID = kurzy.Kurzy_ID AND terminy.lektor_ID = uzivatele.Uzivatele_ID AND uzivatele.Uzivatele_ID = '$user_id'";
+  $query = "SELECT * FROM kurzy, uzivatele WHERE kurzy.garant_ID = '$user_id' AND uzivatele.Uzivatele_ID = '$user_id'";
   $result = mysqli_query($db, $query);
   if ($result->num_rows > 0) {
     echo "<b>Vámi vyuèované kurzy:</b>";
