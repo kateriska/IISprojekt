@@ -4,7 +4,7 @@ function show_my_courses_garant($user_id, $db)
   $query = "SELECT * FROM kurzy, uzivatele WHERE kurzy.garant_ID = '$user_id' AND uzivatele.Uzivatele_ID = '$user_id'";
   $result = mysqli_query($db, $query);
   if ($result->num_rows > 0) {
-    echo "<b>Vámi za¹»i»ované kurzy:</b>";
+    echo "<b>Vámi za¹ti»ované kurzy:</b>";
     echo"<table>";
       echo"<tr>";
         echo"<th>Zkratka kurzu</th>";
