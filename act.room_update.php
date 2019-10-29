@@ -1,6 +1,6 @@
 <?php
 $id = $_POST['id'];
-if(!isset($_POST['user_edit_submit'])){
+if(!isset($_POST['room_edit_submit'])){
   header("Location: ./room.php?id=$id");
   exit();
 }

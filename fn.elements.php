@@ -307,7 +307,7 @@ function get_modifiable_room_details($id){
 function get_room_delete($id){
   $r_str = "<h2>Smazat místnost $id</h2><form action=act.room_delete.php method='post'>
               <input type='hidden' name='id' value='$id'>
-              <button type='submit' name='user_delete_submit'>Smazat místnost</button>
+              <button type='submit' name='room_delete_submit'>Smazat místnost</button>
             </form>";
   echo($r_str);
 }
