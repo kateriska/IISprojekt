@@ -321,15 +321,57 @@ function show_pending_approval_courses($id, $db){
             <tr><th>Zkratka kurzu</th> <th>Název kurzu</th> <th>Typ kurzu</th> <th>®adatel</th> </tr>";
     while($row = $result->fetch_assoc())
     {
-      $course_id =  $row['Kurzy_ID'];
-      $nazev =  $row['nazev'];
-      $typ =  $row['typ'];
-      $garant = $row['jmeno'] ." ". $row['prijmeni'];
-      $email = $row['email'];
+      $course_id =  htmlspecialchars($row['Kurzy_ID']);
+      $nazev =  htmlspecialchars($row['nazev']);
+      $typ =  htmlspecialchars($row['typ']);
+      $garant = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
+      $email = htmlspecialchars($row['email']);
       echo "<tr><td><b>$course_id</b></td><td><a href='./course_draft?id=$course_id'>$nazev</a></td><td>$typ</td><td><a href='mailto:$email'>$garant</td></tr>";
     }
     echo "</table> <br>";
   }
+}
+
+function course_compare_draft(){
+  if( !isset($_GET['id']) ){
+    header("Location: ./index.php?err=compare_not_specified");
+    exit();
+  }
+
+  require_once("dbh.php");
+  $id = $_GET['id'];
+  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  $row = mysqli_fetch_assoc($result);
+  if(!$row){
+    echo("Kurz $id nenalezen!");mysqli_free_result($result);
+    return FALSE;
+  }
+
+  $nazev = htmlspecialchars($row['nazev']);
+  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
+  $garant_mail = htmlspecialchars($row['email']);
+  $typ = htmlspecialchars($row['typ']);
+  $head_id = $row['vedouci_ID'];
+  $cena_text = "";
+  
+  session_start();
+  if($head_id != $_SESSION['user_id']){
+    header("Location: ./index.php?err=noauth");
+    exit();
+  }
+  
+  if($row['cena'] != 0){
+    $cena_text = "<b>Cena: </b>".htmlspecialchars($row['cena'])."<br>";
+  }
+  $popis = htmlspecialchars($row['popis']);
+
+  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>";
+  echo($r_str);mysqli_free_result($result);return TRUE;
 }
 
 ?>
