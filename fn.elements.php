@@ -374,7 +374,7 @@ function course_compare_draft(){
     return FALSE;
   }
   
-  $d_head_id = $row['vedouci_ID'];
+  $d_head_id = $d_row['vedouci_ID'];
   $d_nazev = htmlspecialchars($d_row['nazev']);
   $d_garant_name = htmlspecialchars($d_row['jmeno']) ." ". htmlspecialchars($d_row['prijmeni']);
   $d_garant_mail = htmlspecialchars($d_row['email']);
