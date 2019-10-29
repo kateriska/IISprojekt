@@ -314,6 +314,7 @@ function get_room_delete($id){
 
 function show_pending_approval_courses($id, $db){
   $query = "SELECT Kurzy_ID, nazev, typ, garant_ID, email FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID = uzivatele.Uzivatele_ID WHERE vedouci_ID='$id'";
+  echo($query);
   $result = mysqli_query($db, $query);
   echo("ahjo");
   if ($result->num_rows > 0) {
