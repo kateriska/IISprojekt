@@ -318,7 +318,7 @@ function show_pending_approval_courses($id, $db){
   if ($result->num_rows > 0) {
     echo "<h1>Následující kurzy vy¾adují schválení:</h1>
           <table class='to_approve'>
-            <tr><th>Zkratka kurzu</th> <th>Název kurzu</th> <th>Typ kurzu</th> <th>®adatel</th> </tr>";
+            <tr><th>Zkratka kurzu</th> <th>Název kurzu</th> <th>Typ kurzu</th> <th>Garant</th> </tr>";
     while($row = $result->fetch_assoc())
     {
       $course_id =  htmlspecialchars($row['Kurzy_ID']);
