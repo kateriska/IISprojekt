@@ -65,7 +65,7 @@ $soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev
 ('CADZ', '2019-11-30', '15:00:00.000000', '', 'Sablona k DU', 'www.cad.cz/sablona.pdf', 'pro zapsane');";
 controlProcedures($db, $soubory_insert, $link, "insert into soubory");
 
-$ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) VALUES
-('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 3, 8);";
+$ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) VALUES
+('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 3, 8, 3);";
 controlProcedures($db, $ke_schvaleni_kurz_insert, $link, "insert into ke_schvaleni_kurz");
 ?>
