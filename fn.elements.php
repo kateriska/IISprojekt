@@ -356,32 +356,33 @@ function compare_rows($row, $d_row, $id){
   if($nazev == $d_nazev){
    echo("<h1>$id - $d_nazev</h1><br>");
   }else{
-    echo("<h1>$id - <del>$nazev</del <ins>$d_nazev</ins></h1><br>");
+    echo("<h1>$id - <del>$nazev</del> <ins>$d_nazev</ins></h1><br>");
   }
 
   if($garant_name == $d_garant_name){
     echo("<b>Garant:</b> $d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)<br>");
   }else{
-    echo("<b>Garant:</b> <del>$garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)</del><ins>$garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)</ins><br>");
+    echo("<b>Garant:</b> <del>$garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)</del> <ins>$garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)</ins><br>");
   }
 
   if($typ == $d_typ){
     echo("<b>Typ: </b>$d_typ<br>");
   }else{
-    echo("<b>Typ: </b><del>$typ<br></del><ins>$d_typ</ins>");
+    echo("<b>Typ: </b><del>$typ</del> <ins>$d_typ</ins><br>");
   }
   
+  if($cena == $d_cena){
+    echo("<b>Cena: </b>$d_cena<br>");
+  }else{
+    echo("<b>Cena: </b><del>$cena</del> <ins>$d_cena</ins><br>");
+  }
+
   if($popis == $d_popis){
     echo("$d_popis<br>");
   }else{
-    echo("<del>$popis</del><ins>$d_popis</ins><br>");
+    echo("<del>$popis</del><br><ins>$d_popis</ins><br>");
   }
 
-  if($cena == $d_cena){
-    echo("$d_cena<br>");
-  }else{
-    echo("<del>$cena</del><ins>$d_cena</ins><br>");
-  }
 }
 
 function course_compare_draft(){
