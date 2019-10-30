@@ -332,6 +332,58 @@ function show_pending_approval_courses($id, $db){
   }
 }
 
+
+function compare_rows($row, $d_row, $id){
+  $d_head_id = $d_row['vedouci_ID'];
+  if($d_head_id != $_SESSION['user_id']){
+    header("Location: ./index.php?err=noauth");
+    exit();
+  }
+  $d_nazev = htmlspecialchars($d_row['nazev']);
+  $d_garant_name = htmlspecialchars($d_row['jmeno']) ." ". htmlspecialchars($d_row['prijmeni']);
+  $d_garant_mail = htmlspecialchars($d_row['email']);
+  $d_typ = htmlspecialchars($d_row['typ']);
+  $d_popis = htmlspecialchars($d_row['popis']);
+  $d_cena = htmlspecialchars($d_row['cena']);
+  
+  $nazev = htmlspecialchars($row['nazev']);
+  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
+  $garant_mail = htmlspecialchars($row['email']);
+  $typ = htmlspecialchars($row['typ']);
+  $popis = htmlspecialchars($row['popis']);
+  $cena = htmlspecialchars($row['cena']);
+
+  if($nazev == $d_nazev){
+   echo("<h1>$id - $d_nazev</h1><br>");
+  }else{
+    echo("<h1>$id - <del>$nazev</del <ins>$d_nazev</ins></h1><br>");
+  }
+
+  if($garant_name == $d_garant_name){
+    echo("<b>Garant:</b> $d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)<br>");
+  }else{
+    echo("<b>Garant:</b> <del>$garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)</del><ins>$garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)</ins><br>");
+  }
+
+  if($typ == $d_typ){
+    echo("<b>Typ: </b>$d_typ<br>");
+  }else{
+    echo("<b>Typ: </b><del>$typ<br></del><ins>$d_typ</ins>");
+  }
+  
+  if($popis == $d_popis){
+    echo("$d_popis<br>");
+  }else{
+    echo("<del>$popis</del><ins>$d_popis</ins><br>");
+  }
+
+  if($cena == $d_cena){
+    echo("$d_cena<br>");
+  }else{
+    echo("<del>$cena</del><ins>$d_cena</ins><br>");
+  }
+}
+
 function course_compare_draft(){
   if( !isset($_GET['id']) ){
     header("Location: ./index.php?err=compare_not_specified");
@@ -352,16 +404,6 @@ function course_compare_draft(){
     return FALSE;
   }
 
-  $nazev = htmlspecialchars($row['nazev']);
-  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
-  $garant_mail = htmlspecialchars($row['email']);
-  $typ = htmlspecialchars($row['typ']);
-  $popis = htmlspecialchars($row['popis']);
-  $cena = htmlspecialchars($row['cena']);
-  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$popis<br>";
-  echo($r_str);
-  
-  //
   $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $d_result = mysqli_query($db, $d_query);
   if($d_result === FALSE){ //SQL ERR
@@ -373,19 +415,10 @@ function course_compare_draft(){
     echo("Kurz $id nenalezen!");mysqli_free_result($d_result);
     return FALSE;
   }
-  
-  $d_head_id = $d_row['vedouci_ID'];
-  $d_nazev = htmlspecialchars($d_row['nazev']);
-  $d_garant_name = htmlspecialchars($d_row['jmeno']) ." ". htmlspecialchars($d_row['prijmeni']);
-  $d_garant_mail = htmlspecialchars($d_row['email']);
-  $d_typ = htmlspecialchars($d_row['typ']);
-  $d_popis = htmlspecialchars($d_row['popis']);
-  $d_cena = htmlspecialchars($d_row['cena']);
-  //
-  
 
-  $r_str = "<h1>$id - $d_nazev</h1><br><b>Garant:</b> $d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)<br><b>Typ: </b>$d_typ<br>$d_popis<br>";
-  echo($r_str);mysqli_free_result($result);return TRUE;
+  compare_rows($row, $d_row, $id);
+
+  mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
 ?>
