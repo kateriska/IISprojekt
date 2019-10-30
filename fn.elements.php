@@ -362,7 +362,7 @@ function compare_rows($row, $d_row, $id){
   if($garant_name == $d_garant_name){
     echo("<b>Garant:</b> $d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)<br>");
   }else{
-    echo("<b>Garant:</b> <del>$garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)</del> <ins>$garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)</ins><br>");
+    echo("<b>Garant:</b> <del>$garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)</del> <ins>$d_garant_name (<a href='mailto:$d_garant_mail'>$d_garant_mail</a>)</ins><br>");
   }
 
   if($typ == $d_typ){
