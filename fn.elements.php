@@ -456,7 +456,7 @@ function insert_select_garant(){
 }
 
 function insert_select_deputy_head(){
-  require_once("dbh.php");
+  require("dbh.php");
   
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='4' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
