@@ -66,6 +66,6 @@ $soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev
 controlProcedures($db, $soubory_insert, $link, "insert into soubory");
 
 $ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) VALUES
-('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii.', 'Strojirenstvi', 2900, 3, 8, 3);";
+('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii. A tohle tam pridej', 'Strojirenstvi', 2900, 3, 8, 3);";
 controlProcedures($db, $ke_schvaleni_kurz_insert, $link, "insert into ke_schvaleni_kurz");
 ?>
