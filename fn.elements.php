@@ -429,7 +429,7 @@ function course_compare_draft(){
 
   $delete_if_would_be_created = '';
   if($course_to_be_created){
-    $delete_if_would_be_created = "<input type='hidden' name='delete_original' value='yes'>"
+    $delete_if_would_be_created = "<input type='hidden' name='delete_original' value='yes'>";
   }
 
 
