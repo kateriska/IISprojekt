@@ -557,6 +557,32 @@ function course_show_info_or_edit(){
   }else{
     course_get_info($row);
   }
+}
 
+function check_add_event(){
+  //admin, vedouci kurzu nebo garant kurzu
+  if(check_rights(ADMIN)){
+    return TRUE;
+  }
+  $id=$_GET['id'];
+  $query = "SELECT garant_ID, vedouci_ID FROM kurzy WHERE Kurzy_ID='$id'";
+  require("dbh.php");
+
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  $row = mysqli_fetch_assoc($result);
+  if($_SESSION['user_id'] == $row['garant_ID'] || $_SESSION['user_id'] == $row['vedouci_ID'] ){
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function course_add_event(){
+  if(check_add_event()){
+    insert_create_tile("Vytvoøit nový termín", "create_event.php?id=$id");
+  }
 }
 ?>
