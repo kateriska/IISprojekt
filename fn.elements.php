@@ -574,7 +574,7 @@ function check_add_event($id){
     return FALSE;
   }
   $row = mysqli_fetch_assoc($result);
-  if($_SESSION['user_id'] == $row['garant_ID'] || $_SESSION['user_id'] == $row['vedouci_ID'] ){
+  if($id == $row['garant_ID'] || $id == $row['vedouci_ID'] ){
     return TRUE;
   }
   return FALSE;
