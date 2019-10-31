@@ -530,7 +530,7 @@ function course_show_info_or_edit(){
 
   if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
     $isdraft = FALSE;
-    $query2 = "SELECT * FROM ke_schvaleni_kurz JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+    $query2 = "SELECT * FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
     $result2 = mysqli_query($db, $query2);
     if($result2 === FALSE){ //SQL ERR
       echo("CHYBA SQL");
