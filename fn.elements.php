@@ -596,14 +596,35 @@ function insert_room_select(){
     return FALSE;
   }
   
-  echo("Místnost:<br><select name='dep_head'>");
+  echo("Místnost:<br><select name='room'>");
   echo("<option value='' selected>---</option>");
   while( $row = mysqli_fetch_assoc($result) ){
       $id = $row['Mistnosti_ID'];
       $address = $row['adresa'];
       $type = $row['typ'];
-      echo("<option value='$dep_head' $selected>$id - $type ($address)</option>");
+      echo("<option value='$id' selected>$id - $type ($address)</option>");
   }
   echo("</select><br>");
 }
+
+function insert_lector_select(){
+  require("dbh.php");
+  
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='2' ORDER BY prijmeni, jmeno";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  
+  echo("Lektor:<br><select name='lector'>");
+  while( $row = mysqli_fetch_assoc($result) ){
+      $lector = $row['Uzivatele_ID'];
+      $name = $row['prijmeni'] .", ". $row['jmeno'];
+      echo("<option value='$lector'>$name</option>");
+  }
+  echo("</select><br>");
+}
+
+
 ?>
