@@ -387,6 +387,10 @@ function compare_rows($row, $d_row, $id){
     echo("<del>$popis</del><br><ins>$d_popis</ins><br><br><br>");
   }
 
+  if($cena == '-1'){
+    return TRUE;
+  }
+  return FALSE;
 }
 
 function course_compare_draft(){
@@ -421,10 +425,17 @@ function course_compare_draft(){
     return FALSE;
   }
 
-  compare_rows($row, $d_row, $id);
+  $course_to_be_created = compare_rows($row, $d_row, $id);
+
+  $delete_if_would_be_created = '';
+  if($course_to_be_created){
+    $delete_if_would_be_created = "<input type='hidden' name='delete_original' value='yes'>"
+  }
+
 
   echo("<form id='reject' action='act.draft_reject.php' method='post'>
           <input type='hidden' name='id' value=$id>
+          $delete_if_would_be_created
           <button type='submit' name='submit_reject'>Zamítnout zmìny</button>
         </form>");
 
