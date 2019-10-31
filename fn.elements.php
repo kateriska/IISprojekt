@@ -466,7 +466,7 @@ function course_get_info($row){
   echo("<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>");
 }
 
-course_get_editable_info($row){
+function course_get_editable_info($row){
   $id = $row['Kurzy_ID'];
   $nazev = htmlspecialchars($row['nazev']);
   $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
