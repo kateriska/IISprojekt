@@ -29,7 +29,7 @@ $type = $row['typ'];
 $price = $row['cena'];
 $garant = $row['garant_ID'];
 
-$query = "UPDATE kurzy SET nazev='$name' popis='$desc' typ='$type' cena='$price' garant_ID='$garant' WHERE Kurzy_ID='$id'";
+$query = "UPDATE kurzy SET nazev='$name', popis='$desc', typ='$type', cena='$price', garant_ID='$garant' WHERE Kurzy_ID='$id'";
 $result = mysqli_query($db, $query); 
 if($result === FALSE){ //SQL ERR
   header("Location: ./course_draft.php?id=$id&err=or2");
