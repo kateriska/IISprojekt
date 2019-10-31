@@ -436,4 +436,8 @@ function course_compare_draft(){
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
+function insert_select_garant(){
+  echo("insert select garant");
+}
+
 ?>
