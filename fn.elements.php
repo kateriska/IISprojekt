@@ -482,6 +482,7 @@ function course_get_editable_info($row, $isdraft){
   $typ = htmlspecialchars($row['typ']);
   $cena = htmlspecialchars($row['cena']);
   $popis = htmlspecialchars($row['popis']);
+  $dep_head = $row['vedouci_ID'];
   if($isdraft){
     require("dbh.php");
     $orig_query = "SELECT Kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
@@ -503,6 +504,8 @@ function course_get_editable_info($row, $isdraft){
               insert_select_garant($row['garant_ID']);
               if(check_rights(DEPARTMENT_HEAD)){
                 insert_select_deputy_head($row['vedouci_ID']);
+              }else{
+                echo("<input type='hidden' name='dep_head' value='$dep_head'>");
               }
         echo("Typ:<br><input type='text' name='type' value='$typ'><br>
               Cena:<br><input type='number' name='price' value='$cena'><br>
