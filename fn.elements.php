@@ -414,7 +414,7 @@ function course_compare_draft(){
 }
 
 function insert_select_garant(){
-  require_once("dbh.php");
+  require("dbh.php");
   
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
