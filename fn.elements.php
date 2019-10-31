@@ -437,7 +437,23 @@ function course_compare_draft(){
 }
 
 function insert_select_garant(){
-  echo("insert select garant");
+  require_once("dbh.php");
+  
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3'";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  
+  echo("Garant:<br><select name='garant'>");
+  while( $row = mysqli_fetch_assoc($result) ){
+      $garant_id = $row['Uzivatele_ID'];
+      $name = $row['jmeno'] ." ". $row['prijmeni'];
+      echo("<option value='$garant_id'>$name</option>");
+  }
+
+  echo("</select><br>");
 }
 
 ?>
