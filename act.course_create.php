@@ -24,7 +24,7 @@ if( $id == '' || $name == '' || $type == ''  || $price < 0 || $garant == '' || $
 
 require_once("dbh.php");
 session_start();
-$my_id = $_SESSION('user_id');
+$my_id = $_SESSION['user_id'];
 
 
 $query = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) 
