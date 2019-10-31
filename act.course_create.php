@@ -23,13 +23,23 @@ if( $id == '' || $name == '' || $type == ''  || $price < 0 || $garant == '' || $
 }
 
 require_once("dbh.php");
+session_start();
+$my_id = $_SESSION('user_id');
 
-$query = "INSERT INTO ke_schvaleni_kurz (jmeno, prijmeni, heslo, role, email) VALUES ('$firstname', '$lastname', '$pwd_hash', '$role', '$mail')";
 
-if(mysqli_query($db, $query)){
-  header("Location: ./users.php?succ=created");
+$query = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) 
+VALUES ('$id', '', '', '', '0', '$dep_head', '$dep_head')";
+if( !mysqli_query($db, $query) ){
+  header("Location: ./course_create.php?err=id_taken");
+  exit();
+}
+
+$query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) 
+VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant', '$dep_head', '$my_id')";
+if( !mysqli_query($db, $query) ){
+  header("Location: ./course_create.php?err=id_taken");
 }else{
-  header("Location: ./user_create.php?err=mail_taken");
+  header("Location: ./courses.php?succ=created");
 }
 exit();
 ?>
