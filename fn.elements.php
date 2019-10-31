@@ -110,40 +110,6 @@ function tile_create_course(){
   }
 }
 
-function course_get_info(){
-  if( !isset($_GET['id']) ){
-    header("Location: ./courses.php");
-    exit();
-  }
-  require_once("dbh.php");
-  $id = $_GET['id'];
-  $query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
-  $result = mysqli_query($db, $query);
-  if($result === FALSE){ //SQL ERR
-    echo("CHYBA SQL");
-    return FALSE;
-  }
-  $row = mysqli_fetch_assoc($result);
-  if(!$row){
-    $r_str = "Kurz $id nenalezen!";
-    echo($r_str);mysqli_free_result($result);
-    return FALSE;
-  }
-
-  $nazev = htmlspecialchars($row['nazev']);
-  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
-  $garant_mail = htmlspecialchars($row['email']);
-  $typ = htmlspecialchars($row['typ']);
-  $cena_text = "";
-  if($row['cena'] != 0){
-    $cena_text = "<b>Cena: </b>".htmlspecialchars($row['cena'])."<br>";
-  }
-  $popis = htmlspecialchars($row['popis']);
-
-  $r_str = "<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>";
-  echo($r_str);mysqli_free_result($result);return TRUE;
-}
-
 function role_to_text($role){
   if($role == 1){
     return 'student';
@@ -485,4 +451,66 @@ function insert_select_deputy_head(){
   echo("</select><br>");
 }
 
+function course_get_info($row){
+  $id = $row['Kurzy_ID'];
+  $nazev = htmlspecialchars($row['nazev']);
+  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
+  $garant_mail = htmlspecialchars($row['email']);
+  $typ = htmlspecialchars($row['typ']);
+  $cena_text = "";
+  if($row['cena'] != 0){
+    $cena_text = "<b>Cena: </b>".htmlspecialchars($row['cena'])." CZK<br>";
+  }
+  $popis = htmlspecialchars($row['popis']);
+
+  echo("<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>");
+}
+
+course_get_editable_info($row){
+  $id = $row['Kurzy_ID'];
+  $nazev = htmlspecialchars($row['nazev']);
+  $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
+  $garant_mail = htmlspecialchars($row['email']);
+  $typ = htmlspecialchars($row['typ']);
+  $cena = htmlspecialchars($row['cena']);
+  $popis = htmlspecialchars($row['popis']);
+  echo("<h2>Upravit údaje kurzu $id</h2><form action=act.course_update.php method='post'>
+              Název:<br><input type='text' name='name' value='$nazev'><br>");
+              insert_select_garant();
+              insert_select_deputy_head();
+        echo("Typ:<br><input type='text' name='type' value='$typ'><br>
+              Cena:<br><input type='number' name='price' value='$cena'><br>
+              Popis:<br><input type='text' name='desc' value='$popis'><br>
+              <input type='hidden' name='id' value='$id'>
+              <button type='submit' name='course_edit_submit'>Potvrdit zmìny</button>
+            </form>");
+}
+
+function course_show_info_or_edit(){
+  if( !isset($_GET['id']) ){
+    header("Location: ./courses.php");
+    exit();
+  }
+  require_once("dbh.php");
+  $id = $_GET['id'];
+  $query = "SELECT kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  $row = mysqli_fetch_assoc($result);
+  if(!$row){
+    $r_str = "Kurz $id nenalezen!";
+    echo($r_str);mysqli_free_result($result);
+    return FALSE;
+  }
+
+  if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
+    course_get_editable_info($row);
+  }else{
+    course_get_info($row);
+  }
+
+}
 ?>
