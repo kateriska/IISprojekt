@@ -375,7 +375,7 @@ function compare_rows($row, $d_row, $id){
     echo("<b>Typ: </b><del>$typ</del> <ins>$d_typ</ins><br>");
   }
   
-  if($cena == $d_cena){
+  if($cena == $d_cena || $cena == '-1'){
     echo("<b>Cena: </b>$d_cena<br>");
   }else{
     echo("<b>Cena: </b><del>$cena</del> <ins>$d_cena</ins><br>");
