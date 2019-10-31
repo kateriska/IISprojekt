@@ -17,8 +17,8 @@
   <container class="center">
   <?php 
     course_show_info_or_edit();
-    course_show_events();
     course_show_add_event();
+    //course_show_events();
     //course_get_participant_info();           TODO: tabulka terminu s hodnocenim, mistnosti, lektorem a celkove hodnoceni.
     //course_get_course_files();               TODO: soubory pro vsechny/registrovane/zapsane
     insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
