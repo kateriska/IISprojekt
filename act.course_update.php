@@ -16,15 +16,19 @@ $draft = $_POST['draftval'];
 
 if(isset($_POST['dep_head'])){
   $dep_head_text = "vedouci_ID='$dep_head',";
+  $dep_head_p1 = "vedouci_ID,";
+  $dep_head_p2 = "'$dep_head',";
 }else{
-  $dep_head_text = '';
+  $dep_head_text = "";
+  $dep_head_p1 = "";
+  $dep_head_p2 = "";
 }
 
 session_start();
 $me = $_SESSION['user_id'];
 if($draft == 0){
-  $query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID)
-  VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant', '$dep_head', '$me')";
+  $query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, $dep_head_p1 zadatel_ID)
+  VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant',  $dep_head_p2 '$me')";
 }else{
   $query = "UPDATE ke_schvaleni_kurz SET nazev='$name', popis='$desc', typ='$type', cena='$price', garant_ID='$garant', $dep_head_text zadatel_ID='$me' WHERE Kurzy_ID='$id'";
 }
