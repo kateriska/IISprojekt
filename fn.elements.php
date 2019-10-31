@@ -476,7 +476,7 @@ function course_get_info($row){
   echo("<h1>$id - $nazev</h1><br><b>Garant:</b> $garant_name (<a href='mailto:$garant_mail'>$garant_mail</a>)<br><b>Typ: </b>$typ<br>$cena_text$popis<br>");
 }
 
-function course_get_editable_info($row){
+function course_get_editable_info($row, $isdraft){
   $id = $row['Kurzy_ID'];
   $nazev = htmlspecialchars($row['nazev']);
   $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
@@ -484,7 +484,14 @@ function course_get_editable_info($row){
   $typ = htmlspecialchars($row['typ']);
   $cena = htmlspecialchars($row['cena']);
   $popis = htmlspecialchars($row['popis']);
-  echo("<h2>Upravit údaje kurzu $id</h2><form action=act.course_update.php method='post'>
+  if($isdraft){
+    $draftnote = " (draft)";
+    $draftval = 1;
+  }else{
+    $draftnote = "";
+    $draftval = 0;
+  }
+  echo("<h2>Upravit údaje kurzu $id $draftnote</h2><form action=act.course_update.php method='post'>
               Název:<br><input type='text' name='name' value='$nazev'><br>");
               insert_select_garant($row['garant_ID']);
               insert_select_deputy_head($row['vedouci_ID']);
@@ -492,6 +499,7 @@ function course_get_editable_info($row){
               Cena:<br><input type='number' name='price' value='$cena'><br>
               Popis:<br><input type='text' name='desc' value='$popis'><br>
               <input type='hidden' name='id' value='$id'>
+              <input type='hidden' name='draftval' value='$draftval'>
               <button type='submit' name='course_edit_submit'>Potvrdit zmìny</button>
             </form>");
 }
@@ -519,8 +527,22 @@ function course_show_info_or_edit(){
     course_get_info($row);
     return;
   }
+
   if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
-    course_get_editable_info($row);
+    $isdraft = FALSE;
+    $query2 = "SELECT * FROM ke_schvaleni_kurzy WHERE Kurzy_ID='$id'";
+    $result2 = mysqli_query($db, $query);
+    if($result2 === FALSE){ //SQL ERR
+      echo("CHYBA SQL");
+      return FALSE;
+    }
+    $row2 = mysqli_fetch_assoc($result2);
+    if($row2 != FALSE){
+      $row = $row2;
+      $isdraft = TRUE;
+    }
+
+    course_get_editable_info($row, $isdraft);
   }else{
     course_get_info($row);
   }
