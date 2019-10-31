@@ -27,10 +27,11 @@ echo($query);
 require_once("dbh.php");
 
 
-if(mysqli_query($db, $query)){
+/*if(mysqli_query($db, $query)){
   header("Location: ./course.php?id=$id&succ=ok_wait_for_approval");
 }else{
   header("Location: ./course.php?id=$id&err=update_err");
 }
 exit();
+*/
 ?>
