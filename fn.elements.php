@@ -384,7 +384,7 @@ function compare_rows($row, $d_row, $id){
   if($popis == $d_popis){
     echo("$d_popis<br>");
   }else{
-    echo("<del>$popis</del><br><ins>$d_popis</ins><br>");
+    echo("<del>$popis</del><br><ins>$d_popis</ins><br><br><br>");
   }
 
 }
