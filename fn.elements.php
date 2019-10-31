@@ -493,7 +493,7 @@ function course_show_info_or_edit(){
   }
   require_once("dbh.php");
   $id = $_GET['id'];
-  $query = "SELECT kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+  $query = "SELECT Kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
@@ -505,7 +505,7 @@ function course_show_info_or_edit(){
     echo($r_str);mysqli_free_result($result);
     return FALSE;
   }
-
+  session_start();
   if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
     course_get_editable_info($row);
   }else{
