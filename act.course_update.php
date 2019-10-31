@@ -32,16 +32,16 @@ if($draft == 0){
 }else{
   $query = "UPDATE ke_schvaleni_kurz SET nazev='$name', popis='$desc', typ='$type', cena='$price', garant_ID='$garant', $dep_head_text zadatel_ID='$me' WHERE Kurzy_ID='$id'";
 }
-//echo($query);
+echo($query);
 
 require_once("dbh.php");
 
 
-if(mysqli_query($db, $query)){
+/*if(mysqli_query($db, $query)){
   header("Location: ./course.php?id=$id&succ=ok_wait_for_approval");
 }else{
   header("Location: ./course.php?id=$id&err=update_err");
 }
 exit();
-
+*/
 ?>
