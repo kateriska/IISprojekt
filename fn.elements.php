@@ -597,7 +597,7 @@ function insert_room_select(){
   }
   
   echo("Místnost:<br><select name='dep_head'>");
-  echo("<option value='' selected>---</option>")
+  echo("<option value='' selected>---</option>");
   while( $row = mysqli_fetch_assoc($result) ){
       $id = $row['Mistnosti_ID'];
       $address = $row['adresa'];
