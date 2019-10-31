@@ -531,7 +531,7 @@ function course_show_info_or_edit(){
   if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
     $isdraft = FALSE;
     $query2 = "SELECT * FROM ke_schvaleni_kurzy WHERE Kurzy_ID='$id'";
-    $result2 = mysqli_query($db, $query);
+    $result2 = mysqli_query($db, $query2);
     if($result2 === FALSE){ //SQL ERR
       echo("CHYBA SQL");
       return FALSE;
