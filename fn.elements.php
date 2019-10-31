@@ -582,7 +582,7 @@ function check_add_event($id){
 
 function course_show_add_event($id){
   if(check_add_event($id)){
-    insert_create_tile("Vytvoøit nový termín", "create_event.php?id=$id");
+    insert_create_tile("Vytvoøit nový termín", "event_create.php?id=$id");
   }
 }
 ?>
