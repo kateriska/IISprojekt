@@ -602,7 +602,7 @@ function insert_room_select(){
       $id = $row['Mistnosti_ID'];
       $address = $row['adresa'];
       $type = $row['typ'];
-      echo("<option value='$dep_head' $selected>$name - $type ($address)</option>");
+      echo("<option value='$dep_head' $selected>$id - $type ($address)</option>");
   }
   echo("</select><br>");
 }
