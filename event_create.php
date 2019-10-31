@@ -19,7 +19,7 @@
 ?>
 
   <container class="center">
-  <h1>Vytvoøit nový termín</h1>
+  <h1>Vytvoøit nový termín kurzu <?php echo($_GET['id'])?></h1>
     <form action=act.event_create.php method='post'>
       Typ:<br><input type='text' name='description'><br>
       Datum:<br><input type='date' name='date'><br>
@@ -37,5 +37,4 @@
     ?>
   </container>
 </body>
-
 </html>
