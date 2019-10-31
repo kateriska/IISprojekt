@@ -452,7 +452,25 @@ function insert_select_garant(){
       $name = $row['prijmeni'] .", ". $row['jmeno'];
       echo("<option value='$garant_id'>$name</option>");
   }
+  echo("</select><br>");
+}
 
+function insert_select_deputy_head(){
+  require_once("dbh.php");
+  
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='4' ORDER BY prijmeni, jmeno";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  
+  echo("Vedoucí:<br><select name='dep_head'>");
+  while( $row = mysqli_fetch_assoc($result) ){
+      $dep_head = $row['Uzivatele_ID'];
+      $name = $row['prijmeni'] .", ". $row['jmeno'];
+      echo("<option value='$dep_head'>$name</option>");
+  }
   echo("</select><br>");
 }
 

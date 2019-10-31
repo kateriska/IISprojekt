@@ -132,11 +132,6 @@ $ke_schvaleni_kurz_tb = "CREATE TABLE ke_schvaleni_kurz (
   vedouci_ID int NOT NULL,
   zadatel_ID int NOT NULL,
   PRIMARY KEY (Kurzy_ID),
-  CONSTRAINT ke_schvaleni_kurz_fk_kurz
-    FOREIGN KEY (Kurzy_ID)
-    REFERENCES kurzy (Kurzy_ID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
   CONSTRAINT ke_schvaleni_kurz_fk_garant
     FOREIGN KEY (garant_ID)
     REFERENCES uzivatele (Uzivatele_ID)
