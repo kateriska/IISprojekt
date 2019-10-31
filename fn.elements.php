@@ -536,7 +536,6 @@ function course_show_info_or_edit(){
     }
     if(mysqli_num_rows($result2) != 0){
       $row = mysqli_fetch_assoc($result2);
-      echo("TADY $id");
       $isdraft = TRUE;
     }
 
