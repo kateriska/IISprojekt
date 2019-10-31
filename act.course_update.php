@@ -15,7 +15,7 @@ $id = $_POST['id'];
 $draft = $_POST['draftval'];
 
 if(isset($_POST['dep_head'])){
-  $dep_head_text = "vedouci_ID='$dep_head'",
+  $dep_head_text = "vedouci_ID='$dep_head',";
 }else{
   $dep_head_text = '';
 }
