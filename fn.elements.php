@@ -423,6 +423,16 @@ function course_compare_draft(){
 
   compare_rows($row, $d_row, $id);
 
+  echo("<form id='reject' action='act.draft_reject.php' method='post'>
+          <input type='hidden' name='id' value=$id>
+          <button type='submit' name='submit_reject'>Zamítnout zmìny</button>
+        </form>");
+
+  echo("<form id='approve' action='act.draft_approve.php' method='post'>
+        <input type='hidden' name='id' value=$id>
+        <button type='submit' name='submit_approve'>Schválit zmìny</button>
+      </form>");
+
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
