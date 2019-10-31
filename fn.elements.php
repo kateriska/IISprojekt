@@ -501,7 +501,9 @@ function course_get_editable_info($row, $isdraft){
   echo("<h2>Upravit údaje kurzu $id $draftnote</h2><form action=act.course_update.php method='post'>
               Název:<br><input type='text' name='name' value='$nazev'><br>");
               insert_select_garant($row['garant_ID']);
-              insert_select_deputy_head($row['vedouci_ID']);
+              if(check_rights(DEPARTMENT_HEAD)){
+                insert_select_deputy_head($row['vedouci_ID']);
+              }
         echo("Typ:<br><input type='text' name='type' value='$typ'><br>
               Cena:<br><input type='number' name='price' value='$cena'><br>
               Popis:<br><input type='text' name='desc' value='$popis'><br>
