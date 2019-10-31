@@ -22,6 +22,7 @@ if($draft == 0){
 }else{
   $query = "UPDATE ke_schvaleni_kurz SET nazev='$name', popis='$desc', typ='$type', cena='$price', garant_ID='$garant', vedouci_ID='$dep_head', zadatel_ID='$me' WHERE Kurzy_ID='$id'";
 }
+echo($query);
 
 require_once("dbh.php");
 
