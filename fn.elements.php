@@ -439,7 +439,7 @@ function course_compare_draft(){
 function insert_select_garant(){
   require_once("dbh.php");
   
-  $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3'";
+  $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL");
@@ -449,7 +449,7 @@ function insert_select_garant(){
   echo("Garant:<br><select name='garant'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $garant_id = $row['Uzivatele_ID'];
-      $name = $row['jmeno'] ." ". $row['prijmeni'];
+      $name = $row['prijmeni'] .", ". $row['jmeno'];
       echo("<option value='$garant_id'>$name</option>");
   }
 
