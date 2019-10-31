@@ -83,7 +83,7 @@ function tile_edit_profile(){
 function table_all_courses(){
   require_once("dbh.php");
 
-  $query = "SELECT Kurzy_ID, nazev, typ, cena FROM kurzy";
+  $query = "SELECT Kurzy_ID, nazev, typ, cena FROM kurzy WHERE nazev<>''";
 
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
