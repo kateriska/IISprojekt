@@ -483,7 +483,16 @@ function course_get_editable_info($row, $isdraft){
   $cena = htmlspecialchars($row['cena']);
   $popis = htmlspecialchars($row['popis']);
   if($isdraft){
-    $draftnote = " (draft)";
+    require("dbh.php");
+    $orig_query = "SELECT Kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
+    $orig_result = mysqli_query($db, $orig_query);
+    if($orig_result === FALSE){ //SQL ERR
+      echo("CHYBA SQL");
+    }
+    $orig_row = mysqli_fetch_assoc($orig_result);
+    course_get_info($orig_row);
+
+    $draftnote = " (draft, èeká na schválení)";
     $draftval = 1;
   }else{
     $draftnote = "";
