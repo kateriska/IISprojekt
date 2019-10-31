@@ -26,8 +26,8 @@
       Typ:<br><input type='text' name='type'><br>
       Cena:<br><input type='number' name='price'><br>
             <?php 
-        insert_select_garant(); 
-        insert_select_deputy_head();
+        insert_select_garant($_SESSION['user_id']); 
+        insert_select_deputy_head($_SESSION['user_id']);
             ?>
       Popis:<br><input type='text' name='description'><br>
       <button type='submit' name='course_create_submit'>Vytvoøit</button>
