@@ -536,9 +536,9 @@ function course_show_info_or_edit(){
       echo("CHYBA SQL");
       return FALSE;
     }
-    $row2 = mysqli_fetch_assoc($result2);
-    if($row2 != FALSE){
-      $row = $row2;
+    if(mysql_num_rows($result2) != 0){
+      $row = mysqli_fetch_assoc($result2);
+      echo("TADY")
       $isdraft = TRUE;
     }
 
