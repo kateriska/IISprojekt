@@ -27,7 +27,7 @@ function insert_delete_tile($name, $url){
 }
 
 function insert_confirm_tile($name, $url){
-  echo("<a href='./$url' class='tile'>? $name</a>");
+  echo("<a href='./$url' class='tile'>&rarr; $name</a>");
 }
 
 function insert_login_bar(){
