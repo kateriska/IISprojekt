@@ -413,7 +413,7 @@ function course_compare_draft(){
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
-function insert_select_garant(){
+function insert_select_garant($current_garant){
   require("dbh.php");
   
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3' ORDER BY prijmeni, jmeno";
@@ -426,13 +426,18 @@ function insert_select_garant(){
   echo("Garant:<br><select name='garant'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $garant_id = $row['Uzivatele_ID'];
+      if($garant_id == $current_garant){
+        $selected = "selected";  
+      }else{
+        $selected = "";
+      }
       $name = $row['prijmeni'] .", ". $row['jmeno'];
-      echo("<option value='$garant_id'>$name</option>");
+      echo("<option value='$garant_id' $selected>$name</option>");
   }
   echo("</select><br>");
 }
 
-function insert_select_deputy_head(){
+function insert_select_deputy_head($current_head){
   require("dbh.php");
   
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='4' ORDER BY prijmeni, jmeno";
@@ -446,7 +451,12 @@ function insert_select_deputy_head(){
   while( $row = mysqli_fetch_assoc($result) ){
       $dep_head = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
-      echo("<option value='$dep_head'>$name</option>");
+      if($dep_head == $current_head){
+        $selected = "selected";  
+      }else{
+        $selected = "";
+      }
+      echo("<option value='$dep_head' $selected>$name</option>");
   }
   echo("</select><br>");
 }
@@ -476,8 +486,8 @@ function course_get_editable_info($row){
   $popis = htmlspecialchars($row['popis']);
   echo("<h2>Upravit údaje kurzu $id</h2><form action=act.course_update.php method='post'>
               Název:<br><input type='text' name='name' value='$nazev'><br>");
-              insert_select_garant();
-              insert_select_deputy_head();
+              insert_select_garant($row['garant_ID']);
+              insert_select_deputy_head($row['vedouci_ID']);
         echo("Typ:<br><input type='text' name='type' value='$typ'><br>
               Cena:<br><input type='number' name='price' value='$cena'><br>
               Popis:<br><input type='text' name='desc' value='$popis'><br>
