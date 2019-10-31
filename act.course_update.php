@@ -18,7 +18,7 @@ session_start();
 $me = $_SESSION['user_id'];
 if($draft == 0){
   $query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID)
-  VALUES ($id, $name, $desc, $type, $price, $garant, $dep_head, $me)";
+  VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant', '$dep_head', '$me')";
 }else{
   $query = "UPDATE ke_schvaleni_kurz SET nazev='$name', popis='$desc', typ='$type', cena='$price', garant_ID='$garant', vedouci_ID='$dep_head', zadatel_ID='$me' WHERE Kurzy_ID='$id'";
 }
