@@ -507,6 +507,7 @@ function course_show_info_or_edit(){
   }
   if( !isset($_SESSION['user_id']) ){
     course_get_info($row);
+    return;
   }
   if($row['garant_ID'] == $_SESSION['user_id'] || $row['vedouci_ID'] == $_SESSION['user_id']){
     course_get_editable_info($row);
