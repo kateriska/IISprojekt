@@ -559,12 +559,12 @@ function course_show_info_or_edit(){
   }
 }
 
-function check_add_event(){
+function check_add_event($id){
   //admin, vedouci kurzu nebo garant kurzu
   if(check_rights(ADMIN)){
     return TRUE;
   }
-  $id=$_GET['id'];
+  
   $query = "SELECT garant_ID, vedouci_ID FROM kurzy WHERE Kurzy_ID='$id'";
   require("dbh.php");
 
