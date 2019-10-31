@@ -23,6 +23,10 @@ function insert_create_tile($name, $url){
 }
 
 function insert_delete_tile($name, $url){
+  echo("<a href='./$url' class='tile'>× $name</a>");
+}
+
+function insert_confirm_tile($name, $url){
   echo("<a href='./$url' class='tile'>? $name</a>");
 }
 
