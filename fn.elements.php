@@ -585,4 +585,25 @@ function course_show_add_event($id){
     insert_create_tile("Vytvoøit nový termín", "event_create.php?id=$id");
   }
 }
+
+function insert_room_select(){
+  require("dbh.php");
+  
+  $query = "SELECT Mistnosti_ID, adresa, typ FROM mistnosti ORDER BY Mistnosti_ID";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL");
+    return FALSE;
+  }
+  
+  echo("Místnost:<br><select name='dep_head'>");
+  echo("<option value='' selected>---</option>")
+  while( $row = mysqli_fetch_assoc($result) ){
+      $id = $row['Mistnosti_ID'];
+      $address = $row['adresa'];
+      $type = $row['typ'];
+      echo("<option value='$dep_head' $selected>$name - $type ($address)</option>");
+  }
+  echo("</select><br>");
+}
 ?>
