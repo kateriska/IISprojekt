@@ -652,9 +652,88 @@ function course_show_events($id){
   mysqli_free_result($result);
 }
 
+function check_view_or_edit_event($row){
+  
+  if( !isset($_SESSION['user_id'])){
+    header("Location: ./course.php?id=".$row['Kurzy_ID']."&err=noauth");
+    exit();
+  }
+
+  $course = $row['Kurzy_ID'];
+  $me = $_SESSION['user_id'];
+  if( check_add_event($course) ){
+    return TRUE;
+  }
+
+  if($me == $row['lektor_ID']){
+    return TRUE;
+  }
+
+  require("dbh.php");
+  $query = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$course' AND student_ID='$me'";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL ".$query);
+    return FALSE;
+  }
+
+  if(myqsli_num_rows($result) == 0){
+    header("Location: ./course.php?id=".$row['Kurzy_ID']."&err=noauth");
+    exit();
+  }else{
+    return FALSE;
+  }
+}
+
+function show_edit_event($row){
+
+}
+
+function show_event_static($row){
+  $id = $row['Kurzy_ID'];
+  $date = $row['datum'];
+  $time = $row['cas'];
+  $room = $row['mistnost_ID'];
+  $l_name = $row['jmeno'] . " " $row['prijmeni'];
+  $l_mail = $row['email'];
+  $desc = $row['popis'];
+  $type = $row['typ_termin'];
+  $duration = $row['doba_trvani'];
+  echo("<h1>Termín kurzu $id - $type</h1><br>
+        <i>$datum - $cas ($duration minut)</i><br>
+        Místnost: $room<br>
+        Lektor: <a href='mailto:$l_mail'>$l_name</a><br><br>
+        $desc");
+}
+
 function event_show_info_or_edit(){
+  $id = $_GET['id'];
   if( !isset($_GET['id']) || !isset($_GET['d']) || !isset($_GET['t']) || !isset($_GET['r'])){
-    echo("nf");
+    header("Location: ./course.php?id=$id&err=notset");
+    exit();
+  }
+
+  $date = $_GET['d'];
+  $time = $_GET['t'];
+  $room = $_GET['r'];
+
+  $query = "SELECT jmeno, prijmeni, email, Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani FROM terminy JOIN uzivatele ON lektor_ID = Uzivatele_ID WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL ".$query);
+    return FALSE;
+  }
+
+  $row = mysqli_fetch_assoc($result);
+  if( !isset($row['popis'])){
+    header("Location: ./course.php?id=$id&err=notfound");
+    exit();
+  }
+
+  if( check_view_or_edit_event($row) ){
+    show_edit_event($row);
+  }else{
+    show_event_static($row);
   }
 }
 
