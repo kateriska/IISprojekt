@@ -690,20 +690,20 @@ function show_edit_event($row){
 }
 
 function show_event_static($row){
-  $id = $row['Kurzy_ID'];
-  $date = $row['datum'];
-  $time = $row['cas'];
-  $room = $row['mistnost_ID'];
-  $l_name = $row['jmeno'] . " ". $row['prijmeni'];
-  $l_mail = $row['email'];
-  $desc = $row['popis'];
-  $type = $row['typ_termin'];
-  $duration = $row['doba_trvani'];
+  $id = htmlspecialchars($row['Kurzy_ID']);
+  $date = htmlspecialchars($row['datum']);
+  $time = htmlspecialchars(substr($row['cas'], 0, 5));
+  $room = htmlspecialchars($row['mistnost_ID']);
+  $l_name = htmlspecialchars($row['jmeno'] . " ". htmlspecialchars($row['prijmeni']);
+  $l_mail = htmlspecialchars($row['email']);
+  $desc = htmlspecialchars($row['popis']);
+  $type = htmlspecialchars($row['typ_termin']);
+  $duration = htmlspecialchars($row['doba_trvani']);
   echo("<h1>Termín kurzu $id - $type</h1><br>
         <i>$date - $time ($duration minut)</i><br>
         Místnost: $room<br>
         Lektor: <a href='mailto:$l_mail'>$l_name</a><br><br>
-        $desc");
+        $desc<br>");
 }
 
 function event_show_info_or_edit(){
