@@ -34,7 +34,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type){
 
     if($r_start_ts < $start_timestamp && $r_end_ts <= $start_timestamp){
       break;
-    }else if($r_start_ts => $end_timestamp && $r_end_ts > $end_timestamp){
+    }else if($r_start_ts >= $end_timestamp && $r_end_ts > $end_timestamp){
       break; 
     }else{
       header("Location: ./event_create.php?id=$id&err=clash&course=" .$row['Kurzy_ID']. "&typ_termin=" .$row['typ_termin']);
