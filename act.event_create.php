@@ -1,7 +1,7 @@
 <?php
 function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
   echo("$date $time $duration");
-  $query = "SELECT datum, cas, mistnosti_ID, Kurzy_ID, `type` FROM terminy WHERE mistnosti_ID='$room' AND datum='$date'";
+  $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, `type` FROM terminy WHERE mistnosti_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
   /*if($result == FALSE){
     header("Location: ./event_create.php?id=$id&err=sql1");
