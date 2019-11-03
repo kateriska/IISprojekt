@@ -7,6 +7,7 @@ function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, 
     header("Location: ./event_create.php?id=$id&err=sql1");
     exit();
   }*/
+  print_r($row);
   $isfree = TRUE;
   /*while( $row = mysqli_fetch_assoc($result) ){
     //kontrola prekryvani udalosti
