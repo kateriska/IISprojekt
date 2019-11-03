@@ -1,5 +1,5 @@
 <?php
-function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector){
+function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector, $prev_date, $prev_time, $prev_room){
   
   $start_timestamp = date('Y-m-d H.i', strtotime($date.$time));
   $duration = ceil($duration);
@@ -57,7 +57,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   }
 }
 
-function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
+function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db, $prev_date, $prev_time, $prev_room){
   $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE datum='$date' AND mistnost_ID=''";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
@@ -122,9 +122,9 @@ if( $id == ''|| $date == '' || $time == ''|| ($duration < '0' && $duration != ''
 
 require_once("dbh.php");
 if( $room == '' ){
-  noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db);
+  noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db, $prev_date, $prev_time, $prev_room);
 }else{
-  room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector);
+  room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector, $prev_date, $prev_time, $prev_room);
 }
 
 exit();
