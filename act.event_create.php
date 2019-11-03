@@ -1,6 +1,6 @@
 <?php
 
-function room_event($id, $date, $time, $duration, $room, $db){
+function room_event($id, $date, $time, $duration, $room, $db, $desc, $type){
   
   $start_timestamp = date('Y-m-d H.i', strtotime($date.$time));
   $duration = ceil($duration);
@@ -14,11 +14,10 @@ function room_event($id, $date, $time, $duration, $room, $db){
   }
 
   $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room'";
-  echo($query);
   $result = mysqli_query($db, $query);
   if($result == FALSE){
-    /*header("Location: ./event_create.php?id=$id&err=sql1");
-    exit()*/;
+    header("Location: ./event_create.php?id=$id&err=sql1");
+    exit();
   }
   $isfree = TRUE;
 
@@ -33,16 +32,25 @@ function room_event($id, $date, $time, $duration, $room, $db){
       $r_end_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas'] . ' + '. $row['doba_trvani'] .' minutes'));
     }
 
-    if($r_start_ts <= $start_timestamp && $r_end_ts <= $start_timestamp){
+    if($r_start_ts < $start_timestamp && $r_end_ts <= $start_timestamp){
       break;
-    }else if($r_start_ts >= $end_timestamp && $r_end_ts >= $end_timestamp){
+    }else if($r_start_ts => $end_timestamp && $r_end_ts > $end_timestamp){
       break; 
     }else{
       header("Location: ./event_create.php?id=$id&err=clash&course=" .$row['Kurzy_ID']. "&typ_termin=" .$row['typ_termin']);
-    exit();
+      exit();
     }
   }
-  return TRUE;
+
+  $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani) 
+  VALUES ('$id', '$date', '$time', '$room', '$desc', '$type', '$duration')";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    header("Location: ./event_create.php?id=$id&err=sql2");
+  }else{
+    header("Location: ./event_create.php?id=$id&succ=created");
+  }
+  exit();
 }
 
 function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
@@ -75,7 +83,7 @@ require_once("dbh.php");
 if( $room == '' ){
   noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db);
 }else{
-  room_event($id, $date, $time, $duration, $room, $db);
+  room_event($id, $date, $time, $duration, $room, $db, $desc, $type);
 }
 
 
