@@ -652,5 +652,9 @@ function course_show_events($id){
   mysqli_free_result($result);
 }
 
+function event_show_info_or_edit(){
+  echo($_GET['id']);
+}
+
 
 ?>
