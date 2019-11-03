@@ -2,7 +2,7 @@
 function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
   
   $time = date('H.i', strtotime($time));
-  $time = date('H.i', strtotime($time . ' + 1 m'));
+  $time = date('H.i', strtotime($time . ' + 1 minute'));
   echo("$date $time $duration");
   $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
