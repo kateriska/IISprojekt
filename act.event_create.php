@@ -1,9 +1,22 @@
 <?php
 function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
   
-  $time = date('H.i', strtotime($time));
-  $time = date('H.i', strtotime($time . ' + 1 minute'));
-  echo("$date $time $duration");
+  $start_time = date('H.i', strtotime($time));
+  $check_end = TRUE;
+  $duration = ceil($duration);
+
+  if( $duration <= '0' ){
+    $check_end = FALSE;
+  } else if($duration == '1'){
+    $end_time = date('H.i', strtotime($time . ' + 1 minute'));
+  }else{
+    $end_time = date('H.i', strtotime($time . " + $duration minutes"));
+  }
+
+
+
+
+  echo("$date $time $end_time");
   $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
@@ -11,8 +24,6 @@ function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, 
     exit();
   }
   $isfree = TRUE;
-
-  
 
   while( $row = mysqli_fetch_assoc($result) ){
     //kontrola prekryvani udalosti
@@ -43,7 +54,7 @@ $room = $_POST['room'];
 $lector = $_POST['lector'];
 $desc = $_POST['description'];
 
-if( $id == '' || $type == '' || $date == ''  || $duration == '' || $lector == '' || $desc == '' ){
+if( $id == '' || $type == '' || $date == ''  || ($duration < '0' && $duration != '') || $lector == '' || $desc == '' ){
   header("Location: ./course_create.php?err=empty_or_inv_fields");
   exit();
 }
