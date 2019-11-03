@@ -43,7 +43,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   }
 
   $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani, lektor_ID) 
-  VALUES ('$id', '$date', '$time', '$room', '$desc', '$type', '$duration')";
+  VALUES ('$id', '$date', '$time', '$room', '$desc', '$type', '$duration', '$lector')";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("$query");
