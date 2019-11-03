@@ -3,7 +3,7 @@ function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, 
   $query = "SELECT datum, cas, mistnosti_ID, Kurzy_ID, `type` FROM terminy WHERE mistnosti_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
-    header("Location: ./event_create.php?err=sql1");
+    header("Location: ./event_create.php?id=$id&err=sql1");
     exit();
   }
   echo("$date $time $duration");
