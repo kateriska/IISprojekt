@@ -64,15 +64,16 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
   $maxtime = 0;
 
 
-  echo($maxtime);
+  echo($maxtime."<br>");
   while( $row = mysqli_fetch_assoc($result) ){
     $hr_min = substr($row['cas'], 0, 5);
     if($hr_min == $time){
       $r_max = explode(".", $row['cas']);
       $r_max = $r_max[1];
       if($r_max > $maxtime){
+        echo($r_max."rmax<br>");
         $maxtime = $r_max + 1;
-        echo($maxtime);
+        echo($maxtime."<br>");
       }
     }
   }
@@ -80,7 +81,7 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
   $maxtime = sprintf("%06d", $maxtime);
   $time = $time . ":00.". $maxtime;
 
-  echo($time);
+  echo($time."<br>");
 }
 
 
