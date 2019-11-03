@@ -47,7 +47,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("$query");
-    //header("Location: ./event_create.php?id=$id&err=sql2");
+    header("Location: ./event_create.php?id=$id&err=sql2");
   }else{
     header("Location: ./event_create.php?id=$id&succ=created");
   }
