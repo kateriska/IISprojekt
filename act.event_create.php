@@ -54,7 +54,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
 }
 
 function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
-  $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE datum='$date'";
+  $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE datum='$date' AND mistnost_ID=''";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     header("Location: ./event_create.php?id=$id&err=sql1n");
