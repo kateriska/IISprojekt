@@ -46,7 +46,6 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   VALUES ('$id', '$date', '$time', '$room', '$desc', '$type', '$duration', '$lector')";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
-    echo("$query");
     header("Location: ./event_create.php?id=$id&err=sql2");
   }else{
     header("Location: ./course.php?id=$id&succ=created");
@@ -80,8 +79,7 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
   VALUES ('$id', '$date', '$time', '', '$desc', '$type', '$duration', '$lector')";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
-    echo("$query");
-    header("Location: ./event_create.php?id=$id&err=sql2");
+    header("Location: ./event_create.php?id=$id&err=sql2n");
   }else{
     header("Location: ./course.php?id=$id&succ=created");
   }
