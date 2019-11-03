@@ -1,22 +1,23 @@
 <?php
 function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
   
-  $start_time = date('H.i', strtotime($time));
+  $start_timestamp = date('Y-m-d H.i', strtotime($time));
   $check_end = TRUE;
   $duration = ceil($duration);
 
   if( $duration <= '0' ){
     $check_end = FALSE;
   } else if($duration == '1'){
-    $end_time = date('H.i', strtotime($time . ' + 1 minute'));
+    $end_timestamp = date('Y-m-d H.i', strtotime($time . ' + 1 minute'));
   }else{
-    $end_time = date('H.i', strtotime($time . " + $duration minutes"));
+    $end_timestamp = date('Y-m-d H.i', strtotime($time . " + $duration minutes"));
   }
 
 
 
 
-  echo("$date $time $end_time");
+
+  echo("$start_timestamp $end_timestamp");
   $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
