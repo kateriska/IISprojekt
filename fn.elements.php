@@ -716,20 +716,10 @@ function show_edit_event($row){
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);
-  
-  
-
-
-  /*
-      <?php
-        ?>
-      Popis:<br><input type='text' name='description'><br>
-      <input type='hidden' name='id' value='<?php echo($_GET['id'])?>'>
-      <button type='submit' name='event_create_submit'>Vytvoøit</button>
-    </form>
-  */
-
-
+    echo("Popis:<br><input type='text' name='description' value='$desc'><br>
+          <input type='hidden' name='id' value='$id'>
+          <button type='submit' name='event_edit_submit'>Vytvoøit</button>
+          </form>");
 }
 
 function show_event_static($row){
