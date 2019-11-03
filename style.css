@@ -53,13 +53,14 @@ table {
 
 
 body{
-  background-color: lightblue;
+  background-color: #b3d9ff;
   font-family: 'Montserrat', sans-serif;
 }
 
 input, button{
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
+  background-color: white;
 }
 
 
@@ -74,10 +75,10 @@ input, button{
   background-color: white;
   text-decoration: none;
   color: black;
-  padding: 20px;
+  padding: 30px;
   border-radius: 5px;
   display: inline-block;
-  width: 48%;
+  width: 45%;
   margin: 1%;
   margin-top: 0.5%;
   margin-bottom: 0.5%;
@@ -113,6 +114,7 @@ input, button{
   margin-left: 1%;
   padding: 8px;
   max-width: 250px;
+  border: solid "#f2f2f2" 1px;
 }
 
 #login button{
@@ -122,6 +124,7 @@ input, button{
   padding: 8px;
   max-width: 150px;
   min-width: 60px;
+  background-color: white;
 }
 
 #logout button{
@@ -133,6 +136,7 @@ input, button{
   padding: 8px;
   max-width: 150px;
   min-width: 60px;
+  background-color: white;
 }
 
 table{
