@@ -694,7 +694,7 @@ function show_event_static($row){
   $date = htmlspecialchars($row['datum']);
   $time = htmlspecialchars(substr($row['cas'], 0, 5));
   $room = htmlspecialchars($row['mistnost_ID']);
-  $l_name = htmlspecialchars($row['jmeno'] . " ". htmlspecialchars($row['prijmeni']);
+  $l_name = htmlspecialchars($row['jmeno']) . " ". htmlspecialchars($row['prijmeni']);
   $l_mail = htmlspecialchars($row['email']);
   $desc = htmlspecialchars($row['popis']);
   $type = htmlspecialchars($row['typ_termin']);
