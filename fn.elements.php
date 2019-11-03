@@ -718,7 +718,7 @@ function event_show_info_or_edit(){
   $room = $_GET['r'];
 
   require("dbh.php");
-  $query = "SELECT jmeno, prijmeni, email, Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani FROM terminy JOIN uzivatele ON lektor_ID = Uzivatele_ID WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+  $query = "SELECT jmeno, prijmeni, lektor_ID, email, Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani FROM terminy JOIN uzivatele ON lektor_ID = Uzivatele_ID WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL ".$query);
