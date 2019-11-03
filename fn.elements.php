@@ -639,10 +639,10 @@ function course_show_events($id){
     return;
   }
 
-  $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ</th></tr>";
+  $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ (kliknìte pro více detailù)</th></tr>";
   while($row = mysqli_fetch_assoc($result)){
     $date = htmlspecialchars($row['datum']);
-    $time = htmlspecialchars($row['cas']);
+    $time = htmlspecialchars(substr($row['cas'], 0, 5));
     $room = htmlspecialchars($row['mistnost_ID']);
     $type = htmlspecialchars($row['typ_termin']);
     $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=$time&r=$room'>$type</a></td></tr>"; 
