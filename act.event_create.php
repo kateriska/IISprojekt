@@ -26,7 +26,7 @@ function room_event($id, $date, $time, $duration, $room, $db){
     $r_start_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas']));
     if($row['doba_trvani'] == ''){
       $r_end_ts = $r_start_ts;
-    } else if(row['doba_trvani'] == '1'){
+    } else if($row['doba_trvani'] == '1'){
       $r_end_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas'] . ' + 1 minute'));
     }else{
       $r_end_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas'] . ' + '. $row['doba_trvani'] .' minutes'));
