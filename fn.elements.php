@@ -653,7 +653,9 @@ function course_show_events($id){
 }
 
 function event_show_info_or_edit(){
-  echo($_GET['id']);
+  if( !isset($_GET['id']) || !isset($_GET['d']) || !isset($_GET['t']) || !isset($_GET['r'])){
+    echo("nf");
+  }
 }
 
 
