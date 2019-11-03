@@ -71,7 +71,7 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
     if($hr_min == $time){
       $r_max = explode(".", $row['cas']);
       $r_max = $r_max[1];
-      if($r_max > $maxtime){
+      if($r_max >= $maxtime){
         echo($r_max."rmax<br>");
         $maxtime = $r_max + 1;
         echo($maxtime."<br>");
