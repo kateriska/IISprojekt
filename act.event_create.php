@@ -1,5 +1,7 @@
 <?php
 function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
+  
+  $time = $time + 2;
   echo("$date $time $duration");
   $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
@@ -8,6 +10,9 @@ function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, 
     exit();
   }
   $isfree = TRUE;
+
+  
+
   while( $row = mysqli_fetch_assoc($result) ){
     //kontrola prekryvani udalosti
      print_r($row);
