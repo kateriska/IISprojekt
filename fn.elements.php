@@ -709,7 +709,8 @@ function show_edit_event($row){
   $duration = htmlspecialchars($row['doba_trvani']);
 
 
-  echo("<form action='act.event_edit.php' method='post'>
+  echo("<h1>Termín kurzu $id - $type</h1><br>
+        <form action='act.event_edit.php' method='post'>
           Typ:<br><input type='text' name='type' value='$type'><br>
           Datum:<br><input type='date' name='date' value='$date'><br>
           Èas:<br><input type='time' name='time' value='$time'><br>
@@ -771,5 +772,20 @@ function event_show_info_or_edit(){
   }
 }
 
+function event_delete(){
+  $id = $_GET['id'];
+  $date = $_GET['d'];
+  $time = $_GET['t'];
+  $room = $_GET['r'];
+
+  echo("<h2>Smazat termín</h2>
+      <form action='act.event_delete.php' method='post'>
+      <input type='hidden' name='id' value='$id'>
+      <input type='hidden' name='date' value='$date'>
+      <input type='hidden' name='time' value='$time'>
+      <input type='hidden' name='room' value='$room'>
+      <button type='submit' value='submit_delete_event'>Smazat termín</button>
+      </form>");
+}
 
 ?>

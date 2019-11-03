@@ -16,7 +16,8 @@
 
   <container class="center">
   <?php 
-    event_show_info_or_edit();         //pro zapsane/ editace a mazani vlastnenym lektorum a vsem garantum
+    event_show_info_or_edit();         //pro zapsane/ editace a mazani vlastnenym lektorum, garantum a vedoucim
+    event_delete();                    //vlastnikum krome lektoru
     //get_event_files();               TODO: soubory pro vsechny/registrovane/zapsane
     insert_reverse_tile("Zpìt na kurz ".$_GET['id'], "./course.php?id=".$_GET['id']);
   ?>
