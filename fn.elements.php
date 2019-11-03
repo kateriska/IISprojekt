@@ -627,7 +627,7 @@ function insert_lector_select(){
 }
 
 function course_show_events($id){
-  require_once("dbh.php");
+  require("dbh.php");
 
   //verejny vypis
   //TODO vypis pro zapsane
