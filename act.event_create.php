@@ -47,7 +47,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("$query");
-    //header("Location: ./event_create.php?id=$id&err=sql2");
+    header("Location: ./event_create.php?id=$id&err=sql2");
   }else{
     header("Location: ./course.php?id=$id&succ=created");
   }
@@ -63,26 +63,28 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
 
   $maxtime = 0;
 
-
-  echo($maxtime."<br>");
   while( $row = mysqli_fetch_assoc($result) ){
-    echo("nalezen termin ".$row['typ_termin']."<br>");
     $hr_min = substr($row['cas'], 0, 5);
     if($hr_min == $time){
       $r_max = explode(".", $row['cas']);
       $r_max = $r_max[1];
       if($r_max >= $maxtime){
-        echo($r_max."rmax<br>");
         $maxtime = $r_max + 1;
-        echo($maxtime."<br>");
       }
     }
   }
 
   $maxtime = sprintf("%06d", $maxtime);
   $time = $time . ":00.". $maxtime;
-
-  echo($time."<br>");
+  $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani, lektor_ID) 
+  VALUES ('$id', '$date', '$time', '', '$desc', '$type', '$duration', '$lector')";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("$query");
+    header("Location: ./event_create.php?id=$id&err=sql2");
+  }else{
+    header("Location: ./course.php?id=$id&succ=created");
+  }
 }
 
 
