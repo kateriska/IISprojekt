@@ -1,6 +1,6 @@
 <?php
 
-function room_event($id, $date, $time, $duration, $room, $db, $desc, $type){
+function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector){
   
   $start_timestamp = date('Y-m-d H.i', strtotime($date.$time));
   $duration = ceil($duration);
@@ -42,7 +42,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type){
     }
   }
 
-  $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani) 
+  $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani, lektor_ID) 
   VALUES ('$id', '$date', '$time', '$room', '$desc', '$type', '$duration')";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
@@ -83,7 +83,7 @@ require_once("dbh.php");
 if( $room == '' ){
   noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db);
 }else{
-  room_event($id, $date, $time, $duration, $room, $db, $desc, $type);
+  room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector);
 }
 
 
