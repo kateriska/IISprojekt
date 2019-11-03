@@ -44,6 +44,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
   $query = "DELETE FROM terminy WHERE Kurzy_ID='$id' AND datum='$prev_date' AND cas='$prev_time' AND mistnost_ID='$prev_room'";
   if( !mysqli_query($db, $query)){
     header("Location: ./room.php?id=$id&err=delete_err");
+    exit();
   }
 
   $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani, lektor_ID) 
@@ -83,6 +84,7 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
   $query = "DELETE FROM terminy WHERE Kurzy_ID='$id' AND datum='$prev_date' AND cas='$prev_time' AND mistnost_ID='$prev_room'";
   if( !mysqli_query($db, $query)){
     header("Location: ./event.php?id=$id&d=$date&t=$time&r=$room&err=delete_err");
+    exit();
   }
   $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani, lektor_ID) 
   VALUES ('$id', '$date', '$time', '', '$desc', '$type', '$duration', '$lector')";
