@@ -114,26 +114,5 @@ if( $room == '' ){
   room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lector);
 }
 
-
-
-
-
-
-/*
-
-$query = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) 
-VALUES ('$id', 'Nový kurz, èeká na schválení', '', '', '-1', '$garant', '$dep_head')";
-if( !mysqli_query($db, $query) ){
-  header("Location: ./course_create.php?err=id_taken");
-  exit();
-}
-
-$query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) 
-VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant', '$dep_head', '$my_id')";
-if( !mysqli_query($db, $query) ){
-  header("Location: ./course_create.php?err=id_taken");
-}else{
-  header("Location: ./courses.php?succ=created");
-}
-exit();*/
+exit();
 ?>
