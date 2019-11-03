@@ -74,7 +74,8 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
     }
   }
 
-  $time = $time . ":00.". str_pad($maxtime, 6, " ", STR_PAD_LEFT);
+  $maxtime = sprintf("%06d", $maxtime);
+  $time = $time . ":00.". $maxtime;
 
   echo($time);
 }
