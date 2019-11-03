@@ -13,7 +13,7 @@ function room_event($id, $date, $time, $duration, $room, $db){
     $end_timestamp = date('Y-m-d H.i', strtotime($date.$time . " + $duration minutes"));
   }
 
-  $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
+  $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     header("Location: ./event_create.php?id=$id&err=sql1");
