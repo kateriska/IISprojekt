@@ -586,7 +586,7 @@ function course_show_add_event($id){
   }
 }
 
-function insert_room_select(){
+function insert_room_select($room = ''){
   require("dbh.php");
   
   $query = "SELECT Mistnosti_ID, adresa, typ FROM mistnosti ORDER BY Mistnosti_ID";
@@ -602,12 +602,17 @@ function insert_room_select(){
       $id = $row['Mistnosti_ID'];
       $address = $row['adresa'];
       $type = $row['typ'];
-      echo("<option value='$id'>$id - $type ($address)</option>");
+      if($room = $id){
+        $selected = "selected";
+      }else{
+        $selected = "";
+      }
+      echo("<option value='$id' $selected>$id - $type ($address)</option>");
   }
   echo("</select><br>");
 }
 
-function insert_lector_select(){
+function insert_lector_select($lector_id = ''){
   require("dbh.php");
   
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='2' ORDER BY prijmeni, jmeno";
@@ -621,7 +626,13 @@ function insert_lector_select(){
   while( $row = mysqli_fetch_assoc($result) ){
       $lector = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
-      echo("<option value='$lector'>$name</option>");
+      if($lector == $lector_id){
+        $selected = "selected";
+      }else{
+        $selected = "";
+      }
+
+      echo("<option value='$lector' $selected>$name</option>");
   }
   echo("</select><br>");
 }
@@ -686,6 +697,38 @@ function check_view_or_edit_event($row){
 }
 
 function show_edit_event($row){
+  $id = htmlspecialchars($row['Kurzy_ID']);
+  $date = htmlspecialchars($row['datum']);
+  $time = htmlspecialchars(substr($row['cas'], 0, 5));
+  $room = htmlspecialchars($row['mistnost_ID']);
+  $l_name = htmlspecialchars($row['jmeno']) . " ". htmlspecialchars($row['prijmeni']);
+  $l_mail = htmlspecialchars($row['email']);
+  $lector = $row['lektor_ID'];
+  $desc = htmlspecialchars($row['popis']);
+  $type = htmlspecialchars($row['typ_termin']);
+  $duration = htmlspecialchars($row['doba_trvani']);
+
+
+  echo("<form action='act.event_edit.php' method='post'>
+          Typ:<br><input type='text' name='type' value='$type'><br>
+          Datum:<br><input type='date' name='date' value='$date'><br>
+          Èas:<br><input type='time' name='time' value='$time'><br>
+          Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
+          insert_room_select($room);
+          insert_lector_select($lector);
+  
+  
+
+
+  /*
+      <?php
+        ?>
+      Popis:<br><input type='text' name='description'><br>
+      <input type='hidden' name='id' value='<?php echo($_GET['id'])?>'>
+      <button type='submit' name='event_create_submit'>Vytvoøit</button>
+    </form>
+  */
+
 
 }
 
