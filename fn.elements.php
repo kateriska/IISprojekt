@@ -602,7 +602,7 @@ function insert_room_select($room = ''){
       $id = $row['Mistnosti_ID'];
       $address = $row['adresa'];
       $type = $row['typ'];
-      if($room = $id){
+      if($room == $id){
         $selected = "selected";
       }else{
         $selected = "";
