@@ -645,7 +645,7 @@ function course_show_events($id){
     $time = htmlspecialchars(substr($row['cas'], 0, 5));
     $room = htmlspecialchars($row['mistnost_ID']);
     $type = htmlspecialchars($row['typ_termin']);
-    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=$time&r=$room'>$type</a></td></tr>"; 
+    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td></tr>"; 
   }
   $r_table .= "</table>";
   echo($r_table);
