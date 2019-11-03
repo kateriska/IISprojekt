@@ -626,5 +626,31 @@ function insert_lector_select(){
   echo("</select><br>");
 }
 
+function course_show_events($id){
+  require_once("dbh.php");
+
+  //verejny vypis
+  //TODO vypis pro zapsane
+  $query = "SELECT datum, cas, mistnost_ID, typ_termin FROM terminy WHERE Kurzy_ID='$id' ORDER BY datum, cas ASC";
+
+  $result = mysqli_query($db, $query);
+  if($result === FALSE){ //SQL ERR
+    echo("CHYBA SQL");
+    return;
+  }
+
+  $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ</th></tr>";
+  while($row = mysqli_fetch_assoc($result)){
+    $date = htmlspecialchars($row['datum']);
+    $time = htmlspecialchars($row['cas']);
+    $room = htmlspecialchars($row['mistnost_ID']);
+    $type = htmlspecialchars($row['typ_termin']);
+    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=$time&r=$room'>$type</a></td></tr>"; 
+  }
+  $r_table .= "</table>";
+  echo($r_table);
+  mysqli_free_result($result);
+}
+
 
 ?>
