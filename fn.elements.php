@@ -710,16 +710,19 @@ function show_edit_event($row){
 
 
   echo("<h1>Termín kurzu $id - $type</h1><br>
-        <form action='act.event_edit.php' method='post'>
+        <form action='act.event_update.php' method='post'>
           Typ:<br><input type='text' name='type' value='$type'><br>
           Datum:<br><input type='date' name='date' value='$date'><br>
           Èas:<br><input type='time' name='time' value='$time'><br>
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);
-    echo("Popis:<br><input type='text' name='description' value='$desc'><br>
+          echo("Popis:<br><input type='text' name='description' value='$desc'><br>
           <input type='hidden' name='id' value='$id'>
-          <button type='submit' name='event_edit_submit'>Vytvoøit</button>
+          <input type='hidden' name='prev_room' value='$room'>
+          <input type='hidden' name='prev_date' value='$date'>
+          <input type='hidden' name='prev_time' value='$time'>
+          <button type='submit' name='event_update_submit'>Potvrdit zmìny</button>
           </form>");
 }
 
