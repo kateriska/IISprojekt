@@ -49,7 +49,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
     echo("$query");
     //header("Location: ./event_create.php?id=$id&err=sql2");
   }else{
-    header("Location: ./event_create.php?id=$id&succ=created");
+    header("Location: ./course.php?id=$id&succ=created");
   }
 }
 
