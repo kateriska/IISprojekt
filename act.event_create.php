@@ -63,6 +63,8 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
 
   $maxtime = 0;
 
+
+  echo($maxtime);
   while( $row = mysqli_fetch_assoc($result) ){
     $hr_min = substr($row['cas'], 0, 5);
     if($hr_min == $time){
@@ -70,6 +72,7 @@ function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
       $r_max = $r_max[1];
       if($r_max > $maxtime){
         $maxtime = $r_max + 1;
+        echo($maxtime);
       }
     }
   }
