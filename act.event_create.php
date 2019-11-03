@@ -1,37 +1,59 @@
 <?php
+function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
+  $query = "SELECT datum, cas, mistnosti_ID, Kurzy_ID, `type` FROM terminy WHERE mistnosti_ID='$room' AND datum='$date'";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    header("Location: ./event_create.php?err=sql1");
+    exit();
+  }
+  echo("$date $time $duration");
+  $isfree = TRUE;
+  /*while( $row = mysqli_fetch_assoc($result) ){
+    //kontrola prekryvani udalosti
+    
+  }*/
+
+}
+
+function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
+
+}
+
+
+
+
 if(!isset($_POST['event_create_submit'])){
   header("Location: ./event_create.php?inv=alid");
   exit();
 }
 
-
-
-//TODO
-
-
-
 $id = $_POST['id'];
-$name = $_POST['name'];
 $type = $_POST['type'];
-$price = $_POST['price'];
-$garant = $_POST['garant'];
-$dep_head = $_POST['dep_head'];
+$date = $_POST['date'];
+$time = $_POST['time'];
+$duration = $_POST['duration'];
+$room = $_POST['room'];
+$lector = $_POST['lector'];
 $desc = $_POST['description'];
 
-
-if($price == ''){
-  $price = '0';
-}
-
-if( $id == '' || $name == '' || $type == ''  || $price < 0 || $garant == '' || $dep_head == '' || $desc == '' ){
+if( $id == '' || $type == '' || $date == ''  || $duration == '' || $lector == '' || $desc == '' ){
   header("Location: ./course_create.php?err=empty_or_inv_fields");
   exit();
 }
 
 require_once("dbh.php");
-session_start();
-$my_id = $_SESSION['user_id'];
+if( $room == '' ){
+  noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db);
+}else{
+  room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db);
+}
 
+
+
+
+
+
+/*
 
 $query = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) 
 VALUES ('$id', 'Nový kurz, èeká na schválení', '', '', '-1', '$garant', '$dep_head')";
@@ -47,5 +69,5 @@ if( !mysqli_query($db, $query) ){
 }else{
   header("Location: ./courses.php?succ=created");
 }
-exit();
+exit();*/
 ?>
