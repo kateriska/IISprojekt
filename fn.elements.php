@@ -677,7 +677,7 @@ function check_view_or_edit_event($row){
     return FALSE;
   }
 
-  if(myqsli_num_rows($result) == 0){
+  if(mysqli_num_rows($result) == 0){
     header("Location: ./course.php?id=".$row['Kurzy_ID']."&err=noauth");
     exit();
   }else{
