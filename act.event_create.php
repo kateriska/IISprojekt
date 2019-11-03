@@ -1,24 +1,19 @@
 <?php
-function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, $db){
+
+function room_event($id, $date, $time, $duration, $room, $db){
   
   $start_timestamp = date('Y-m-d H.i', strtotime($date.$time));
-  $check_end = TRUE;
   $duration = ceil($duration);
 
   if( $duration <= '0' ){
-    $check_end = FALSE;
+    $end_timestamp = $start_timestamp;
   } else if($duration == '1'){
     $end_timestamp = date('Y-m-d H.i', strtotime($date.$time . ' + 1 minute'));
   }else{
     $end_timestamp = date('Y-m-d H.i', strtotime($date.$time . " + $duration minutes"));
   }
 
-
-
-
-
-  echo("$start_timestamp $end_timestamp");
-  $query = "SELECT datum, cas, mistnost_ID, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
+  $query = "SELECT datum, cas, doba_trvani, Kurzy_ID, typ_termin FROM terminy WHERE mistnost_ID='$room' AND datum='$date'";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     header("Location: ./event_create.php?id=$id&err=sql1");
@@ -28,10 +23,25 @@ function room_event($id, $type, $date, $time, $duration, $lector, $desc, $room, 
 
   while( $row = mysqli_fetch_assoc($result) ){
     //kontrola prekryvani udalosti
-     print_r($row);
-    
-  }
+    $r_start_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas']));
+    if($row['doba_trvani'] == ''){
+      $r_end_ts = $r_start_ts;
+    } else if(row['doba_trvani'] == '1'){
+      $r_end_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas'] . ' + 1 minute'));
+    }else{
+      $r_end_ts = date('Y-m-d H.i', strtotime($row['datum'].$row['cas'] . ' + '. $row['doba_trvani'] .' minutes'));
+    }
 
+    if($r_start_ts <= $start_timestamp && $r_end_ts <= $start_timestamp){
+      break;
+    }else if($r_start_ts >= $end_timestamp && $r_end_ts >= $end_timestamp){
+      break; 
+    }else{
+      header("Location: ./event_create.php?id=$id&err=clash&course=" .$row['Kurzy_ID']. "&typ_termin=" .$row['typ_termin']);
+    exit();
+    }
+  }
+  return TRUE;
 }
 
 function noroom_event($id, $type, $date, $time, $duration, $lector, $desc, $db){
