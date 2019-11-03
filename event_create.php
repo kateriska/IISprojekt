@@ -34,7 +34,7 @@
       <button type='submit' name='event_create_submit'>Vytvoøit</button>
     </form>
     <?php
-      insert_reverse_tile("Zpìt na seznam kurzù", "./courses.php");
+      insert_reverse_tile("Zpìt na detail kurzu", "./course.php?id=".$_GET['id']);
     ?>
   </container>
 </body>
