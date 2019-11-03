@@ -700,7 +700,7 @@ function show_event_static($row){
   $type = $row['typ_termin'];
   $duration = $row['doba_trvani'];
   echo("<h1>Termín kurzu $id - $type</h1><br>
-        <i>$datum - $cas ($duration minut)</i><br>
+        <i>$date - $time ($duration minut)</i><br>
         Místnost: $room<br>
         Lektor: <a href='mailto:$l_mail'>$l_name</a><br><br>
         $desc");
