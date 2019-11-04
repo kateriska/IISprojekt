@@ -51,12 +51,7 @@ if($result == FALSE){
   exit();
 }
 
-
-
-
-
-
-
+header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&succ=edited");
 exit();
 ?>
 
