@@ -29,8 +29,8 @@ $query = "DELETE FROM terminy WHERE Kurzy_ID='$id' AND datum='$prev_date' AND ca
 $result = mysqli_query($db, $query);
 if($result == FALSE){
   echo($query);
-  /*header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=sql_del");
-  exit();*/
+  header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=sql_del");
+  exit();
 }
 
 $query = "INSERT INTO terminy (Kurzy_ID, datum, cas, mistnost_ID, lektor_ID, popis, typ_termin, doba_trvani) 
@@ -43,12 +43,12 @@ if($result == FALSE){
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo($query . " PRUSVIH");
-    /*header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=sql_del");
-    exit();*/
+    header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=sql_ins");
+    exit();
   }
   
-  /*header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=sql_del");
-  exit();*/
+  header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=room_occupied");
+  exit();
 }
 
 
