@@ -650,25 +650,59 @@ function course_show_events($id){
     return;
   }
 
+  $zapsan = FALSE;
+  $zapsan_header = "";
+  $registered = FALSE;
+  $me;
+
   if(isset($_SESSION['user_id'])){
-    $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID=' ";
-    $query_zapsane = $query_zapsane .$_SESSION['user_id']. "'";
+    $me = $_SESSION['user_id'];
+    $registered = TRUE;
+    $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID='$me'";
     $result_zapsane = mysqli_query($db, $query_zapsane);
     if($result_zapsane === FALSE){ //SQL ERR
       echo("CHYBA SQL");
     }
+
+    if(mysql_num_rows( $result_zapsane ) != 0){
+      $zapsan = TRUE;
+      $zapsan_header = "<th>Hodnocení</th>";
+    }
   }
 
-  $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ (kliknìte pro více detailù)</th></tr>";
+  $zapsan_marks = "";
+  $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ (kliknìte pro více detailù)</th>$zapsan_header</tr>";
   while($row = mysqli_fetch_assoc($result)){
     $date = htmlspecialchars($row['datum']);
     $time = htmlspecialchars(substr($row['cas'], 0, 5));
     $room = htmlspecialchars($row['mistnost_ID']);
     $type = htmlspecialchars($row['typ_termin']);
-    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td></tr>"; 
+    if($zapsan){
+      //$marks = get_marks()//TODO
+      $zapsan_marks = "<td></td>";
+    }
+    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td>$zapsan_marks</tr>"; 
   }
   $r_table .= "</table>";
   echo($r_table);
+
+  if( !$zapsan && $registered ){
+    $query_pending = "SELECT * FROM ke_zapsani_student WHERE Kurzy_ID='$id' AND student_ID='$me'";
+    $result_pending = mysqli_query($db, $query_pending);
+    if($result_pending === FALSE){ //SQL ERR
+      echo("CHYBA SQL");
+    }
+    if(mysql_num_rows( $result_pending ) === 0){
+      echo("<form action='act.register.php' method='post'>
+              <input type='hidden' name='id_user' value='$me'>
+              <input type='hidden' name='id_course' value='$id'>
+              <button type='submit' name='submit_register'>Pøihlásit se do kurzu</button> 
+            </form>");
+    }else{
+      echo("<button type='button' disabled>®ádost o pøihlá¹ení odeslána...</button>");
+    }
+
+  }
   mysqli_free_result($result);
 }
 
