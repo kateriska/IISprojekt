@@ -687,7 +687,7 @@ function course_show_events($id){
   echo($r_table);
 
   if( !$zapsan && $registered ){
-    $query_pending = "SELECT * FROM ke_zapsani_student WHERE Kurzy_ID='$id' AND student_ID='$me'";
+    $query_pending = "SELECT * FROM ke_schvaleni_student WHERE Kurzy_ID='$id' AND student_ID='$me'";
     $result_pending = mysqli_query($db, $query_pending);
     if($result_pending === FALSE){ //SQL ERR
       echo("CHYBA SQL");
