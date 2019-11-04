@@ -12,7 +12,7 @@ if(!isset($_POST['submit_delete_event'])){
 
 require_once("dbh.php");
 
-$query = "DELETE FROM terminy WHERE Kurzy_ID='$id' datum='$date' cas='$time' mistnost_ID='$room'";
+$query = "DELETE FROM terminy WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
 
 if(mysqli_query($db, $query)){
   header("Location: ./course.php?id=$id&succ=deleted");
