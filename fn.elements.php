@@ -650,6 +650,14 @@ function course_show_events($id){
     return;
   }
 
+  if(isset($_SESSION['user_id'])){
+    $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID='" .$_SESSION['user_id']. "'";
+    $result = mysqli_query($db, $query_zapsane);
+    if($result === FALSE){ //SQL ERR
+      echo("CHYBA SQL");
+    }
+  }
+
   $r_table = "<table id='events'><tr><th>Datum</th><th>Èas</th><th>Místnost</th><th>Typ (kliknìte pro více detailù)</th></tr>";
   while($row = mysqli_fetch_assoc($result)){
     $date = htmlspecialchars($row['datum']);
