@@ -4,6 +4,7 @@ $id = $_POST['id'];
 $date = $_POST['date'];
 $time = $_POST['time'];
 $room = $_POST['room'];
+
 if(!isset($_POST['submit_delete_event'])){
   header("Location: ./event.php?id=$id&d=$date&t=$time&r=$room");
   exit();
