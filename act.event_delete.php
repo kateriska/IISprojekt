@@ -17,8 +17,7 @@ $query = "DELETE FROM terminy WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$t
 if(mysqli_query($db, $query)){
   header("Location: ./course.php?id=$id&succ=deleted");
 }else{
-  echo($query);
-  //header("Location: ./course.php?id=$id&d=$date&t=$time&r=$room&err=or");
+  header("Location: ./course.php?id=$id&d=$date&t=$time&r=$room&err=or");
 }
-//exit();
+exit();
 ?>
