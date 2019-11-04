@@ -664,7 +664,7 @@ function course_show_events($id){
       echo("CHYBA SQL  sas");
     }
 
-    if(mysql_num_rows( $result_zapsane ) != 0){
+    if(mysqli_num_rows( $result_zapsane ) != 0){
       $zapsan = TRUE;
       $zapsan_header = "<th>Hodnocení</th>";
     }
