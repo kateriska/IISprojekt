@@ -781,14 +781,30 @@ function event_delete(){
   $time = $_GET['t'];
   $room = $_GET['r'];
 
-  echo("<h2>Smazat termín</h2>
-      <form action='act.event_delete.php' method='post'>
-      <input type='hidden' name='id' value='$id'>
-      <input type='hidden' name='date' value='$date'>
-      <input type='hidden' name='time' value='$time'>
-      <input type='hidden' name='room' value='$room'>
-      <button type='submit' value='submit_delete_event'>Smazat termín</button>
-      </form>");
+  require("dbh.php");
+  $query = "SELECT jmeno, prijmeni, lektor_ID, email, Kurzy_ID, datum, cas, mistnost_ID, popis, typ_termin, doba_trvani FROM terminy JOIN uzivatele ON lektor_ID = Uzivatele_ID WHERE Kurzy_ID='$id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL ".$query);
+    return FALSE;
+  }
+
+  $row = mysqli_fetch_assoc($result);
+  if( !isset($row['popis'])){
+    header("Location: ./course.php?id=$id&err=notfound");
+    exit();
+  }
+
+  if( check_view_or_edit_event($row) ){
+    echo("<h2>Smazat termín</h2>
+        <form action='act.event_delete.php' method='post'>
+        <input type='hidden' name='id' value='$id'>
+        <input type='hidden' name='date' value='$date'>
+        <input type='hidden' name='time' value='$time'>
+        <input type='hidden' name='room' value='$room'>
+        <button type='submit' value='submit_delete_event'>Smazat termín</button>
+        </form>");
+  }
 }
 
 ?>
