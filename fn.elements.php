@@ -651,7 +651,8 @@ function course_show_events($id){
   }
 
   if(isset($_SESSION['user_id'])){
-    $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID='" .$_SESSION['user_id']. "'";
+    $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID=' ";
+    $query_zapsane = $query_zapsane .$_SESSION['user_id']. "'";
     $result = mysqli_query($db, $query_zapsane);
     if($result === FALSE){ //SQL ERR
       echo("CHYBA SQL");
