@@ -692,7 +692,7 @@ function course_show_events($id){
     if($result_pending === FALSE){ //SQL ERR
       echo("CHYBA SQL");
     }
-    if(mysql_num_rows( $result_pending ) === 0){
+    if(mysqli_num_rows( $result_pending ) === 0){
       echo("<form action='act.register.php' method='post'>
               <input type='hidden' name='id_user' value='$me'>
               <input type='hidden' name='id_course' value='$id'>
