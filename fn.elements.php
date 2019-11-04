@@ -661,7 +661,7 @@ function course_show_events($id){
     $query_zapsane = "SELECT * FROM zapsane_kurzy WHERE Kurzy_ID='$id' AND student_ID='$me'";
     $result_zapsane = mysqli_query($db, $query_zapsane);
     if($result_zapsane === FALSE){ //SQL ERR
-      echo("CHYBA SQL");
+      echo("CHYBA SQL  sas");
     }
 
     if(mysql_num_rows( $result_zapsane ) != 0){
