@@ -802,7 +802,7 @@ function event_delete(){
         <input type='hidden' name='date' value='$date'>
         <input type='hidden' name='time' value='$time'>
         <input type='hidden' name='room' value='$room'>
-        <button type='submit' value='submit_delete_event'>Smazat termín</button>
+        <button type='submit' name='submit_delete_event'>Smazat termín</button>
         </form>");
   }
 }
