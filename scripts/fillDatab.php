@@ -20,6 +20,7 @@ role:
 4 - vedouci
 5 - admin
 */
+// INSERT TO TABLES:
 $uzivatele_insert = 'INSERT INTO uzivatele (Uzivatele_ID, jmeno, prijmeni, heslo, role, email) VALUES
 (2, "Eleanora", "Palkova", "$2y$09$g0mOz171ScW7LrxuW7tHc.DPZJ.Dsb/ri/fZNoOn.ylymsJ0ihpzG", 2, "palkova@seznam.cz"),
 (3, "Andrej", "Maly", "$2y$09$v80chHDC5wNPrx7DqOrP3.koBH1M751z6g2zF6i1meoaJPsKN4/M6", 3, "maly.andrej@seznam.cz"),
@@ -68,4 +69,9 @@ controlProcedures($db, $soubory_insert, $link, "insert into soubory");
 $ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) VALUES
 ('CADZ', 'Zaklady programu CAD', 'Seznamuje se zaklady modelovani pomoci CAD technologii. A tohle tam pridej', 'Strojirenstvi', 2900, 3, 8, 3);";
 controlProcedures($db, $ke_schvaleni_kurz_insert, $link, "insert into ke_schvaleni_kurz");
+
+$ke_schvaleni_student_insert = "INSERT INTO ke_schvaleni_student (Kurzy_ID, student_ID) VALUES
+('IMD',7),
+('IMD',6);";
+controlProcedures($db, $ke_schvaleni_student_insert, $link, "insert into ke_schvaleni_student");
 ?>
