@@ -8,7 +8,10 @@ function controlProcedures($db, $command, $link, $info){
       echo "ERROR: command '$command' " . mysqli_error($db) . "\n\n";
   }
 }
+// DROP DATABASE:
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
+$drop_ke_schvaleni_student = "DROP TABLE IF EXISTS ke_schvaleni_student;";
+controlProcedures($db, $drop_ke_schvaleni_student, $link, "drop ke_schvaleni_student");
 $drop_ke_schvaleni_kurz = "DROP TABLE IF EXISTS ke_schvaleni_kurz;";
 controlProcedures($db, $drop_ke_schvaleni_kurz, $link, "drop ke_schvaleni_kurz");
 $drop_soubory = "DROP TABLE IF EXISTS soubory;";
@@ -24,6 +27,8 @@ controlProcedures($db, $drop_kurzy, $link, "drop kurzy");
 $drop_uzivatele = "DROP TABLE IF EXISTS uzivatele;";
 controlProcedures($db, $drop_uzivatele, $link, "drop uzivatele");
 $fk_check_end = "SET FOREIGN_KEY_CHECKS=1;";
+
+// CREATE TABLES:
 $uzivatele_tb = "CREATE TABLE uzivatele (
 Uzivatele_ID int NOT NULL AUTO_INCREMENT,
 jmeno varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -34,6 +39,7 @@ email varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 PRIMARY KEY (Uzivatele_ID)
 ) ENGINE=InnoDB";
 controlProcedures($db, $uzivatele_tb, $link, "create uzivatele");
+
 $kurzy_tb = "CREATE TABLE kurzy (
 Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 nazev varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -55,6 +61,7 @@ CONSTRAINT kurzy_fk_uzivatele2
   ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 controlProcedures($db, $kurzy_tb, $link, "create kurzy");
+
 $mistnosti_tb = "CREATE TABLE mistnosti (
 Mistnosti_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 adresa varchar(35) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -63,6 +70,7 @@ kapacita int NOT NULL,
 PRIMARY KEY (Mistnosti_ID)
 ) ENGINE=InnoDB";
 controlProcedures($db, $mistnosti_tb, $link, "create mistnosti");
+
 $terminy_tb = "CREATE TABLE terminy (
 Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 datum date NOT NULL,
@@ -150,6 +158,22 @@ $ke_schvaleni_kurz_tb = "CREATE TABLE ke_schvaleni_kurz (
   ) ENGINE=InnoDB";
   controlProcedures($db, $ke_schvaleni_kurz_tb, $link, "create ke_schvaleni_kurz ");
 
+  $ke_schvaleni_student_tb = "CREATE TABLE ke_schvaleni_student (
+  Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  student_ID int NOT NULL,
+  PRIMARY KEY (Kurzy_ID, student_ID),
+  CONSTRAINT ke_schvaleni_student_fk_kurzy
+    FOREIGN KEY (Kurzy_ID)
+    REFERENCES kurzy (Kurzy_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT ke_schvaleni_student_fk_uzivatele
+    FOREIGN KEY (student_ID)
+    REFERENCES uzivatele (Uzivatele_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB";
+controlProcedures($db, $ke_schvaleni_student_tb, $link, "create ke_schvaleni_student");
 
 // fill admin data:
 $admin_insert = 'INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ("Marek", "Prokop", "$2y$09$qFiksEt6EFcpk1B6seDjPOWQtg67epB3o9eoHX1hAfFOri5GmvMWS", 5, "admin");';
