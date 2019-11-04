@@ -691,6 +691,7 @@ function course_show_events($id){
     $result_pending = mysqli_query($db, $query_pending);
     if($result_pending === FALSE){ //SQL ERR
       echo("CHYBA SQL");
+      echo($query_pending);
     }
     if(mysqli_num_rows( $result_pending ) === 0){
       echo("<form action='act.register.php' method='post'>
