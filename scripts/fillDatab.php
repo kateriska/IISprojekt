@@ -74,4 +74,9 @@ $ke_schvaleni_student_insert = "INSERT INTO ke_schvaleni_student (Kurzy_ID, stud
 ('IMD',7),
 ('IMD',6);";
 controlProcedures($db, $ke_schvaleni_student_insert, $link, "insert into ke_schvaleni_student");
+
+$hodnoceni_insert = "INSERT INTO hodnoceni (Kurzy_ID, datum, cas, mistnost_ID, student_ID, hodnoceni, hodnotil_ID) VALUES
+('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 6, 20, 4),
+('CADZ', '2019-11-30', '15:00:00.000000', '', 6, 15, 8);";
+controlProcedures($db, $hodnoceni_insert, $link, "insert into hodnoceni");
 ?>

@@ -10,6 +10,8 @@ function controlProcedures($db, $command, $link, $info){
 }
 // DROP DATABASE:
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
+$drop_hodnoceni = "DROP TABLE IF EXISTS hodnoceni;";
+controlProcedures($db, $drop_hodnoceni, $link, "drop hodnoceni");
 $drop_ke_schvaleni_student = "DROP TABLE IF EXISTS ke_schvaleni_student;";
 controlProcedures($db, $drop_ke_schvaleni_student, $link, "drop ke_schvaleni_student");
 $drop_ke_schvaleni_kurz = "DROP TABLE IF EXISTS ke_schvaleni_kurz;";
@@ -158,7 +160,7 @@ $ke_schvaleni_kurz_tb = "CREATE TABLE ke_schvaleni_kurz (
   ) ENGINE=InnoDB";
   controlProcedures($db, $ke_schvaleni_kurz_tb, $link, "create ke_schvaleni_kurz ");
 
-  $ke_schvaleni_student_tb = "CREATE TABLE ke_schvaleni_student (
+$ke_schvaleni_student_tb = "CREATE TABLE ke_schvaleni_student (
   Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   student_ID int NOT NULL,
   PRIMARY KEY (Kurzy_ID, student_ID),
@@ -174,6 +176,37 @@ $ke_schvaleni_kurz_tb = "CREATE TABLE ke_schvaleni_kurz (
     ON UPDATE CASCADE
 ) ENGINE=InnoDB";
 controlProcedures($db, $ke_schvaleni_student_tb, $link, "create ke_schvaleni_student");
+
+$hodnoceni_tb = "CREATE TABLE hodnoceni (
+  Kurzy_ID varchar(15) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  datum date NOT NULL,
+  cas time(6) NOT NULL,
+  mistnost_ID varchar(15) COLLATE utf8mb4_unicode_520_ci,
+  student_ID int NOT NULL,
+  hodnoceni int NOT NULL,
+  hodnotil_ID int NOT NULL,
+  PRIMARY KEY (Kurzy_ID, datum, cas, mistnost_ID),
+  CONSTRAINT hodnoceni_fk_mistnosti
+    FOREIGN KEY (Kurzy_ID, datum, cas, mistnost_ID)
+    REFERENCES terminy (Kurzy_ID, datum, cas, mistnost_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT hodnoceni_fk_uzivatele
+    FOREIGN KEY (student_ID)
+    REFERENCES uzivatele (Uzivatele_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT hodnoceni_fk_uzivatele2
+    FOREIGN KEY (hodnotil_ID)
+    REFERENCES uzivatele (Uzivatele_ID)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+  ) ENGINE=InnoDB";
+  controlProcedures($db, $hodnoceni_tb, $link, "create hodnoceni");
+
+
+
+
 
 // fill admin data:
 $admin_insert = 'INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ("Marek", "Prokop", "$2y$09$qFiksEt6EFcpk1B6seDjPOWQtg67epB3o9eoHX1hAfFOri5GmvMWS", 5, "admin");';
