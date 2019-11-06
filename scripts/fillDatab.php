@@ -58,6 +58,7 @@ $zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Kurzy_ID, student_ID) VALUES
 ('VID',7),
 ('IMD',5),
 ('CADZ',6),
+('VID',4),
 ('VID',6);";
 controlProcedures($db, $zapsane_kurzy_insert, $link, "insert into zapsane_kurzy");
 
