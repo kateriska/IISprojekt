@@ -25,6 +25,14 @@
         $place =  htmlspecialchars($row['mistnost_ID']);
         $type =  htmlspecialchars($row['typ_termin']);
         $length = htmlspecialchars($row['doba_trvani']);
+        if ($length == 0)
+        {
+          $length = '';
+        }
+        else
+        {
+            $length = $length." min";
+        }
         echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
       }
       echo "</table>";
@@ -55,6 +63,14 @@ function show_my_timetable_lecturer($user_id, $db)
       $place =  htmlspecialchars($row['mistnost_ID']);
       $type =  htmlspecialchars($row['typ_termin']);
       $length = htmlspecialchars($row['doba_trvani']);
+      if ($length == 0)
+      {
+        $length = '';
+      }
+      else
+      {
+          $length = $length." min";
+      }
       echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
     }
     echo "</table>";
@@ -67,8 +83,8 @@ if ($result->num_rows > 0) {
   echo"<table>";
     echo"<tr>";
       echo"<th>Zkratka kurzu</th>";
-      echo"<th>Datum konaného termínu</th>";
-      echo"<th>Èas konaného termínu</th>";
+      echo"<th>Datum konání termínu</th>";
+      echo"<th>Èas konání termínu</th>";
       echo"<th>Místnost</th>";
       echo"<th>Typ termínu</th>";
       echo"<th>Doba trvání termínu</th>";
@@ -82,18 +98,27 @@ if ($result->num_rows > 0) {
     $place =  htmlspecialchars($row['mistnost_ID']);
     $type =  htmlspecialchars($row['typ_termin']);
     $length = htmlspecialchars($row['doba_trvani']);
+    if ($length == 0)
+    {
+      $length = '';
+    }
+    else
+    {
+        $length = $length." min";
+    }
     echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
   }
   echo "</table>";
 }
 }
 
-/*
+  /*
   require_once("dbh.php");
   show_my_timetable_student(5, $db);
   show_my_timetable_lecturer(4, $db);
   show_my_timetable_lecturer(8, $db);
   */
+
 
 
 
