@@ -22,7 +22,7 @@
   require_once('dbh.php');
   if(isset($_SESSION['user_id'])){
     $id = $_SESSION['user_id'];
-    show_pending_student_registrations($id, $db);       //G
+    show_all_pending_student_registrations($id, $db);       //G
     show_pending_approval_courses($id, $db);              //M
     show_my_courses_student($id, $db);                  //S
     show_my_courses_lecturer($id, $db);                 //L
