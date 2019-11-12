@@ -1,63 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=latin-ext&text=%E2%86%90|%E2%86%92|%E2%86%91');
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-/*html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}*/
-/* HTML5 display-role reset for older browsers */
-/*article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-*/
-/* CSS cleared */
-
 
 body{
   background-color: #b3d9ff;
   font-family: 'Montserrat', sans-serif;
 }
 
-input, button{
+input, button, select{
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   background-color: white;
@@ -87,14 +36,10 @@ input, button{
   box-sizing: border-box;
 }
 
-@media  (max-width: 785px){
-  .tile{
-    width: 100%;
-    font-size: larger;
-    margin: 0;
-    margin-top: 1%;
-  }
+.tile:hover{
+  background-color: #e4e4e4;
 }
+
 
 
 #login_bar{
@@ -115,7 +60,7 @@ input, button{
   margin-left: 1%;
   padding: 8px;
   max-width: 250px;
-  border: solid "#f2f2f2" 1px;
+  border: solid #f2f2f2 1px;
 }
 
 #login button{
@@ -140,11 +85,20 @@ input, button{
   background-color: white;
 }
 
+button:hover, #login button:hover, #logout button:hover{
+  background-color: #e4e4e4;
+}
+
 .descr_textbox{
-  overflow: auto;
-  width: 500px;
+  overflow: scroll;
   font-size: 82%;
   font-family: 'Montserrat', sans-serif;
+}
+
+textarea {
+    resize: none;
+    width: 700px;
+    height: 100px;
 }
 
 table{
@@ -162,4 +116,16 @@ tr:hover{
   background-color: lightgrey;
 }
 
-@charset "UTF-8";
+@media  (max-width: 785px){
+  .tile{
+    width: 100%;
+    font-size: larger;
+    margin: 0;
+    margin-top: 1%;
+  }
+
+  .descr_textbox{
+    width: 90%;
+  }
+}
+/*@charset "UTF-8";*/
