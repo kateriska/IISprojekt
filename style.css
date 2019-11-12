@@ -90,10 +90,15 @@ button:hover, #login button:hover, #logout button:hover{
 }
 
 .descr_textbox{
-  overflow: auto;
-  width: 60%;
+  overflow: scroll;
   font-size: 82%;
-  resize: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+textarea {
+    resize: none;
+    width: 700px;
+    height: 100px;
 }
 
 table{
