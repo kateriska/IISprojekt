@@ -286,7 +286,7 @@ function show_pending_approval_courses($id, $db){
   $query = "SELECT ke_schvaleni_kurz.Kurzy_ID, kurzy.nazev, kurzy.typ, uzivatele.jmeno, uzivatele.prijmeni, uzivatele.email FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.zadatel_ID = uzivatele.Uzivatele_ID JOIN kurzy ON ke_schvaleni_kurz.Kurzy_ID = kurzy.Kurzy_ID WHERE ke_schvaleni_kurz.vedouci_ID='$id'";
   $result = mysqli_query($db, $query);
   if ($result->num_rows > 0) {
-    echo "<h1>Následující kurzy vy¾adují schválení:</h1>
+    echo "<b>Následující kurzy vy¾adují schválení:</b>
           <table class='to_approve'>
             <tr><th>Zkratka kurzu</th> <th>Název kurzu</th> <th>Typ kurzu</th> <th>®adatel</th> </tr>";
     while($row = $result->fetch_assoc())
@@ -872,7 +872,7 @@ function show_all_pending_student_registrations($id, $db){
     return;
   }
 
-  echo("<table><tr><th>Kurz</th><th>Název</th><th>®adatel</th><th></th></tr>");
+  echo("<b>®adatelé o úèast ve Va¹ich kurzech:</b></br><table><tr><th>Kurz</th><th>Název</th><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
     $course_id = htmlspecialchars($row['Kurzy_ID']);
     $nazev = htmlspecialchars($row['nazev']);
@@ -888,4 +888,42 @@ function show_all_pending_student_registrations($id, $db){
   echo("</table>");
 }
 
+function show_pending_student_registrations($course, $id, $db){
+  $where = "WHERE "
+  if($_SESSION['role'] == 5){
+    $where = "";
+  }else{
+    $where = "WHERE garant_ID = '$id' OR vedouci_ID = '$id'";
+  }
+
+  $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student 
+                                                    JOIN uzivatele ON student_ID = Uzivatele_ID 
+                                                    
+                                                    $where
+                                                    ORDER BY Kurzy_ID, prijmeni, jmeno ASC";
+  
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL ".$query);
+    return FALSE;
+  }
+  if(mysqli_num_rows( $result ) === 0){
+    return;
+  }
+
+  echo("<table><tr><th>Kurz</th><th>Název</th><th>®adatel</th><th></th></tr>");
+  while($row = mysqli_fetch_assoc($result)){
+    $course_id = htmlspecialchars($row['Kurzy_ID']);
+    $nazev = htmlspecialchars($row['nazev']);
+    $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>)";
+    $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
+                  <input type='hidden' name='student_id' value='".$row['student_ID']."'>
+                  <input type='hidden' name='student_id' value='$course_id'>
+                  <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
+                  <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
+                </form>";
+    echo("<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$zadatel</td><td>$confirm</td></tr>"); 
+  }
+  echo("</table>");
+}
 ?>
