@@ -885,7 +885,7 @@ function show_all_pending_student_registrations($id, $db){
                 </form>";
     echo("<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$zadatel</td><td>$confirm</td></tr>"); 
   }
-  echo("</table>");
+  echo("</table><br>");
 }
 
 function show_pending_student_registrations($course_id, $id, $db){
