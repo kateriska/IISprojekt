@@ -40,20 +40,6 @@ input, button, select{
   background-color: #e4e4e4;
 }
 
-@media  (max-width: 785px){
-  .tile{
-    width: 100%;
-    font-size: larger;
-    margin: 0;
-    margin-top: 1%;
-  }
-
-  .descr_textbox{
-    overflow: scroll;
-    width: 80%;
-    font-size: 82%;
-  }
-}
 
 
 #login_bar{
@@ -124,4 +110,18 @@ tr:hover{
   background-color: lightgrey;
 }
 
+@media  (max-width: 785px){
+  .tile{
+    width: 100%;
+    font-size: larger;
+    margin: 0;
+    margin-top: 1%;
+  }
+
+  .descr_textbox{
+    overflow: scroll;
+    width: 80%;
+    font-size: 82%;
+  }
+}
 /*@charset "UTF-8";*/
