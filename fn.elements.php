@@ -882,6 +882,7 @@ function show_all_pending_student_registrations($id, $db){
     $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
                   <input type='hidden' name='course_id' value='$course_id'>
+                  <input type='hidden' name='from_index' value='1'>
                   <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
                 </form>";
@@ -916,6 +917,7 @@ function show_pending_student_registrations($course_id, $id){
     $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
                   <input type='hidden' name='course_id' value='$course_id'>
+                  <input type='hidden' name='from_index' value='0'>
                   <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
                 </form>";
