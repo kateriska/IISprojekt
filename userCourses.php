@@ -18,10 +18,8 @@ function show_my_courses_garant($user_id, $db)
       $typ =  htmlspecialchars($row['typ']);
       echo "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td></tr>";
     }
-    echo "</table>";
+    echo "</table><br>";
   }
-
-  echo "<br />";
 }
 function show_my_courses_lecturer($user_id, $db)
 {
