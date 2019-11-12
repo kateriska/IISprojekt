@@ -16,7 +16,9 @@
 ?>
 
   <container class="center">
+  <h1>Hlavní stránka</h1>
 <?php 
+  
   require_once('dbh.php');
   if(isset($_SESSION['user_id'])){
     $id = $_SESSION['user_id'];
