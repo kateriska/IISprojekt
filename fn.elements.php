@@ -851,7 +851,6 @@ function event_delete(){
 }
 
 function show_all_pending_student_registrations($id, $db){
-  echo($_SESSION['role']);
   if($_SESSION['role'] == 5){
     $where = "";
   }else{
@@ -869,17 +868,15 @@ function show_all_pending_student_registrations($id, $db){
     echo("CHYBA SQL ".$query);
     return FALSE;
   }
-  echo($query);
   if(mysqli_num_rows( $result ) === 0){
     return;
   }
-  echo("huu");
 
   echo("<table><tr><th>ID</th><th>Název</th><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
     $course_id = htmlspecialchars($row['Kurzy_ID']);
     $nazev = htmlspecialchars($row['nazev']);
-    $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno'] . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>");
+    $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>)";
     $confirm = "<form action='act.course_register_confirm.php' method='post'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
                   <input type='hidden' name='student_id' value='$course_id'>
