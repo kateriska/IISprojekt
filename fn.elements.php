@@ -699,7 +699,7 @@ function course_show_events($id){
               <button type='submit' name='submit_register'>Pøihlásit se do kurzu</button> 
             </form>");
     }else{
-      echo("<br><button type='button' disabled>®ádost o pøihlá¹ení odeslána...</button>");
+      echo("<br><button type='button' disabled>®ádost o pøihlá¹ení odeslána...</button></br>");
     }
 
   }
