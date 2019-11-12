@@ -851,10 +851,16 @@ function event_delete(){
 }
 
 function show_all_pending_student_registrations($id, $db){
+  if($_SESSION['role'] === 5){
+    $where = "";
+  }else{
+    $where = "WHERE garant_ID = '$id' OR vedouci_ID = '$id'";
+  }
+
   $query = "SELECT ke_schvaleni_student.Kurzy_ID, nazev, jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student 
                                                     JOIN uzivatele ON student_ID = Uzivatele_ID 
                                                     JOIN kurzy ON kurzy.Kurzy_ID = ke_schvaleni_student.Kurzy_ID
-                                                    WHERE garant_ID = '$id' OR vedouci_ID = '$id'
+                                                    $where
                                                     ORDER BY Kurzy_ID, prijmeni, jmeno ASC";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
