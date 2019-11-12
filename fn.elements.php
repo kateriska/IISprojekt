@@ -870,7 +870,7 @@ function show_all_pending_student_registrations($id, $db){
   }
   echo("ehh");
   if(mysqli_num_rows( $result ) === 0){
-    return;
+//    return;
   }
   echo("huu");
 
