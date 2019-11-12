@@ -509,7 +509,7 @@ function course_get_editable_info($row, $isdraft){
               }
         echo("Typ:<br><input type='text' name='type' value='$typ'><br>
               Cena:<br><input type='number' name='price' value='$cena'><br>
-              Popis:<br><input type='text' name='desc' value='$popis'><br>
+              Popis:<br><textarea name='desc' >$popis</textarea><br>
               <input type='hidden' name='id' value='$id'>
               <input type='hidden' name='draftval' value='$draftval'>
               <button type='submit' name='course_edit_submit'>Potvrdit zmìny</button>
@@ -760,7 +760,7 @@ function show_edit_event($row){
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);
-          echo("Popis:<br><input type='text' name='description' value='$desc'><br>
+          echo("Popis:<br><textarea name='desc' >$popis</textarea><br>
           <input type='hidden' name='id' value='$id'>
           <input type='hidden' name='prev_room' value='$room'>
           <input type='hidden' name='prev_date' value='$date'>

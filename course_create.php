@@ -29,7 +29,7 @@
         insert_select_garant($_SESSION['user_id']); 
         insert_select_deputy_head($_SESSION['user_id']);
             ?>
-      Popis:<br><input type='text' name='description' class='descr_textbox'><br>
+      Popis:<br><textarea name='description' ></textarea><br>
       <button type='submit' name='course_create_submit'>Vytvoøit</button>
     </form>
     <?php
