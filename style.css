@@ -87,6 +87,10 @@ input, button{
   box-sizing: border-box;
 }
 
+.tile:hover{
+  background-color: darkgray;
+}
+
 @media  (max-width: 785px){
   .tile{
     width: 100%;
@@ -115,7 +119,7 @@ input, button{
   margin-left: 1%;
   padding: 8px;
   max-width: 250px;
-  border: solid "#f2f2f2" 1px;
+  border: solid #f2f2f2 1px;
 }
 
 #login button{
@@ -140,6 +144,10 @@ input, button{
   background-color: white;
 }
 
+button:hover{
+  background-color: darkgray;
+}
+
 .descr_textbox{
   overflow: scroll;
   width: 1000px;
@@ -161,4 +169,4 @@ tr:hover{
   background-color: lightgrey;
 }
 
-@charset "UTF-8";
+/*@charset "UTF-8";*/
