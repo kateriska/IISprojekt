@@ -639,12 +639,15 @@ function insert_lector_select($lector_id = ''){
 
 function course_show_events($id){
   require("dbh.php");
+  echo
+  course_show_add_event($id);
 
   //verejny vypis
   //TODO vypis pro zapsane
   $query = "SELECT datum, cas, mistnost_ID, typ_termin FROM terminy WHERE Kurzy_ID='$id' ORDER BY datum, cas ASC";
 
   $result = mysqli_query($db, $query);
+  echo("<h3>Termíny:</h3>")ù
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
     return;
@@ -693,7 +696,7 @@ function course_show_events($id){
       echo("CHYBA SQL");
     }
     if(mysqli_num_rows( $result_pending ) === 0){
-      echo("<br><form action='act.course_register.php' method='post'>
+      echo("<br><h3>Registrace do kurzu:</h3><form action='act.course_register.php' method='post'>
               <input type='hidden' name='id_user' value='$me'>
               <input type='hidden' name='id_course' value='$id'>
               <button type='submit' name='submit_register'>Pøihlásit se do kurzu</button> 
