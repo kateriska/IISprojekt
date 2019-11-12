@@ -851,7 +851,7 @@ function event_delete(){
 }
 
 function show_all_pending_student_registrations($id, $db){
-  echo("ahoj");
+  echo($_SESSION['role']);
   if($_SESSION['role'] === 5){
     $where = "";
   }else{
