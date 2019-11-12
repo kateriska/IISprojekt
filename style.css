@@ -90,7 +90,7 @@ button:hover, #login button:hover, #logout button:hover{
 }
 
 .descr_textbox{
-  overflow: scroll;
+  overflow: auto;
   width: 60%;
   font-size: 82%;
 }

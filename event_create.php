@@ -29,7 +29,7 @@
         insert_room_select();
         insert_lector_select();
         ?>
-      Popis:<br><input type='text' name='description'><br>
+      Popis:<br><input type='text' name='description' class='descr_textbox'><br>
       <input type='hidden' name='id' value='<?php echo($_GET['id'])?>'>
       <button type='submit' name='event_create_submit'>Vytvoøit</button>
     </form>
