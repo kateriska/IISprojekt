@@ -94,7 +94,7 @@ input, button{
 }
 
 button:hover, #login button:hover, #logout button:hover{
-  background-color: darkgray;
+  background-color: #e4e4e4;
 }
 
 .descr_textbox{
