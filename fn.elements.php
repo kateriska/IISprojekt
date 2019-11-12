@@ -911,7 +911,7 @@ function show_pending_student_registrations($course_id, $id){
     return;
   }
 
-  echo("<br><b>®adatelé o úèast:</b></br><table><tr><th>®adatel</th><th></th></tr>");
+  echo("<br><h3>®adatelé o úèast:</h3><table><tr><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
     $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".htmlspecialchars($row['email'])."'>".htmlspecialchars($row['email'])."</a>)";
     $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
