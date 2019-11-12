@@ -47,6 +47,12 @@ input, button, select{
     margin: 0;
     margin-top: 1%;
   }
+
+  .descr_textbox{
+    overflow: scroll;
+    width: 80%;
+    font-size: 82%;
+  }
 }
 
 
@@ -99,7 +105,7 @@ button:hover, #login button:hover, #logout button:hover{
 
 .descr_textbox{
   overflow: scroll;
-  width: 1000px;
+  width: 40%;
   font-size: 82%;
 }
 
