@@ -851,6 +851,7 @@ function event_delete(){
 }
 
 function show_all_pending_student_registrations($id, $db){
+  echo("ahoj");
   if($_SESSION['role'] === 5){
     $where = "";
   }else{
@@ -867,9 +868,11 @@ function show_all_pending_student_registrations($id, $db){
     echo("CHYBA SQL ".$query);
     return FALSE;
   }
+  echo("ehh");
   if(mysqli_num_rows( $result ) === 0){
     return;
   }
+  echo("huu");
 
   echo("<table><tr><th>ID</th><th>Název</th><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
