@@ -760,7 +760,7 @@ function show_edit_event($row){
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);
-          echo("Popis:<br><textarea name='desc' >$popis</textarea><br>
+          echo("Popis:<br><textarea name='desc' >$desc</textarea><br>
           <input type='hidden' name='id' value='$id'>
           <input type='hidden' name='prev_room' value='$room'>
           <input type='hidden' name='prev_date' value='$date'>
