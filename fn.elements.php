@@ -639,7 +639,7 @@ function insert_lector_select($lector_id = ''){
 
 function course_show_events($id){
   require("dbh.php");
-  echo
+  echo("<h3>Termíny:</h3>");
   course_show_add_event($id);
 
   //verejny vypis
@@ -647,7 +647,6 @@ function course_show_events($id){
   $query = "SELECT datum, cas, mistnost_ID, typ_termin FROM terminy WHERE Kurzy_ID='$id' ORDER BY datum, cas ASC";
 
   $result = mysqli_query($db, $query);
-  echo("<h3>Termíny:</h3>");
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
     return;
