@@ -38,7 +38,7 @@
       $cnt++;
       $name = htmlspecialchars($row['prijmeni'] .", ". $row['jmeno']);
       $val = $row['hodnoceni'];
-      $marks = "<input type='number' min='0' max='100' name='$cnt' value='$val' form='marks'>"ù
+      $marks = "<input type='number' min='0' max='100' name='$cnt' value='$val' form='marks'>";
       echo("<tr><td>$name</td><td>$marks</td></tr>");
     }
     echo("</table>
