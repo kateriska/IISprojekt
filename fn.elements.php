@@ -863,14 +863,15 @@ function show_all_pending_student_registrations($id, $db){
                                                     JOIN kurzy ON kurzy.Kurzy_ID = ke_schvaleni_student.Kurzy_ID
                                                     $where
                                                     ORDER BY Kurzy_ID, prijmeni, jmeno ASC";
+  
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL ".$query);
     return FALSE;
   }
-  echo("ehh");
+  echo($query);
   if(mysqli_num_rows( $result ) === 0){
-//    return;
+    return;
   }
   echo("huu");
 
