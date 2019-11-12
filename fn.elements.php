@@ -647,7 +647,7 @@ function course_show_events($id){
   $query = "SELECT datum, cas, mistnost_ID, typ_termin FROM terminy WHERE Kurzy_ID='$id' ORDER BY datum, cas ASC";
 
   $result = mysqli_query($db, $query);
-  echo("<h3>Termíny:</h3>")ù
+  echo("<h3>Termíny:</h3>");
   if($result === FALSE){ //SQL ERR
     echo("CHYBA SQL");
     return;
