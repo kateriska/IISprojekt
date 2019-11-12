@@ -872,12 +872,12 @@ function show_all_pending_student_registrations($id, $db){
     return;
   }
 
-  echo("<table><tr><th>ID</th><th>Název</th><th>®adatel</th><th></th></tr>");
+  echo("<table><tr><th>Kurz</th><th>Název</th><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
     $course_id = htmlspecialchars($row['Kurzy_ID']);
     $nazev = htmlspecialchars($row['nazev']);
     $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>)";
-    $confirm = "<form action='act.course_register_confirm.php' method='post'>
+    $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0;'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
                   <input type='hidden' name='student_id' value='$course_id'>
                   <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
