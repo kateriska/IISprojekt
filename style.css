@@ -93,7 +93,7 @@ button:hover, #login button:hover, #logout button:hover{
   overflow: auto;
   width: 60%;
   font-size: 82%;
-  height: 32px;
+  resize: none;
 }
 
 table{
