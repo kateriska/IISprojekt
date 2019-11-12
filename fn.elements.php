@@ -925,4 +925,37 @@ function show_pending_student_registrations($course_id, $id){
   }
   echo("</table><br>");
 }
+
+function check_for_adding_marks($course, $date, $time, $room, $user_id){
+  //lektor terminu, garant nebo vedouci kurzu, admin
+  if($_SESSION['role'] == 5){
+    return TRUE;
+  }
+
+  $query = "SELECT lektor_ID FROM terminy JOIN kurzy ON terminy.Kurzy_ID=kurzy.Kurzy_ID
+            WHERE ( lektor_ID='$user_id' OR  garant_ID='$user_id' OR vedouci_ID='$user_id' ) AND Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+  require('dbh.php');
+  $result = mysqli_query($db, $query);
+  if($result == FALSE){
+    echo("CHYBA SQL ".$query);
+    return FALSE;
+  }
+  if(mysqli_num_rows( $result ) === 0){
+    return FALSE;
+  } else{
+    return TRUE;
+  }
+}
+
+function event_tile_insert_marks($course, $date, $time, $room){
+  if(!isset($_SESSION['role'])){
+    return;
+  }
+
+  if( ! check_for_adding_marks($course, $date, $time, $room, $_SESSION['user_id'])){
+    return;
+  }
+
+  insert_tile("Zadat hodnocení studentù", "./marks.php?id=$course&d=$date&t=$time&r=$room");
+}
 ?>

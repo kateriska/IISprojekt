@@ -16,6 +16,7 @@
 
   <container class="center">
   <?php 
+    event_tile_insert_marks($_GET['id'], $_GET['d'], $_GET['t'], $_GET['r']);
     event_show_info_or_edit();         //pro zapsane/ editace a mazani vlastnenym lektorum, garantum a vedoucim
     event_delete();                    //vlastnikum krome lektoru
     //get_event_files();               TODO: soubory pro vsechny/registrovane/zapsane
