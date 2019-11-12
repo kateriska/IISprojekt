@@ -521,7 +521,7 @@ function course_show_info_or_edit(){
     header("Location: ./courses.php");
     exit();
   }
-  require_once("dbh.php");
+  require("dbh.php");
   $id = $_GET['id'];
   $query = "SELECT Kurzy_ID, nazev, popis, typ, cena, jmeno, prijmeni, email, garant_ID, vedouci_ID FROM kurzy JOIN uzivatele ON kurzy.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $result = mysqli_query($db, $query);
