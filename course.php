@@ -16,10 +16,10 @@
 
   <container class="center">
   <?php 
+    course_show_info_or_edit();
     if(isset($_SESSION['user_id'])){
       show_pending_student_registrations($_GET['id'], $_SESSION['user_id']);
     }
-    course_show_info_or_edit();
     course_show_add_event($_GET['id']);
     course_show_events($_GET['id']);                      //viditelne vsem, zapsanym se zobrazi i hodnoceni
     //course_get_course_files();               TODO: soubory pro vsechny/registrovane/zapsane
