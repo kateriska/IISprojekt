@@ -888,7 +888,7 @@ function show_all_pending_student_registrations($id, $db){
   echo("</table><br>");
 }
 
-function show_pending_student_registrations($course_id, $id, $db){
+function show_pending_student_registrations($course_id, $id){
   $where = "WHERE Kurzy_ID = '$course_id'";
   if($_SESSION['role'] != 5){
     $where .= "AND ( garant_ID = '$id' OR vedouci_ID = '$id' )";
@@ -898,7 +898,7 @@ function show_pending_student_registrations($course_id, $id, $db){
                                                     JOIN uzivatele ON student_ID = Uzivatele_ID 
                                                     $where
                                                     ORDER BY prijmeni, jmeno ASC";
-  
+  require('dbh.php');
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL ".$query);
