@@ -61,6 +61,7 @@ input, button{
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   background-color: white;
+  padding: 10px;
 }
 
 
@@ -137,6 +138,12 @@ input, button{
   max-width: 150px;
   min-width: 60px;
   background-color: white;
+}
+
+.descr_textbox{
+  overflow: scroll;
+  width: 1000px;
+  font-size: 82%;
 }
 
 table{
