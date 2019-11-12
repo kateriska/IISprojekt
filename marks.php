@@ -47,7 +47,8 @@
             <input type='hidden' name='cnt' value='$cnt'>
             <button type='submit' name='submit_marks'>Ulo¾it hodnocení</button>
           </form>");
-
+    require_once("fn.elements.php");
+    insert_reverse_tile("Zpìt na termín", "./event?id=$course&d=$date&t=$time&r=$room");
   ?>
   </container>
 </body>
