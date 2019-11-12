@@ -879,7 +879,7 @@ function show_all_pending_student_registrations($id, $db){
     $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>)";
     $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
-                  <input type='hidden' name='student_id' value='$course_id'>
+                  <input type='hidden' name='course_id' value='$course_id'>
                   <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
                 </form>";
@@ -888,19 +888,16 @@ function show_all_pending_student_registrations($id, $db){
   echo("</table>");
 }
 
-function show_pending_student_registrations($course, $id, $db){
-  $where = "WHERE "
-  if($_SESSION['role'] == 5){
-    $where = "";
-  }else{
-    $where = "WHERE garant_ID = '$id' OR vedouci_ID = '$id'";
+function show_pending_student_registrations($course_id, $id, $db){
+  $where = "WHERE Kurzy_ID = '$course_id'";
+  if($_SESSION['role'] != 5){
+    $where . = "AND ( garant_ID = '$id' OR vedouci_ID = '$id' )";
   }
 
   $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student 
                                                     JOIN uzivatele ON student_ID = Uzivatele_ID 
-                                                    
                                                     $where
-                                                    ORDER BY Kurzy_ID, prijmeni, jmeno ASC";
+                                                    ORDER BY prijmeni, jmeno ASC";
   
   $result = mysqli_query($db, $query);
   if($result == FALSE){
@@ -911,18 +908,16 @@ function show_pending_student_registrations($course, $id, $db){
     return;
   }
 
-  echo("<table><tr><th>Kurz</th><th>Název</th><th>®adatel</th><th></th></tr>");
+  echo("<b>®adatelé o úèast:</b></br><table><tr><th>®adatel</th><th></th></tr>");
   while($row = mysqli_fetch_assoc($result)){
-    $course_id = htmlspecialchars($row['Kurzy_ID']);
-    $nazev = htmlspecialchars($row['nazev']);
-    $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".$row['email']."'>".$row['email']."</a>)";
+    $zadatel = htmlspecialchars($row['prijmeni'] .", " . $row['jmeno']) . " (<a href='mailto:".htmlspecialchars($row['email'])."'>".htmlspecialchars($row['email'])."</a>)";
     $confirm = "<form action='act.course_register_confirm.php' method='post' style='margin:0; float: right;'>
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
-                  <input type='hidden' name='student_id' value='$course_id'>
+                  <input type='hidden' name='course_id' value='$course_id'>
                   <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
                 </form>";
-    echo("<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$zadatel</td><td>$confirm</td></tr>"); 
+    echo("<tr><td>$zadatel</td><td>$confirm</td></tr>"); 
   }
   echo("</table>");
 }
