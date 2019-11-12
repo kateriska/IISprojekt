@@ -1,20 +1,3 @@
-<html>
-<head>
-  <link rel="stylesheet" href="style.css">
-  <?php 
-    require_once('fn.elements.php');  
-  ?>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-
-<body>
-<?php
-  session_start();  
-  insert_login_bar();
-?> 
-
-  <container class="center">
 <?php
 
 $course_id = $_POST['course_id'];
@@ -62,8 +45,3 @@ if(isset($_POST['submit_confirm_student_reg'])){
   header("Location: ./index.php");
   exit();
 }
-?>
-  </container>
-</body>
-
-</html>
