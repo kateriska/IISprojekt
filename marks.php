@@ -26,7 +26,8 @@
       exit();
     }
 
-    $query = "SELECT jmeno, prijmeni FROM zapsane_kurzy JOIN uzivatele ON student_ID=Uzivatele_ID WHERE Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+    $query = "SELECT jmeno, prijmeni FROM zapsane_kurzy JOIN uzivatele ON student_ID=Uzivatele_ID WHERE Kurzy_ID='$course';
+    /*AND datum='$date' AND cas='$time' AND mistnost_ID='$room'"*/
 
     require("dbh.php");
     $result = mysqli_query($db, $query);
