@@ -18,8 +18,9 @@ for($i=1; $i<$inputs; $i++){
   $query = "INSERT INTO hodnoceni (Kurzy_ID, datum, cas, mistnost_ID, student_ID, hodnoceni, hodnotil_ID)
                   VALUES ('$course', '$date', '$time', '$room', '$student', '$marks', '$me')";
   mysqli_query($db, $query);
+  echo($query);
 }
 
-header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
-exit();
+/*header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
+exit();*/
 ?>
