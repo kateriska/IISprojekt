@@ -35,8 +35,8 @@
     echo("<table><tr><th>Student</th><th>Hodnocení</th></tr>");
     $cnt = 0;
     while($row = mysqli_fetch_assoc($result)){
-      $user_name = $row['Uzivatele_ID'];
-      $mark_query = "SELECT hodnoceni FROM hodnoceni WHERE student_ID='$user_name' AND datum='$date' AND cas='$time' AND mistnost_ID='$room' AND Kurzy_ID='$course'";
+      $user_id = $row['Uzivatele_ID'];
+      $mark_query = "SELECT hodnoceni FROM hodnoceni WHERE student_ID='$user_id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room' AND Kurzy_ID='$course'";
       echo($mark_query);
       $mark_result = mysqli_query($db, $mark_query);
       if(mysqli_num_rows($result) == 0){
@@ -48,13 +48,18 @@
       
       $cnt++;
       $name = htmlspecialchars($row['prijmeni'] .", ". $row['jmeno']);
-      $marks = "<input type='number' min='0' max='100' name='$cnt' value='$val' form='marks'>";
+      $marks = "<input type='hidden' name='u$cnt' value='$user_id' form='marks'>
+                <input type='number' min='0' max='100' name='h$cnt' value='$val' form='marks'>";
       echo("<tr><td>$name</td><td>$marks</td></tr>");
     }
     echo("</table><br>
-          <form method='post' action='act.marks_submit'>
+          <form method='post' action='act.marks_submit.php'>
             <input type='hidden' name='author' value='$me'>
             <input type='hidden' name='cnt' value='$cnt'>
+            <input type='hidden' name='course' value='$course'>
+            <input type='hidden' name='date' value='$date'>
+            <input type='hidden' name='time' value='$time'>
+            <input type='hidden' name='room' value='$room'>
             <button type='submit' name='submit_marks'>Ulo¾it hodnocení</button>
           </form>");
     require_once("fn.elements.php");
