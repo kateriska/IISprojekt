@@ -26,8 +26,7 @@
       exit();
     }
 
-    $query = "SELECT * FROM hodnoceni JOIN uzivatele ON student_ID = Uzivatele_ID 
-              WHERE Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+    $query = "SELECT jmeno, prijmeni FROM zapsane_kurzy JOIN uzivatele ON student_ID=Uzivatele_ID WHERE Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
 
     require("dbh.php");
     $result = mysqli_query($db, $query);
@@ -37,11 +36,11 @@
     while($row = mysqli_fetch_assoc($result)){
       $cnt++;
       $name = htmlspecialchars($row['prijmeni'] .", ". $row['jmeno']);
-      $val = $row['hodnoceni'];
-      $marks = "<input type='number' min='0' max='100' name='$cnt' value='$val' form='marks'>";
+      //$val = $row['hodnoceni'];
+      $marks = "<input type='number' min='0' max='100' name='$cnt' value='0' form='marks'>";
       echo("<tr><td>$name</td><td>$marks</td></tr>");
     }
-    echo("</table>
+    echo("</table><br>
           <form method='post' action='act.marks_submit'>
             <input type='hidden' name='author' value='$me'>
             <input type='hidden' name='cnt' value='$cnt'>
