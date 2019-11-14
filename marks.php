@@ -53,7 +53,7 @@
       echo("<tr><td>$name</td><td>$marks</td></tr>");
     }
     echo("</table><br>
-          <form method='post' action='act.marks_submit.php'>
+          <form method='post' action='act.marks_submit.php' id='marks'>
             <input type='hidden' name='author' value='$me'>
             <input type='hidden' name='cnt' value='$cnt'>
             <input type='hidden' name='course' value='$course'>
