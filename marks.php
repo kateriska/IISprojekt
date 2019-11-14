@@ -31,7 +31,6 @@
     require("dbh.php");
     $result = mysqli_query($db, $query);
     
-    ec ho($query);
 
     echo("<table><tr><th>Student</th><th>Hodnocení</th></tr>");
     $cnt = 0;
