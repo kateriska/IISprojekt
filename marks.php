@@ -32,7 +32,7 @@
     require("dbh.php");
     $result = mysqli_query($db, $query);
     
-    exho($query);
+    echo($query);
 
     echo("<table><tr><th>Student</th><th>Hodnocení</th></tr>");
     $cnt = 0;
