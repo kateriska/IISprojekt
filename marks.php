@@ -37,7 +37,6 @@
     while($row = mysqli_fetch_assoc($result)){
       $user_id = $row['Uzivatele_ID'];
       $mark_query = "SELECT hodnoceni FROM hodnoceni WHERE student_ID='$user_id' AND datum='$date' AND cas='$time' AND mistnost_ID='$room' AND Kurzy_ID='$course'";
-      echo($mark_query);
       $mark_result = mysqli_query($db, $mark_query);
       if(mysqli_num_rows($result) == 0){
         $val = 0;

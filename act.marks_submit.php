@@ -23,7 +23,7 @@ for($i=1; $i<=$inputs; $i++){
   mysqli_query($db, $query);
   echo($query);
 }
-
+/*
 header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
-exit();
+exit();*/
 ?>
