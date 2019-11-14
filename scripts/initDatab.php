@@ -1,13 +1,6 @@
 <?php
 //PROVIDES DB HANDLE $db
-$db = mysqli_init();
-$login = "xholub42";
-$password = "n4etimbe";
-
-if (!mysqli_real_connect($db, 'localhost', $login, $password, $login, 0, '/var/run/mysql/mysql.sock')){
-  die('cannot connect '.mysqli_connect_error());
-}
-
+require_once('inc.db_handle.php');
 function controlProcedures($db, $command, $link, $info){
   if(mysqli_query($db, $command)){
       echo "Command created successfully($info)\n\n";
