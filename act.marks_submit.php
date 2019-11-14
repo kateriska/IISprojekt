@@ -18,7 +18,7 @@ for($i=1; $i<=$inputs; $i++){
   if($marks == ''){
     $marks = '0';
   }
-  $query = "INSERT INTO hodnoceni (Kurzy_ID, datum, cas, mistnost_ID, student_ID, hodnoceni, hodnotil_ID)
+  $query = "REPLACE INTO hodnoceni (Kurzy_ID, datum, cas, mistnost_ID, student_ID, hodnoceni, hodnotil_ID)
                   VALUES ('$course', '$date', '$time', '$room', '$student', '$marks', '$me')";
   $result = mysqli_query($db, $query);
   echo($query);
