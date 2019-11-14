@@ -21,6 +21,6 @@ for($i=1; $i<$inputs; $i++){
   echo($query);
 }
 
-/*header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
-exit();*/
+header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
+exit();
 ?>
