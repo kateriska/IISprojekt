@@ -185,7 +185,7 @@ $hodnoceni_tb = "CREATE TABLE hodnoceni (
   student_ID int NOT NULL,
   hodnoceni int NOT NULL,
   hodnotil_ID int NOT NULL,
-  PRIMARY KEY (Kurzy_ID, datum, cas, mistnost_ID),
+  PRIMARY KEY (Kurzy_ID, datum, cas, mistnost_ID, student_ID),
   CONSTRAINT hodnoceni_fk_mistnosti
     FOREIGN KEY (Kurzy_ID, datum, cas, mistnost_ID)
     REFERENCES terminy (Kurzy_ID, datum, cas, mistnost_ID)
