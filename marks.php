@@ -31,6 +31,8 @@
     require("dbh.php");
     $result = mysqli_query($db, $query);
     
+    exho($query);
+
     echo("<table><tr><th>Student</th><th>Hodnocení</th></tr>");
     $cnt = 0;
     while($row = mysqli_fetch_assoc($result)){
