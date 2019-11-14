@@ -38,10 +38,10 @@
       $user_name = $row['Uzivatele_ID'];
       $mark_query = "SELECT hodnoceni FROM hodnoceni WHERE student_ID='$user_name' AND datum='$date' AND cas='$time' AND mistnost_ID='$room' Kurzy_ID='$course'";
       $mark_result = mysqli_query($db, $mark_query);
-      $mark_row = mysqli_fetch_assoc($mark_result);
       if(mysqli_num_rows($result) == 0){
         $val = 0;
       }else{
+        $mark_row = mysqli_fetch_assoc($mark_result);
         $val = $mark_row['hodnoceni'];
       }
       
