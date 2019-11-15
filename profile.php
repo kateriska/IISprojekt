@@ -1,8 +1,8 @@
 <html>
 <head>
   <link rel="stylesheet" href="style.css">
-  <?php 
-    require_once('fn.elements.php');  
+  <?php
+    require_once('fn.elements.php');
   ?>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -10,9 +10,9 @@
 
 <body>
 <?php
-  session_start();  
+  session_start();
   insert_login_bar();
-?> 
+?>
 
 <container class="center">
 
@@ -30,22 +30,23 @@ function get_profile_details($id, $db){
   $firstname = htmlspecialchars($row['jmeno']);
   $lastname = htmlspecialchars($row['prijmeni']);
   $mail = htmlspecialchars($row['email']);
-  $r_str = "<h2>Upravit své údaje</h2><form action=updateMyProfile.php method='post'>
+  $r_str = "<h2>Upravit své údaje</h2><form action=profile.php method='post'>
               Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
-              Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
+              Pøíjmení½:<br><input type='text' name='lastname' value='$lastname'><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
-              Heslo:<br><input type='text' name='password'><br>
+              Heslo:<br><input type='text' name='pwd'><br>
               <button type='submit' name='submitbutton'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
 
-  $firstname= $_POST['firstname'];
-  $lastname= $_POST['lastname'];
-  $mail = $_POST['mail'];
-  $pwd= $_POST['password'];
-  $submitbutton= $_POST['submitbutton'];
-  if (isset($submitbutton))
+
+  if ((isset($_POST['submitbutton'])) && (isset($_POST['firstname'])) && (isset($_POST['lastname'])) && (isset($_POST['mail'])) && (isset($_POST['pwd'])))
   {
+    $firstname= $_POST['firstname'];
+    $lastname= $_POST['lastname'];
+    $mail = $_POST['mail'];
+    $pwd= $_POST['pwd'];
+    $submitbutton= $_POST['submitbutton'];
     if (empty($pwd))
     {
       $query = "UPDATE uzivatele SET jmeno='$firstname', prijmeni='$lastname', email='$mail' WHERE Uzivatele_ID='$id'";
@@ -58,7 +59,15 @@ function get_profile_details($id, $db){
 
       $query = "UPDATE uzivatele SET jmeno='$firstname', prijmeni='$lastname', email='$mail', heslo='$pwd_hash' WHERE Uzivatele_ID='$id'";
 
-      mysqli_query($db, $query);
+    }
+
+    if (mysqli_query($db, $query))
+    {
+      header("Location: ./profile.php?id=$id&succ=created");
+    }
+    else
+    {
+      header("Location: ./profile.php?id=$id&err=empty_field");
     }
 
     exit();
@@ -68,7 +77,11 @@ function get_profile_details($id, $db){
 
 require_once("dbh.php");
 require_once("fn.pwd_hash.php");
-get_profile_details(1, $db);
+
+
+get_profile_details(5, $db);
+
+
 
 ?>
 
