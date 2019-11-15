@@ -64,6 +64,26 @@ function show_my_courses_student($user_id, $db)
     }
     echo "</table><br>";
   }
+
+
+
+  $query = "SELECT Kurzy_ID, SUM(hodnoceni) hodnoceniSum FROM hodnoceni WHERE hodnoceni.student_ID = '$user_id' GROUP BY Kurzy_ID";
+  $result = mysqli_query($db, $query);
+  if ($result->num_rows > 0) {
+    echo "<b>Va¹e zí­skané body ze zapsaných kurzù:</b>";
+    echo"<table>";
+      echo"<tr>";
+        echo"<th>Zkratka kurzu</th>";
+        echo"<th>Celkové body</th>";
+      echo"</tr>";
+    while($row = $result->fetch_assoc())
+    {
+      $course_id =  htmlspecialchars($row['Kurzy_ID']);
+      $hodnoceni = htmlspecialchars($row['hodnoceniSum']);
+      echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td>$hodnoceni</td></tr>";
+    }
+    echo "</table><br>";
+  }
 }
 
 function show_my_courses_vedouci($user_id, $db)
@@ -99,7 +119,7 @@ echo "<br />";
 show_my_courses_lecturer(4, $db);
 echo "Výpis pro studenta:\n";
 echo "<br />";
-show_my_courses_student(5, $db);
+show_my_courses_student(6, $db);
 echo "Výpis pro vedoucího:\n";
 echo "<br />";
 show_my_courses_vedouci(8, $db);
