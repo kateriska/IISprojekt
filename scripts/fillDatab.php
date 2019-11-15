@@ -5,7 +5,7 @@ function controlProcedures($db, $command, $link, $info)
 {
   if(mysqli_query($db, $command))
   {
-      echo "Command created successfully($info)\n\n";
+      echo "Command created successfully($info)\n\n<br>";
   }
   else
   {
