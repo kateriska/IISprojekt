@@ -27,11 +27,11 @@
     show_my_courses_student($id, $db);                  //S
     show_my_courses_lecturer($id, $db);                 //L
     show_my_courses_garant($id, $db);                   //G
+    tile_edit_profile($id);                        //S
   }
   tile_manage_rooms();                        //M
   tile_manage_users();                        //A
   tile_show_all_courses();                    //N
-  tile_edit_profile();                        //S
 ?>
   </container>
 </body>

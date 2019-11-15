@@ -79,7 +79,7 @@ require_once("dbh.php");
 require_once("fn.pwd_hash.php");
 
 
-get_profile_details(5, $db);
+get_profile_details($_GET['id'], $db);
 
 
 
