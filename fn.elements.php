@@ -692,7 +692,7 @@ function course_show_events($id){
     $room = htmlspecialchars($row['mistnost_ID']);
     $type = htmlspecialchars($row['typ_termin']);
     if($zapsan){
-      $marks = get_marks();
+      $marks = get_marks($id, $date, $time, $room, $me);
       $zapsan_marks = "<td>$marks</td>";
     }
     $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td>$zapsan_marks</tr>"; 
