@@ -637,6 +637,18 @@ function insert_lector_select($lector_id = ''){
   echo("</select><br>");
 }
 
+function get_marks($course, $date, $time, $room, $student){
+  $query = "SELECT hodnoceni FROM hodnoceni WHERE Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room' AND student_ID='$student'";
+  require('dbh.php');
+  $result = mysqli_query($db, $query);
+  if(mysqli_num_rows($result) == 0){
+    return '0';
+  }else{
+    $row = mysqli_fetch_assoc($result);
+    return $row['hodnoceni'];
+  }
+}
+
 function course_show_events($id){
   require("dbh.php");
   echo("<h3>Termíny:</h3>");
@@ -680,8 +692,8 @@ function course_show_events($id){
     $room = htmlspecialchars($row['mistnost_ID']);
     $type = htmlspecialchars($row['typ_termin']);
     if($zapsan){
-      //$marks = get_marks()//TODO
-      $zapsan_marks = "<td></td>";
+      $marks = get_marks();
+      $zapsan_marks = "<td>$marks</td>";
     }
     $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td>$zapsan_marks</tr>"; 
   }
