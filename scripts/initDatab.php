@@ -1,6 +1,6 @@
 <?php
 //PROVIDES DB HANDLE $db
-require_once('inc.db_handle.php');
+require('inc.db_handle.php');
 function controlProcedures($db, $command, $link, $info){
   if(mysqli_query($db, $command)){
       echo "Command created successfully($info)\n\n";
