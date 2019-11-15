@@ -1,9 +1,6 @@
 <?php
 //PROVIDES DB HANDLE $db
-$db = mysqli_init();
-    if (!mysqli_real_connect($db, 'localhost', 'xholub42', 'n4etimbe', 'xholub42', 0, '/var/run/mysql/mysql.sock')) {
-	die('cannot connect '.mysqli_connecterror());
-    }
+require('inc.db_handl.php');
 function controlProcedures($db, $command, $link, $info){
   if(mysqli_query($db, $command)){
       echo "Command created successfully($info)\n\n";
