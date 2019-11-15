@@ -47,6 +47,7 @@ function show_my_courses_student($user_id, $db)
 {
   $query = "SELECT Kurzy_ID, SUM(hodnoceni) hodnoceniSum FROM hodnoceni WHERE hodnoceni.student_ID = '$user_id' GROUP BY Kurzy_ID";
   $result = mysqli_query($db, $query);
+  $hodnoceni_arr = array();
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc())
     {
@@ -63,6 +64,8 @@ function show_my_courses_student($user_id, $db)
 
   $query = "SELECT * FROM kurzy, zapsane_kurzy, uzivatele WHERE zapsane_kurzy.student_ID = '$user_id' AND zapsane_kurzy.Kurzy_ID = kurzy.Kurzy_ID AND zapsane_kurzy.student_ID = uzivatele.Uzivatele_ID AND uzivatele.Uzivatele_ID = '$user_id'";
   $result = mysqli_query($db, $query);
+  $course_id_arr = array();
+  $key_list_arr = array();
   if ($result->num_rows > 0) {
     echo "<b>Va¹e zapsané kurzy:</b>";
     echo"<table>";
@@ -79,16 +82,26 @@ function show_my_courses_student($user_id, $db)
       $typ =  htmlspecialchars($row['typ']);
       if ($some_hodnoceni == true)
       {
+        foreach ($hodnoceni_arr as $key => $val) {
+          array_push($key_list_arr, $key);
+        }
+
         $keys = array_keys($hodnoceni_arr);
         foreach($keys as $key)
         {
-          if ($course_id == $key)
+          if ($course_id == $key && (!in_array($course_id, $course_id_arr)))
           {
+            array_push($course_id_arr, $course_id);
             $body = $hodnoceni_arr[$key];
+            echo "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td></td><td>$body</td></tr>";
           }
-        }
+          else if (!in_array($course_id, $key_list_arr))
+          {
+            $body = 0;
+            echo "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td></td><td>$body</td></tr>";
+          }
 
-        echo "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td></td><td>$body</td></tr>";
+        }
       }
       else
       {
