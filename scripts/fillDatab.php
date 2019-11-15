@@ -1,5 +1,5 @@
 <?php
-require('inc.db_handle.php');
+require('inc.db_handl.php');
 function controlProcedures($db, $command, $link, $info)
 {
   if(mysqli_query($db, $command))
