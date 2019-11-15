@@ -11,6 +11,7 @@ function controlProcedures($db, $command, $link, $info){
       echo "ERROR: command '$command' " . mysqli_error($db) . "\n\n";
   }
 }
+$link='';
 // DROP DATABASE:
 $fk_check_beg = "SET FOREIGN_KEY_CHECKS=0;";
 $drop_hodnoceni = "DROP TABLE IF EXISTS hodnoceni;";
