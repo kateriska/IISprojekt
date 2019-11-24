@@ -19,23 +19,6 @@
 <?php
 
 function get_profile_details($id, $db){
-  $mails_all_users = array();
-
-  $query = "SELECT email FROM uzivatele";
-  $result = mysqli_query($db, $query);
-  if($result === FALSE){ //SQL ERR
-    echo("CHYBA SQL");return;
-  }
-
-
-  if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc())
-    {
-      $mail =  htmlspecialchars($row['email']);
-      array_push($mails_all_users, $mail );
-    }
-  }
-
   $query = "SELECT jmeno, prijmeni, email FROM uzivatele WHERE Uzivatele_ID='$id'";
   $result = mysqli_query($db, $query);
   if($result === FALSE){ //SQL ERR
@@ -51,6 +34,7 @@ function get_profile_details($id, $db){
               Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
               Pøíjmení½:<br><input type='text' name='lastname' value='$lastname'><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
+              <input type='hidden' name='id' value='$id'>
               <button type='submit' name='submitbutton'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
@@ -62,16 +46,12 @@ function get_profile_details($id, $db){
     $lastname= $_POST['lastname'];
     $mail = $_POST['mail'];
     $submitbutton= $_POST['submitbutton'];
+    $id = $_POST['id'];
 
     if ($firstname == '' || $lastname == '' || $mail == '' )
     {
         header("Location: ./profile.php?id=$id&err=empty_field");
         exit();
-    }
-    if (in_array($mail, $mails_all_users))
-    {
-      header("Location: ./profile.php?id=$id&err=mail_already_used");
-      exit();
     }
 
     $query = "UPDATE uzivatele SET jmeno='$firstname', prijmeni='$lastname', email='$mail' WHERE Uzivatele_ID='$id'";
@@ -84,7 +64,7 @@ function get_profile_details($id, $db){
     }
     else
     {
-      header("Location: ./profile.php?id=$id&err=empty_field");
+      header("Location: ./profile.php?id=$id&err=mail_taken");
     }
 
 
@@ -104,6 +84,7 @@ function get_profile_details($id, $db){
 
   $p_str = "<h2>Upravit heslo</h2><form action=profile.php method='post'>
             Heslo:<br><input type='text' name='pwd'><br>
+            <input type='hidden' name='id' value='$id'>
             <button type='submit' name='submitpwdbutton'>Potvrdit heslo</button>
           </form>";
   echo($p_str);
@@ -112,6 +93,7 @@ function get_profile_details($id, $db){
   {
     $pwd= $_POST['pwd'];
     $submitbutton= $_POST['submitpwdbutton'];
+    $id = $_POST['id'];
 
     if ($pwd == '')
     {
@@ -143,9 +125,9 @@ function get_profile_details($id, $db){
 require_once("dbh.php");
 require_once("fn.pwd_hash.php");
 
-$id = isset($_SESSION['user_id']);
-get_profile_details($id, $db);
-//get_profile_details(1, $db);
+
+get_profile_details($_GET['id'], $db);
+
 
 
 
