@@ -27,8 +27,7 @@
     show_my_courses_student($id, $db);                  //S
     show_my_courses_lecturer($id, $db);                 //L
     show_my_courses_garant($id, $db);                   //G
-    show_my_timetable_lecturer($id, $db);
-    show_my_timetable_student($id, $db);
+    show_my_timetable($id, $db);
   }
   tile_manage_rooms();                        //M
   tile_manage_users();                        //A
