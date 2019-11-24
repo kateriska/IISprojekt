@@ -9,7 +9,7 @@ $address = $_POST['address'];
 $type = $_POST['type'];
 $capacity = $_POST['capacity'];
 
-if( $id == '' || $address == '' || $type == ''  || $capacity == '' ){
+if( $id == '' || $capacity == '' ){
   header("Location: ./room_create.php?err=empty_fields");
   exit();
 }

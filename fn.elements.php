@@ -189,16 +189,16 @@ function get_modifiable_user_details($id){
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
   $r_str = "<h2>Upravit údaje</h2><form action=act.user_update.php method='post'>
-              Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
-              Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
-              Role:<br><select name='role'>
+              Jméno*:<br><input type='text' name='firstname' value='$firstname'><br>
+              Pøíjmení*:<br><input type='text' name='lastname' value='$lastname'><br>
+              Role*:<br><select name='role'>
                 <option value='1'$s1>Student</option>
                 <option value='2'$s2>Lektor</option>
                 <option value='3'$s3>Garant</option>
                 <option value='4'$s4>Vedoucí</option>
                 <option value='5'$s5>Administrátor</option>
               </select><br>
-              Email:<br><input type='text' name='mail' value='$mail'><br>
+              Email*:<br><input type='text' name='mail' value='$mail'><br>
               <input type='hidden' name='id' value='$id'>
               <button type='submit' name='user_edit_submit'>Potvrdit zmìny</button>
             </form>";
@@ -268,7 +268,7 @@ function get_modifiable_room_details($id){
               <input type='hidden' name='id' value='$id'>
               Adresa:<br><input type='text' name='address' value='$address'><br>
               Typ:<br><input type='text' name='type' value='$type'><br>
-              Kapacita:<br><input type='number' name='capacity' value='$capacity'><br>
+              Kapacita*:<br><input type='number' name='capacity' value='$capacity'><br>
               <button type='submit' name='room_edit_submit'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
@@ -969,5 +969,116 @@ function event_tile_insert_marks($course, $date, $time, $room){
   }
 
   insert_tile("Zadat hodnocení studentù", "./marks.php?id=$course&d=$date&t=$time&r=$room");
+}
+
+function show_my_timetable_student($user_id, $db)
+{
+  $query = "SELECT * FROM terminy, kurzy, zapsane_kurzy, uzivatele WHERE zapsane_kurzy.student_ID = '$user_id' AND zapsane_kurzy.Kurzy_ID = kurzy.Kurzy_ID AND zapsane_kurzy.student_ID = uzivatele.Uzivatele_ID AND uzivatele.Uzivatele_ID = '$user_id' AND zapsane_kurzy.Kurzy_ID = terminy.Kurzy_ID ORDER BY terminy.datum ASC";
+  $result = mysqli_query($db, $query);
+  if ($result->num_rows > 0) {
+    echo "<b>Va¹e termíny:</b>";
+    echo"<table>";
+      echo"<tr>";
+        echo"<th>Zkratka kurzu</th>";
+        echo"<th>Datum konání termínu</th>";
+        echo"<th>Èas konání termínu</th>";
+        echo"<th>Místnost</th>";
+        echo"<th>Typ termínu</th>";
+        echo"<th>Doba trvání termínu</th>";
+      echo"</tr>";
+    while($row = $result->fetch_assoc())
+    {
+      $course_id =  htmlspecialchars($row['Kurzy_ID']);
+      $date =  htmlspecialchars($row['datum']);
+      $time =  htmlspecialchars($row['cas']);
+      $time_cut = substr($time,0,5);
+      $place =  htmlspecialchars($row['mistnost_ID']);
+      $type =  htmlspecialchars($row['typ_termin']);
+      $length = htmlspecialchars($row['doba_trvani']);
+      if ($length == 0)
+      {
+        $length = '';
+      }
+      else
+      {
+          $length = $length." min";
+      }
+      echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
+    }
+    echo "</table>";
+}
+}
+
+function show_my_timetable_lecturer($user_id, $db)
+{
+$query = "SELECT * FROM terminy, kurzy, zapsane_kurzy, uzivatele WHERE zapsane_kurzy.student_ID = '$user_id' AND zapsane_kurzy.Kurzy_ID = kurzy.Kurzy_ID AND zapsane_kurzy.student_ID = uzivatele.Uzivatele_ID AND uzivatele.Uzivatele_ID = '$user_id' AND zapsane_kurzy.Kurzy_ID = terminy.Kurzy_ID ORDER BY terminy.datum ASC";
+$result = mysqli_query($db, $query);
+if ($result->num_rows > 0) {
+  echo "<b>Va¹e studentské termíny:</b>";
+  echo"<table>";
+    echo"<tr>";
+      echo"<th>Zkratka kurzu</th>";
+      echo"<th>Datum konání termínu</th>";
+      echo"<th>Èas konání termínu</th>";
+      echo"<th>Místnost</th>";
+      echo"<th>Typ termínu</th>";
+      echo"<th>Doba trvání termínu</th>";
+    echo"</tr>";
+  while($row = $result->fetch_assoc())
+  {
+    $course_id =  htmlspecialchars($row['Kurzy_ID']);
+    $date =  htmlspecialchars($row['datum']);
+    $time =  htmlspecialchars($row['cas']);
+    $time_cut = substr($time,0,5);
+    $place =  htmlspecialchars($row['mistnost_ID']);
+    $type =  htmlspecialchars($row['typ_termin']);
+    $length = htmlspecialchars($row['doba_trvani']);
+    if ($length == 0)
+    {
+      $length = '';
+    }
+    else
+    {
+        $length = $length." min";
+    }
+    echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
+  }
+  echo "</table>";
+}
+
+$query = "SELECT * FROM terminy, kurzy, uzivatele WHERE terminy.lektor_ID = '$user_id' AND terminy.Kurzy_ID = kurzy.Kurzy_ID AND uzivatele.Uzivatele_ID = '$user_id' ORDER BY terminy.datum ASC";
+$result = mysqli_query($db, $query);
+if ($result->num_rows > 0) {
+echo "<b>Va¹e lektorské termíny:</b>";
+echo"<table>";
+  echo"<tr>";
+    echo"<th>Zkratka kurzu</th>";
+    echo"<th>Datum konání termínu</th>";
+    echo"<th>Èas konání termínu</th>";
+    echo"<th>Místnost</th>";
+    echo"<th>Typ termínu</th>";
+    echo"<th>Doba trvání termínu</th>";
+  echo"</tr>";
+while($row = $result->fetch_assoc())
+{
+  $course_id =  htmlspecialchars($row['Kurzy_ID']);
+  $date =  htmlspecialchars($row['datum']);
+  $time =  htmlspecialchars($row['cas']);
+  $time_cut = substr($time,0,5);
+  $place =  htmlspecialchars($row['mistnost_ID']);
+  $type =  htmlspecialchars($row['typ_termin']);
+  $length = htmlspecialchars($row['doba_trvani']);
+  if ($length == 0)
+  {
+    $length = '';
+  }
+  else
+  {
+      $length = $length." min";
+  }
+  echo "<tr><td><a href='./course?id=$course_id'>$course_id</a></td><td><b>$date</b></td><td><b>$time_cut</b></td><td><b>$place</b></td><td><a href='./event?id=$course_id&d=$date&t=$time&r=$place'>$type</a></td><td><b>$length</b></td></tr>";
+}
+echo "</table>";
+}
 }
 ?>
