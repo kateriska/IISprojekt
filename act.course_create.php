@@ -17,8 +17,8 @@ if($price == ''){
   $price = '0';
 }
 
-if( $id == '' || $name == '' || $type == ''  || $price < 0 || $garant == '' || $dep_head == '' || $desc == '' ){
-  header("Location: ./course_create.php?err=empty_or_inv_fields");
+if( $id == '' || $name == '' || $price < 0 ){
+  header("Location: ./course_create.php?err=empty_or_inv_fields&id=$id&name=$name&price=$price");
   exit();
 }
 

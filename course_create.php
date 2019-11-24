@@ -21,8 +21,8 @@
   <container class="center">
   <h1>Vytvoøit nový kurz</h1>
     <form action=act.course_create.php method='post'>
-      ID:<br><input type='text' name='id'><br>
-      Název:<br><input type='text' name='name'><br>
+      ID*:<br><input type='text' name='id'><br>
+      Název*:<br><input type='text' name='name'><br>
       Typ:<br><input type='text' name='type'><br>
       Cena:<br><input type='number' name='price'><br>
             <?php 

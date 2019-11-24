@@ -423,7 +423,7 @@ function insert_select_garant($current_garant){
     return FALSE;
   }
   
-  echo("Garant:<br><select name='garant'>");
+  echo("Garant*:<br><select name='garant'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $garant_id = $row['Uzivatele_ID'];
       if($garant_id == $current_garant){
@@ -447,7 +447,7 @@ function insert_select_deputy_head($current_head){
     return FALSE;
   }
   
-  echo("Vedoucí:<br><select name='dep_head'>");
+  echo("Vedoucí*:<br><select name='dep_head'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $dep_head = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
