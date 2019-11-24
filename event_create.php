@@ -22,8 +22,8 @@
   <h1>Vytvoøit nový termín kurzu <?php echo($_GET['id'])?></h1>
     <form action=act.event_create.php method='post'>
       Typ:<br><input type='text' name='type'><br>
-      Datum:<br><input type='date' name='date'><br>
-      Èas:<br><input type='time' name='time'><br>
+      Datum*:<br><input type='date' name='date'><br>
+      Èas*:<br><input type='time' name='time'><br>
       Délka trvání (minuty):<br><input type='number' name='duration'><br>
       <?php
         insert_room_select();

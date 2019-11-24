@@ -23,10 +23,11 @@ for($i=1; $i<=$inputs; $i++){
   $result = mysqli_query($db, $query);
   echo($query);
   if($result == FALSE){
-    echo("ERROR");
+    header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room&err=error");
+    exit();
   }
 }
-/*
+
 header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room");
-exit();*/
+exit();
 ?>

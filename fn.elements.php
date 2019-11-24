@@ -402,12 +402,12 @@ function course_compare_draft(){
   echo("<form id='reject' action='act.draft_reject.php' method='post'>
           <input type='hidden' name='id' value=$id>
           $delete_if_would_be_created
-          <button type='submit' name='submit_reject'>Zamítnout zmìny</button>
+          <button type='submit' name='submit_reject' class='reject'>Zamítnout zmìny</button>
         </form>");
 
   echo("<form id='approve' action='act.draft_approve.php' method='post'>
         <input type='hidden' name='id' value=$id>
-        <button type='submit' name='submit_approve'>Schválit zmìny</button>
+        <button type='submit' name='submit_approve' class='confirm'>Schválit zmìny</button>
       </form>");
 
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
@@ -500,7 +500,7 @@ function course_get_editable_info($row, $isdraft){
     $draftval = 0;
   }
   echo("<h2>Upravit údaje kurzu $id $draftnote</h2><form action=act.course_update.php method='post'>
-              Název:<br><input type='text' name='name' value='$nazev'><br>");
+              Název*:<br><input type='text' name='name' value='$nazev'><br>");
               insert_select_garant($row['garant_ID']);
               if(check_rights(DEPARTMENT_HEAD)){
                 insert_select_deputy_head($row['vedouci_ID']);
@@ -622,7 +622,7 @@ function insert_lector_select($lector_id = ''){
     return FALSE;
   }
   
-  echo("Lektor:<br><select name='lector'>");
+  echo("Lektor*:<br><select name='lector'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $lector = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
@@ -769,8 +769,8 @@ function show_edit_event($row){
   echo("<h1>Termín kurzu $id - $type</h1><br>
         <form action='act.event_update.php' method='post'>
           Typ:<br><input type='text' name='type' value='$type'><br>
-          Datum:<br><input type='date' name='date' value='$date'><br>
-          Èas:<br><input type='time' name='time' value='$time'><br>
+          Datum*:<br><input type='date' name='date' value='$date'><br>
+          Èas*:<br><input type='time' name='time' value='$time'><br>
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);

@@ -102,7 +102,7 @@ $room = $_POST['room'];
 $lector = $_POST['lector'];
 $desc = $_POST['description'];
 
-if( $id == '' || $type == '' || $date == ''  || ($duration < '0' && $duration != '') || $lector == '' || $desc == '' ){
+if( $id == '' || $date == ''  || ($duration < '0' && $duration != '') || $lector == '' ){
   header("Location: ./course_create.php?err=empty_or_inv_fields");
   exit();
 }
