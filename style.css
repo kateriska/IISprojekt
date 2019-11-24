@@ -87,9 +87,16 @@ input, button, select{
 
 button:hover, #login button:hover, #logout button:hover{
   background-color: #e4e4e4;
+  cursor: pointer;
 }
 
+.confirm:hover{
+  background-color: #75eb51;
+}
 
+.reject:hover{
+  background-color: #ff3d3d;
+}
 
 .descr_textbox{
   overflow: scroll;
