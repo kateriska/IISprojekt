@@ -32,7 +32,7 @@ function get_profile_details($id, $db){
   $mail = htmlspecialchars($row['email']);
   $r_str = "<h2>Upravit údaje</h2><form action=profile.php method='post'>
               Jméno:<br><input type='text' name='firstname' value='$firstname'><br>
-              Pøíjmení½:<br><input type='text' name='lastname' value='$lastname'><br>
+              Pøíjmení:<br><input type='text' name='lastname' value='$lastname'><br>
               Email:<br><input type='text' name='mail' value='$mail'><br>
               <input type='hidden' name='id' value='$id'>
               <button type='submit' name='submitbutton'>Potvrdit zmìny</button>
