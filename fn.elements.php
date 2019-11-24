@@ -930,8 +930,8 @@ function show_pending_student_registrations($course_id, $id){
                   <input type='hidden' name='student_id' value='".$row['student_ID']."'>
                   <input type='hidden' name='course_id' value='$course_id'>
                   <input type='hidden' name='from_index' value='0'>
-                  <button type='submit' name='submit_confirm_student_reg'>Schválit</button>
-                  <button type='submit' name='submit_reject_student_reg'>Zamítnout</button>
+                  <button type='submit' name='submit_confirm_student_reg' class='confirm'>Schválit</button>
+                  <button type='submit' name='submit_reject_student_reg' class='reject'>Zamítnout</button>
                 </form>";
     echo("<tr><td>$zadatel</td><td>$confirm</td></tr>"); 
   }
