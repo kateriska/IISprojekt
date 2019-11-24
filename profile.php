@@ -80,6 +80,7 @@ require_once("fn.pwd_hash.php");
 
 
 get_profile_details($_GET['id'], $db);
+insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");
 
 
 
