@@ -83,7 +83,7 @@ function handle_profile_change($db){
 }
 
 function handle_pwd_change($db){
-  if(isset($_POST['submitpwdbutton']){
+  if(isset($_POST['submitpwdbutton'])){
     $id = $_SESSION['user_id'];
     $pwd= $_POST['pwd'];
     if ($pwd == ''){
