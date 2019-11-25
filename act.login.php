@@ -35,6 +35,7 @@ if(isset($_POST['submit_login'])){
       session_start();
       $_SESSION['user_id'] = $row['Uzivatele_ID'];
       $_SESSION['role'] = $row['role'];
+      $_SESSION['mail'] = $row['email'];
       mysqli_free_result($result);exit();
     } else{
       //some other problem
