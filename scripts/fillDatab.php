@@ -89,8 +89,8 @@ $soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev
 controlProcedures($db, $soubory_insert, $link, "insert into soubory");
 
 $ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) VALUES
-('CTZ', 'Citace a psaní odborného textu', 'Seznamuje se spravným citováním zdrojù a formálními potøebami pro psaní odborných textù. Vhodné hlavnì pro studenty, co budou psát bakaláøskou nebo diplomovou práci.', 'Typografie', 2000, 9, 14, 9),
-('CADZ', 'Základy programu CAD', 'Seznamuje se základy modelování pomocí CAD technologií. Vhodné zvlá¹tì pro zájemce z fakult strojních.', 'Strojírenství', 3500, 3, 8, 3);";
+('CTZ', 'Citace a psaní odborného textu', 'Seznamuje se správným citováním. Vhodné pro studenty na vysoké.', 'Typografie', 2000, 9, 14, 9),
+('CADZ', 'Základy programu CAD', 'Seznamuje se základy modelování pomocí CAD technologií. Vhodné pro zájemce z fakult strojních.', 'Strojírenství', 3500, 3, 8, 3);";
 controlProcedures($db, $ke_schvaleni_kurz_insert, $link, "insert into ke_schvaleni_kurz");
 
 $ke_schvaleni_student_insert = "INSERT INTO ke_schvaleni_student (Kurzy_ID, student_ID) VALUES
