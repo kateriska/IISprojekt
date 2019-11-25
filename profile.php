@@ -109,6 +109,7 @@ require_once("fn.pwd_hash.php");
 
 show_edit_profile_form($db);
 show_edit_pwd_form();
+insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");
 handle_profile_change($db);
 handle_pwd_change($db);
 ?>
