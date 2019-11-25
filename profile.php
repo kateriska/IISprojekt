@@ -74,6 +74,7 @@ function handle_profile_change($db){
 
     if ($result){
       header("Location: ./profile.php?id=$id&succ=updated");
+      $_SESSION['mail'] = $mail;
     }
     else{
       header("Location: ./profile.php?id=$id&err=sql");
