@@ -74,9 +74,9 @@ function tile_manage_users(){
   }
 }
 
-function tile_edit_profile($id){
+function tile_edit_profile(){
   if( check_rights(STUDENT) ){
-    insert_tile("Upravit profil", "./profile.php?id=$id");
+    insert_tile("Upravit profil", "./profile.php");
   }
 }
 

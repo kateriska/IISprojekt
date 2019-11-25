@@ -108,6 +108,11 @@ function handle_pwd_change($db){
 require_once("dbh.php");
 require_once("fn.pwd_hash.php");
 
+if(!isset($_SESSION['user_id'])){
+  header("Location: ./index.php?&err=noauth");
+  exit();
+}
+
 show_edit_profile_form($db);
 show_edit_pwd_form();
 insert_reverse_tile("Zpìt na hlavní pøehled", "./index.php");

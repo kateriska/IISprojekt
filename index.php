@@ -32,10 +32,7 @@
   tile_manage_rooms();                        //M
   tile_manage_users();                        //A
   tile_show_all_courses();                    //N
-  if (isset($_SESSION['user_id']))
-  {
-    tile_edit_profile($id);                        //S
-  }
+  tile_edit_profile();                        //S
 ?>
   </container>
 </body>
