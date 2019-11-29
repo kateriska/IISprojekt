@@ -1,5 +1,5 @@
 <?php
- 
+
 const STUDENT          = 1;
 const LECTURER         = 2;
 const GARANT           = 3;
@@ -97,7 +97,7 @@ function table_all_courses(){
     $nazev = htmlspecialchars($row['nazev']);
     $typ = htmlspecialchars($row['typ']);
     $cena = htmlspecialchars($row['cena']);
-    $r_table .= "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td><td>$cena</td></tr>"; 
+    $r_table .= "<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$typ</td><td>$cena</td></tr>";
   }
   $r_table .= "</table>";
   echo($r_table);
@@ -145,7 +145,7 @@ function table_users(){
     $jmeno = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
     $role = role_to_text($row['role']);
     $email = htmlspecialchars($row['email']);
-    $r_table .= "<tr><td><a href='./user?id=$id'>$jmeno</a></td><td>$role</td><td><a href='mailto:$email'>$email</a></td></tr>"; 
+    $r_table .= "<tr><td><a href='./user?id=$id'>$jmeno</a></td><td>$role</td><td><a href='mailto:$email'>$email</a></td></tr>";
   }
   $r_table .= "</table><br>";
   echo($r_table);
@@ -241,7 +241,7 @@ function table_rooms(){
     $address = htmlspecialchars($row['adresa']);
     $type =  htmlspecialchars($row['typ']);
     $capacity = htmlspecialchars($row['kapacita']);
-    $r_table .= "<tr><td><a href='./room?id=$id'>$id</a></td><td>$address</td><td>$type</td><td>$capacity</td></tr>"; 
+    $r_table .= "<tr><td><a href='./room?id=$id'>$id</a></td><td>$address</td><td>$type</td><td>$capacity</td></tr>";
   }
   $r_table .= "</table><br>";
   echo($r_table);
@@ -315,7 +315,7 @@ function compare_rows($row, $d_row, $id){
   $d_typ = htmlspecialchars($d_row['typ']);
   $d_popis = htmlspecialchars($d_row['popis']);
   $d_cena = htmlspecialchars($d_row['cena']);
-  
+
   $nazev = htmlspecialchars($row['nazev']);
   $garant_name = htmlspecialchars($row['jmeno']) ." ". htmlspecialchars($row['prijmeni']);
   $garant_mail = htmlspecialchars($row['email']);
@@ -340,7 +340,7 @@ function compare_rows($row, $d_row, $id){
   }else{
     echo("<b>Typ: </b><del>$typ</del> <ins>$d_typ</ins><br>");
   }
-  
+
   if($cena == $d_cena || $cena == '-1'){
     echo("<b>Cena: </b>$d_cena<br>");
   }else{
@@ -378,7 +378,7 @@ function course_compare_draft(){
     echo("Kurz $id nenalezen!");mysqli_free_result($d_result);
     return FALSE;
   }
-  
+
   $d_query = "SELECT nazev, popis, typ, cena, jmeno, prijmeni, email, vedouci_ID FROM ke_schvaleni_kurz JOIN uzivatele ON ke_schvaleni_kurz.garant_ID=uzivatele.Uzivatele_ID WHERE Kurzy_ID='$id'";
   $d_result = mysqli_query($db, $d_query);
   if($d_result === FALSE){ //SQL ERR
@@ -415,19 +415,19 @@ function course_compare_draft(){
 
 function insert_select_garant($current_garant){
   require("dbh.php");
-  
+
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL");
     return FALSE;
   }
-  
+
   echo("Garant*:<br><select name='garant'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $garant_id = $row['Uzivatele_ID'];
       if($garant_id == $current_garant){
-        $selected = "selected";  
+        $selected = "selected";
       }else{
         $selected = "";
       }
@@ -439,20 +439,20 @@ function insert_select_garant($current_garant){
 
 function insert_select_deputy_head($current_head){
   require("dbh.php");
-  
+
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='4' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL");
     return FALSE;
   }
-  
+
   echo("Vedoucí*:<br><select name='dep_head'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $dep_head = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
       if($dep_head == $current_head){
-        $selected = "selected";  
+        $selected = "selected";
       }else{
         $selected = "";
       }
@@ -564,7 +564,7 @@ function check_add_event($id){
   if(check_rights(ADMIN)){
     return TRUE;
   }
-  
+
   $query = "SELECT garant_ID, vedouci_ID FROM kurzy WHERE Kurzy_ID='$id'";
   require("dbh.php");
 
@@ -588,14 +588,14 @@ function course_show_add_event($id){
 
 function insert_room_select($room = ''){
   require("dbh.php");
-  
+
   $query = "SELECT Mistnosti_ID, adresa, typ FROM mistnosti ORDER BY Mistnosti_ID";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL");
     return FALSE;
   }
-  
+
   echo("Místnost:<br><select name='room'>");
   echo("<option value='' selected>---</option>");
   while( $row = mysqli_fetch_assoc($result) ){
@@ -614,14 +614,14 @@ function insert_room_select($room = ''){
 
 function insert_lector_select($lector_id = ''){
   require("dbh.php");
-  
+
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='2' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL");
     return FALSE;
   }
-  
+
   echo("Lektor*:<br><select name='lector'>");
   while( $row = mysqli_fetch_assoc($result) ){
       $lector = $row['Uzivatele_ID'];
@@ -695,7 +695,7 @@ function course_show_events($id){
       $marks = get_marks($id, $date, $time, $room, $me);
       $zapsan_marks = "<td>$marks</td>";
     }
-    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td>$zapsan_marks</tr>"; 
+    $r_table .= "<tr><td>$date</td><td>$time</td><td>$room</td><td><a href='./event?id=$id&d=$date&t=".$row['cas']."&r=$room'>$type</a></td>$zapsan_marks</tr>";
   }
   $r_table .= "</table>";
   echo($r_table);
@@ -710,7 +710,7 @@ function course_show_events($id){
       echo("<h3>Registrace do kurzu:</h3><form action='act.course_register.php' method='post'>
               <input type='hidden' name='id_user' value='$me'>
               <input type='hidden' name='id_course' value='$id'>
-              <button type='submit' name='submit_register'>Pøihlásit se do kurzu</button> 
+              <button type='submit' name='submit_register'>Pøihlásit se do kurzu</button>
             </form>");
     }else{
       echo("<h3>Registrace do kurzu:</h3><button type='button' disabled>®ádost o pøihlá¹ení odeslána...</button></br>");
@@ -721,7 +721,7 @@ function course_show_events($id){
 }
 
 function check_view_or_edit_event($row){
-  
+
   if( !isset($_SESSION['user_id'])){
     header("Location: ./course.php?id=".$row['Kurzy_ID']."&err=noauth");
     exit();
@@ -767,14 +767,15 @@ function show_edit_event($row){
 
 
   echo("<h1>Termín kurzu $id - $type</h1><br>
-        <form action='act.event_update.php' method='post'>
+        <form action='act.event_update.php' method='post' enctype ='multipart/form-data'>
           Typ:<br><input type='text' name='type' value='$type'><br>
           Datum*:<br><input type='date' name='date' value='$date'><br>
           Èas*:<br><input type='time' name='time' value='$time'><br>
           Délka trvání (minuty):<br><input type='number' name='duration' value='$duration'><br>");
           insert_room_select($room);
           insert_lector_select($lector);
-          echo("Popis:<br><textarea name='desc' >$desc</textarea><br>
+          echo("Popis:<br><textarea name='desc' >$desc</textarea><br><br>
+          Vlo¾it soubor: <input type='file' name='input_file' /><br>
           <input type='hidden' name='id' value='$id'>
           <input type='hidden' name='prev_room' value='$room'>
           <input type='hidden' name='prev_date' value='$date'>
@@ -871,12 +872,12 @@ function show_all_pending_student_registrations($id, $db){
     $where = "WHERE garant_ID = '$id' OR vedouci_ID = '$id'";
   }
 
-  $query = "SELECT ke_schvaleni_student.Kurzy_ID, nazev, jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student 
-                                                    JOIN uzivatele ON student_ID = Uzivatele_ID 
+  $query = "SELECT ke_schvaleni_student.Kurzy_ID, nazev, jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student
+                                                    JOIN uzivatele ON student_ID = Uzivatele_ID
                                                     JOIN kurzy ON kurzy.Kurzy_ID = ke_schvaleni_student.Kurzy_ID
                                                     $where
                                                     ORDER BY Kurzy_ID, prijmeni, jmeno ASC";
-  
+
   $result = mysqli_query($db, $query);
   if($result == FALSE){
     echo("CHYBA SQL ".$query);
@@ -898,7 +899,7 @@ function show_all_pending_student_registrations($id, $db){
                   <button type='submit' name='submit_confirm_student_reg' class='confirm'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg' class='reject'>Zamítnout</button>
                 </form>";
-    echo("<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$zadatel</td><td>$confirm</td></tr>"); 
+    echo("<tr><td><b>$course_id</b></td><td><a href='./course?id=$course_id'>$nazev</a></td><td>$zadatel</td><td>$confirm</td></tr>");
   }
   echo("</table><br>");
 }
@@ -909,8 +910,8 @@ function show_pending_student_registrations($course_id, $id){
     $where .= "AND ( garant_ID = '$id' OR vedouci_ID = '$id' )";
   }
 
-  $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student 
-                                                    JOIN uzivatele ON student_ID = Uzivatele_ID 
+  $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student
+                                                    JOIN uzivatele ON student_ID = Uzivatele_ID
                                                     $where
                                                     ORDER BY prijmeni, jmeno ASC";
   require('dbh.php');
@@ -933,7 +934,7 @@ function show_pending_student_registrations($course_id, $id){
                   <button type='submit' name='submit_confirm_student_reg' class='confirm'>Schválit</button>
                   <button type='submit' name='submit_reject_student_reg' class='reject'>Zamítnout</button>
                 </form>";
-    echo("<tr><td>$zadatel</td><td>$confirm</td></tr>"); 
+    echo("<tr><td>$zadatel</td><td>$confirm</td></tr>");
   }
   echo("</table><br>");
 }
