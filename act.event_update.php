@@ -37,8 +37,8 @@ if(isset($_FILES['input_file'])){
    }
 
    if(empty($errors)==true) {
-      chmod("event_files/".$file_tmp, 644);
       move_uploaded_file($file_tmp,"event_files/".$file_name);
+      chmod("event_files/".$file_name, 644);
       $file_upload = true;
    }else{
       print_r($errors);
