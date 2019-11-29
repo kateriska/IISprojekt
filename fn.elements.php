@@ -907,7 +907,7 @@ function show_all_pending_student_registrations($id, $db){
 function show_pending_student_registrations($course_id, $id){
   $where = "WHERE Kurzy_ID = '$course_id'";
   if($_SESSION['role'] != 5){
-    $where .= "AND ( garant_ID = '$id' OR vedouci_ID = '$id' )";
+    $where .= " AND ( garant_ID = '$id' OR vedouci_ID = '$id' )";
   }
 
   $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student
