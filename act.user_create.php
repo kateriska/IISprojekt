@@ -25,7 +25,7 @@ $query = "INSERT INTO uzivatele (jmeno, prijmeni, heslo, role, email) VALUES ('$
 if(mysqli_query($db, $query)){
   header("Location: ./users.php?succ=created");
 }else{
-  header("Location: ./user_create.php?err=mail_taken");
+  header("Location: ./user_create.php?err=mail_taken&mail=$mail&name=$firstname&surname=$lastname&role=$role");
 }
 exit();
 ?>

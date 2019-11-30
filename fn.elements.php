@@ -268,7 +268,7 @@ function get_modifiable_room_details($id){
               <input type='hidden' name='id' value='$id'>
               Adresa:<br><input type='text' name='address' value='$address'><br>
               Typ:<br><input type='text' name='type' value='$type'><br>
-              Kapacita*:<br><input type='number' name='capacity' value='$capacity'><br>
+              Kapacita*:<br><input type='number' name='capacity' value='$capacity' required><br>
               <button type='submit' name='room_edit_submit'>Potvrdit zmìny</button>
             </form>";
   echo($r_str);
