@@ -953,7 +953,7 @@ function check_for_adding_marks($course, $date, $time, $room, $user_id){
   }
 
   $query = "SELECT lektor_ID FROM terminy JOIN kurzy ON terminy.Kurzy_ID=kurzy.Kurzy_ID
-            WHERE ( lektor_ID='$user_id' OR  garant_ID='$user_id' OR vedouci_ID='$user_id' ) AND Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
+            WHERE ( lektor_ID='$user_id' OR  garant_ID='$user_id' OR vedouci_ID='$user_id' ) AND terminy.Kurzy_ID='$course' AND datum='$date' AND cas='$time' AND mistnost_ID='$room'";
   require('dbh.php');
   $result = mysqli_query($db, $query);
   if($result == FALSE){
