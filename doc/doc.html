@@ -30,6 +30,7 @@
 </dl>
 
 <h2>U¾ivatelé systému pro testování</h2>
+<p>Z databáze bylo vybráno pìt modelových u¾ivatelù urèených rolí. Tyto u¾ivatelé mají zjednodu¹ené loginy bez emailové adresy urèené právì pro testování. V normálním pøípadì bychom toto¾nost ovìøovali pomocí mailu.
 <table>
 <tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
 <tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
@@ -40,6 +41,7 @@
 </table>
 
 <h2>Dal¹í u¾ivatelé v systému</h2>
+<p>Dal¹í u¾ivatelé z databáze ji¾ mají login ve formì emailové adresy.</p>
 <table>
 <tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
 <tr><td>lucie.otahalova@post.cz</td><td>lota</td><td>Vedoucí</td></tr>
@@ -102,10 +104,14 @@
 <p><b>userTimetable.php</b> - rozvrh studenta a lektora</p>
 <p><b>user_create.php</b> - vytvoøení u¾ivatele</p>
 <p><b>users.php</b> - pøehled v¹ech u¾ivatelù pro administrátora</p>
+<br>
+
+<p><b>Doplòující poznámky k implementaci:</b></p>
+<p>Soubory act.* jsou èistì backendové skripty, neobsahují ¾ádné HTML.</p>
+<p>Pøi implementaci souborù podporujeme soubory o maximální velikosti 50 MB.</p>
 
 <h3>Databáze</h3>
 <p>Skript pro inicializaci databáze je ulo¾en v <b>scripts/initDatab.php</b>, naplnìní databáze modelovými údaji pak v <b>scripts/fillDatab.php</b></p>
-<p>Pro vznik databáze je potøeba souboru <b>inc.db_handl.php</b>, který je ulo¾en ve slo¾ce <b>scripts</b>.</p>
 <h4>Grafické schéma relaèní databáze (tabulek v databázi)</h4>
 <a href="schemaIIS.png" ><img src="schemaIIS.png" alt="Schema of Database" style="width:600px;"></a>
 
