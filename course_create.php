@@ -24,13 +24,13 @@
   $price = get_val('price');
   $garant = get_val('garant');
   $dep_head = get_val('dep_head');
-  $desc = get_val('description');
+  $desc = get_val('desc');
 ?>
 
   <container class="center">
   <h1>Vytvoøit nový kurz</h1>
     <form action=act.course_create.php method='post'>
-      ID*:<br><input type='text' name='id' required><br>
+      ID*:<br><input type='text' name='id' required value=<?php echo("$id"); ?>><br>
       Název*:<br><input type='text' name='name' required value=<?php echo("$name"); ?>><br>
       Typ:<br><input type='text' name='type' value=<?php echo("$type"); ?>><br>
       Cena:<br><input type='number' name='price' value=<?php echo("$price"); ?>><br>
