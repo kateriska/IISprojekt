@@ -17,8 +17,13 @@ if($price == ''){
   $price = '0';
 }
 
-if( $id == '' || $name == '' || $price < 0 ){
-  header("Location: ./course_create.php?err=empty_or_inv_fields&id=$id&name=$name&price=$price");
+if( $id == '' || $name == ''){
+  header("Location: ./course_create.php?err=empty_fields&id=$id&name=$name&type=$type&price=$price&garant=$garant&dep_head=$dep_head&desc=$desc");
+  exit();
+}
+
+if($price < 0 ){
+  header("Location: ./course_create.php?err=inv_price&id=$id&name=$name&type=$type&garant=$garant&dep_head=$dep_head&desc=$desc");
   exit();
 }
 
@@ -37,7 +42,7 @@ if( !mysqli_query($db, $query) ){
 $query = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) 
 VALUES ('$id', '$name', '$desc', '$type', '$price', '$garant', '$dep_head', '$my_id')";
 if( !mysqli_query($db, $query) ){
-  header("Location: ./course_create.php?err=id_taken");
+  header("Location: ./course_create.php?err=id_taken&name=$name&type=$type&price=$price&garant=$garant&dep_head=$dep_head&desc=$desc");
 }else{
   header("Location: ./courses.php?succ=created");
 }

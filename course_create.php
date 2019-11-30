@@ -17,6 +17,7 @@
   }
   insert_login_bar();
   alert_if('id_taken', 'ID kurzu zabráno, zvolte prosím jiné');
+  alert_if('inv_price', 'Cena musí být nezáporná.');
   $name = get_val('name');
   $type = get_val('type');
   $price = get_val('price');
