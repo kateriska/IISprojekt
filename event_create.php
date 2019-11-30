@@ -32,10 +32,10 @@
   <container class="center">
   <h1>Vytvoøit nový termín kurzu <?php echo($_GET['id'])?></h1>
     <form action=act.event_create.php method='post'>
-      Typ:<br><input type='text' name='type' value=<?php echo($type) ?><br>
-      Datum*:<br><input type='date' name='date' required value=<?php echo($date) ?><br>
-      Èas*:<br><input type='time' name='time' required value=<?php echo($time) ?><br>
-      Délka trvání (minuty):<br><input type='number' name='duration' value=<?php echo($dur) ?><br>
+      Typ:<br><input type='text' name='type' value=<?php echo($type) ?>><br>
+      Datum*:<br><input type='date' name='date' required value=<?php echo($date) ?>><br>
+      Èas*:<br><input type='time' name='time' required value=<?php echo($time) ?>><br>
+      Délka trvání (minuty):<br><input type='number' name='duration' value=<?php echo($dur) ?>><br>
       <?php
         insert_room_select($room);
         insert_lector_select($lector);
