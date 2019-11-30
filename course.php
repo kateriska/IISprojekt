@@ -12,6 +12,7 @@
 <?php
   session_start();  
   insert_login_bar();
+  alert_if('noauth', 'Nemáte dostateènou autorizaci (pro zobrazení termínu musíte být zapsán, nebo ho vyuèovat)');
 ?>
 
   <container class="center">
