@@ -19,6 +19,7 @@
     header("Location: ./users.php");
     exit();
   }
+  alert_if('no_selfdelete', "Nemù¾ete smazat sami sebe!");
   insert_login_bar();
 ?>
 
