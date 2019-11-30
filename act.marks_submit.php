@@ -21,7 +21,6 @@ for($i=1; $i<=$inputs; $i++){
   $query = "REPLACE INTO hodnoceni (Kurzy_ID, datum, cas, mistnost_ID, student_ID, hodnoceni, hodnotil_ID)
                   VALUES ('$course', '$date', '$time', '$room', '$student', '$marks', '$me')";
   $result = mysqli_query($db, $query);
-  echo($query);
   if($result == FALSE){
     header("Location: ./marks.php?id=$course&d=$date&t=$time&r=$room&err=error");
     exit();

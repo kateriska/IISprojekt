@@ -21,7 +21,7 @@ $query = "INSERT INTO mistnosti (Mistnosti_ID, adresa, typ, kapacita) VALUES ('$
 if(mysqli_query($db, $query)){
   header("Location: ./rooms.php?succ=created");
 }else{
-  header("Location: ./room_create.php?err=id_taken");
+  header("Location: ./room_create.php?err=id_taken?id=$id&add=$address&type=$type&cap=$capacity");
 }
 exit();
 ?>
