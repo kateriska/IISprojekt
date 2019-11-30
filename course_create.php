@@ -18,6 +18,7 @@
   insert_login_bar();
   alert_if('id_taken', 'ID kurzu zabráno, zvolte prosím jiné');
   alert_if('inv_price', 'Cena musí být nezáporná.');
+  $id = get_val('id')
   $name = get_val('name');
   $type = get_val('type');
   $price = get_val('price');
@@ -34,8 +35,8 @@
       Typ:<br><input type='text' name='type' value=<?php echo("$type"); ?>><br>
       Cena:<br><input type='number' name='price' value=<?php echo("$price"); ?>><br>
             <?php 
-        insert_select_garant($_SESSION['user_id']); 
-        insert_select_deputy_head($_SESSION['user_id']);
+        insert_select_garant($_SESSION['user_id'], $garant); 
+        insert_select_deputy_head($_SESSION['user_id'], $dep_head);
             ?>
       Popis:<br><textarea name='description' ><?php echo("$desc"); ?></textarea><br>
       <button type='submit' name='course_create_submit'>Vytvoøit</button>

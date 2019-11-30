@@ -413,8 +413,11 @@ function course_compare_draft(){
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
-function insert_select_garant($current_garant){
+function insert_select_garant($current_garant, $value){
   require("dbh.php");
+  if($value != ''){
+    $current_garant = $value;
+  }
 
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='3' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
@@ -423,7 +426,7 @@ function insert_select_garant($current_garant){
     return FALSE;
   }
 
-  echo("Garant*:<br><select name='garant'>");
+  echo("Garant*:<br><select name='garant' required>");
   while( $row = mysqli_fetch_assoc($result) ){
       $garant_id = $row['Uzivatele_ID'];
       if($garant_id == $current_garant){
@@ -437,8 +440,11 @@ function insert_select_garant($current_garant){
   echo("</select><br>");
 }
 
-function insert_select_deputy_head($current_head){
+function insert_select_deputy_head($current_head, $value){
   require("dbh.php");
+  if($value != ''){
+    $current_head = $value;
+  }
 
   $query = "SELECT Uzivatele_ID, jmeno, prijmeni FROM uzivatele WHERE role>='4' ORDER BY prijmeni, jmeno";
   $result = mysqli_query($db, $query);
@@ -447,7 +453,7 @@ function insert_select_deputy_head($current_head){
     return FALSE;
   }
 
-  echo("Vedoucí*:<br><select name='dep_head'>");
+  echo("Vedoucí*:<br><select name='dep_head' required>");
   while( $row = mysqli_fetch_assoc($result) ){
       $dep_head = $row['Uzivatele_ID'];
       $name = $row['prijmeni'] .", ". $row['jmeno'];
