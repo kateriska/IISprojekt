@@ -16,6 +16,7 @@
     exit();
   }
   insert_login_bar();
+  alert_if('empty_or_inv_fields', 'Vyplòte prosím v¹echna povinná pole (oznaèena *)');
 ?>
 
   <container class="center">

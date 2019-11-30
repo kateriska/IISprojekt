@@ -1045,4 +1045,14 @@ while($row = $result->fetch_assoc())
 echo "</table><br>";
 }
 }
+
+function alert_if($err_type, $alert_text){
+  if(isset($_GET['err'])){
+    if($_GET['err'] == $err_type){
+      echo("<script>alert('$alert_text');</script>");
+    }
+    return TRUE;
+  }
+  return FALSE;
+}
 ?>
