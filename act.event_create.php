@@ -103,12 +103,12 @@ $lector = $_POST['lector'];
 $desc = $_POST['description'];
 
 if( $id == '' || $date == ''  ||  $lector == '' ){
-  header("Location: ./event_create.php?err=empty_fields");
+  header("Location: ./event_create.php?err=empty_fields&id=$id");
   exit();
 }
 
 if( $duration < '0' && $duration != '' ){
-  header("Location: ./event_create.php?err=inv_fields&type=$type&date=$date&time=$time&room=$room&lector=$lector&desc=$desc");
+  header("Location: ./event_create.php?err=inv_fields&id=$id&type=$type&date=$date&time=$time&room=$room&lector=$lector&desc=$desc");
   exit();
 }
 
