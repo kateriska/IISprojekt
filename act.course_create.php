@@ -30,7 +30,7 @@ $my_id = $_SESSION['user_id'];
 $query = "INSERT INTO kurzy (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID) 
 VALUES ('$id', 'Nový kurz, èeká na schválení', '', '', '-1', '$garant', '$dep_head')";
 if( !mysqli_query($db, $query) ){
-  header("Location: ./course_create.php?err=id_taken");
+  header("Location: ./course_create.php?err=id_taken&name=$name&type=$type&price=$price&garant=$garant&dep_head=$dep_head&desc=$desc");
   exit();
 }
 
