@@ -25,8 +25,8 @@
   <container class="center">
   <h1>Vytvoøit nového u¾ivatele</h1>
     <form action=act.user_create.php method='post'>
-      Jméno*:<br><input type='text' name='firstname' required><br>
-      Pøíjmení*:<br><input type='text' name='lastname' required><br>
+      Jméno*:<br><input type='text' name='firstname' required value="<?php echo($name);?>"><br>
+      Pøíjmení*:<br><input type='text' name='lastname' required value="<?php echo($surname);?>"><br>
       Role*:<br><select name='role'>
         <option value='1' selected>Student</option>
         <option value='2'>Lektor</option>
@@ -34,7 +34,7 @@
         <option value='4'>Vedoucí</option>
         <option value='5'>Administrátor</option>
       </select><br>
-      Email*:<br><input type='text' name='mail' required><br>
+      Email*:<br><input type='text' name='mail' required value="<?php echo($mail);?>"><br>
       Heslo*:<br><input type='password' name='pwd' required><br>
       <button type='submit' name='user_create_submit'>Vytvoøit</button>
     </form>
