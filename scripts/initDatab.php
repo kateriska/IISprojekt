@@ -121,7 +121,7 @@ $soubory_tb = "CREATE TABLE soubory (
   datum date,
   cas time(6),
   mistnost_ID varchar(15) COLLATE utf8mb4_unicode_520_ci,
-  nazev_souboru varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  nazev_souboru varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (Kurzy_ID, datum, cas, mistnost_ID),
   CONSTRAINT soubory_fk_mistnosti
     FOREIGN KEY (Kurzy_ID, datum, cas, mistnost_ID)

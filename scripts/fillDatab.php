@@ -83,12 +83,6 @@ $zapsane_kurzy_insert = "INSERT INTO zapsane_kurzy (Kurzy_ID, student_ID) VALUES
 ('VID',6);";
 controlProcedures($db, $zapsane_kurzy_insert, $link, "insert into zapsane_kurzy");
 
-/*
-$soubory_insert = "INSERT INTO soubory (Kurzy_ID, datum, cas, mistnost_ID, nazev) VALUES
-('CADZ', '2019-10-18', '12:30:00.000000', 'F202', 'Úvodní materiál k prvním hodinám', 'www.kurzy/cadz.pdf', 'pro zapsane'),
-('CADZ', '2019-11-30', '15:00:00.000000', '', '©ablona k DÚ', 'www.cad.cz/sablona.pdf', 'pro zapsane');";
-controlProcedures($db, $soubory_insert, $link, "insert into soubory");
-*/
 $ke_schvaleni_kurz_insert = "INSERT INTO ke_schvaleni_kurz (Kurzy_ID, nazev, popis, typ, cena, garant_ID, vedouci_ID, zadatel_ID) VALUES
 ('CTZ', 'Citace a psaní odborného textu', 'Seznamuje se správným citováním. Vhodné pro studenty na vysoké.', 'Typografie', 2000, 9, 14, 9),
 ('CADZ', 'Základy programu CAD', 'Seznamuje se základy modelování pomocí CAD technologií. Vhodné pro zájemce z fakult strojních.', 'Strojírenství', 3500, 3, 8, 3);";
