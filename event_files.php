@@ -16,7 +16,7 @@ function get_event_files($id, $date, $time, $room)
     while($row = $result->fetch_assoc())
     {
       $filename =  htmlspecialchars($row['nazev_souboru']);
-      echo "<tr><td><a href='./event_files/$filename'>$filename</a></td></tr>";
+      echo "<tr><td><a href='./event_files/$filename' download>$filename</a></td></tr>";
     }
     echo "</table><br>";
   }
