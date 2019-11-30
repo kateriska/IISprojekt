@@ -28,7 +28,7 @@ if(isset($_POST['submit_login'])){
     $pwd_check = pwd_verify($pwd, $row['heslo']);
     if($pwd_check === FALSE){
       //wrong pwd
-      header("Location: ./index.php?err=pwd?mail=$mail" );
+      header("Location: ./index.php?err=pwd&mail=$mail" );
       mysqli_free_result($result); exit();
     } else if($pwd_check === TRUE){
       header("Location: ./index.php?success=login");
@@ -39,7 +39,7 @@ if(isset($_POST['submit_login'])){
       mysqli_free_result($result);exit();
     } else{
       //some other problem
-      header("Location: ./index.php?err=boolError?mail=$mail");
+      header("Location: ./index.php?err=boolError&mail=$mail");
       mysqli_free_result($result);exit();
     }
    }
