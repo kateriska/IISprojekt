@@ -37,7 +37,7 @@ function room_event($id, $date, $time, $duration, $room, $db, $desc, $type, $lec
     }else if($r_start_ts >= $end_timestamp && $r_end_ts > $end_timestamp){
       break; 
     }else{
-      header("Location: ./event_create.php?id=$id&err=clash&course=" .$row['Kurzy_ID']. "&typ_termin=" .$row['typ_termin']);
+      header("Location: ./event_create.php?id=$id&err=clash&cl_course=" .$row['Kurzy_ID']. "&cl_ev_type=" .$row['typ_termin'] . "&type=$type&date=$date&time=$time&room=$room&lector=$lector&desc=$desc&dur=$duration");
       exit();
     }
   }
@@ -104,6 +104,11 @@ $desc = $_POST['description'];
 
 if( $id == '' || $date == ''  ||  $lector == '' ){
   header("Location: ./course_create.php?err=empty_fields");
+  exit();
+}
+
+if( $duration < '0' && $duration != '' ){
+  header("Location: ./course_create.php?err=inv_fields&type=$type&date=$date&time=$time&room=$room&lector=$lector&desc=$desc");
   exit();
 }
 
