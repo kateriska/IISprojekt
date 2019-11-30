@@ -912,6 +912,7 @@ function show_pending_student_registrations($course_id, $id){
 
   $query = "SELECT jmeno, prijmeni, email, student_ID  FROM ke_schvaleni_student
                                                     JOIN uzivatele ON student_ID = Uzivatele_ID
+                                                    JOIN kurzy ON kurzy.Kurzy_ID = ke_schvaleni_kurzy.Kurzy_ID
                                                     $where
                                                     ORDER BY prijmeni, jmeno ASC";
   require('dbh.php');
