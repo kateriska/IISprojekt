@@ -189,8 +189,8 @@ function get_modifiable_user_details($id){
   $lastname = $row['prijmeni'];
   $mail = $row['email'];
   $r_str = "<h2>Upravit údaje</h2><form action=act.user_update.php method='post'>
-              Jméno*:<br><input type='text' name='firstname' value='$firstname'><br>
-              Pøíjmení*:<br><input type='text' name='lastname' value='$lastname'><br>
+              Jméno*:<br><input type='text' name='firstname' value='$firstname' required><br>
+              Pøíjmení*:<br><input type='text' name='lastname' value='$lastname' required><br>
               Role*:<br><select name='role'>
                 <option value='1'$s1>Student</option>
                 <option value='2'$s2>Lektor</option>
@@ -198,7 +198,7 @@ function get_modifiable_user_details($id){
                 <option value='4'$s4>Vedoucí</option>
                 <option value='5'$s5>Administrátor</option>
               </select><br>
-              Email*:<br><input type='text' name='mail' value='$mail'><br>
+              Email*:<br><input type='text' name='mail' value='$mail' required><br>
               <input type='hidden' name='id' value='$id'>
               <button type='submit' name='user_edit_submit'>Potvrdit zmìny</button>
             </form>";
@@ -207,7 +207,7 @@ function get_modifiable_user_details($id){
 
 function get_user_set_pwd($id){
   $r_str = "<h2>Zmìnit heslo u¾ivatele</h2><form action=act.user_pwd_update.php method='post'>
-              Nové heslo:<br><input type='text' name='pwd'><br>
+              Nové heslo:<br><input type='text' name='pwd' required><br>
               <input type='hidden' name='id' value='$id'>
               <button type='submit' name='user_set_pwd_submit'>Potvrdit zmìnu</button>
             </form>";

@@ -20,6 +20,7 @@
     exit();
   }
   alert_if('no_selfdelete', "Nemù¾ete smazat sami sebe!");
+  alert_if('mail_taken', "Email je v systému ji¾ pou¾íván");
   insert_login_bar();
 ?>
 
