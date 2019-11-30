@@ -39,6 +39,7 @@ prijmeni varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 heslo varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
 role int NOT NULL,
 email varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+UNIQUE (email),
 PRIMARY KEY (Uzivatele_ID)
 ) ENGINE=InnoDB";
 controlProcedures($db, $uzivatele_tb, $link, "create uzivatele");
