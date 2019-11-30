@@ -13,6 +13,9 @@
 <?php
   session_start();
   insert_login_bar();
+  alert_if('room_occupied', "Místnost je v tuto dobu zabrána");
+  alert_if('inv_dur', "Doba trvání nesmí být záporná");
+  alert_if('l_file', "Soubor nesmí být vìt¹í ne¾ 50MB");
 ?>
 
   <container class="center">

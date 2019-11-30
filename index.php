@@ -12,7 +12,9 @@
 <body>
 <?php
   session_start();
-  insert_login_bar();
+  $mail = get_val('mail');
+  insert_login_bar($mail);
+  alert_if('pwd', "Vlo¾eno nesprávné heslo");
 ?>
 
   <container class="center">

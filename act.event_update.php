@@ -18,31 +18,32 @@ $prev_date = $_POST['prev_date'];
 $prev_time = $_POST['prev_time'];
 
 
-if( $id == ''|| $date == '' || $time == ''|| ($duration < '0' && $duration != '') ){
+if( $id == ''|| $date == '' || $time == '' ){
   header("Location: ./event.php?id=$id&d=$date&t=$time&r=$room&err=empty_fields");
+  exit();
+}
+
+if($duration < '0' && $duration != ''){
+  header("Location: ./event.php?id=$id&d=$date&t=$time&r=$room&err=inv_dur");
   exit();
 }
 
 if(isset($_FILES['input_file'])){
 
-   $errors= array();
-   $file_name = $_FILES['input_file']['name'];
-   $file_size = $_FILES['input_file']['size'];
-   $file_tmp = $_FILES['input_file']['tmp_name'];
-   $file_type = $_FILES['input_file']['type'];
-   $file_ext=strtolower(end(explode('.',$_FILES['input_file']['name'])));
+  $file_name = $_FILES['input_file']['name'];
+  $file_size = $_FILES['input_file']['size'];
+  $file_tmp = $_FILES['input_file']['tmp_name'];
+  $file_type = $_FILES['input_file']['type'];
+  $file_ext=strtolower(end(explode('.',$_FILES['input_file']['name'])));
 
-   if($file_size > 52428800) {
-      $errors[]='Chyba - Soubor je vìt¹í jak 50 MB!';
-   }
+  if($file_size > 52428800) {
+    header("Location: ./event.php?id=$id&d=$date&t=$time&r=$room&err=l_file");
+    exit();
+  }
 
-   if(empty($errors)==true) {
-      move_uploaded_file($file_tmp,"event_files/".$file_name);
-      chmod("event_files/".$file_name, 644);
-      $file_upload = true;
-   }else{
-      print_r($errors);
-   }
+  move_uploaded_file($file_tmp,"event_files/".$file_name);
+  chmod("event_files/".$file_name, 644);
+  $file_upload = true;
 }
 
 require_once("dbh.php");
@@ -81,7 +82,8 @@ if ($file_upload == true)
           VALUES ('$id', '$date', '$time', '$room', '$file_name')";
   $result = mysqli_query($db, $query);
   if($result == FALSE){
-    echo "Chyba vkladani souboru";
+    header("Location: ./event.php?id=$id&d=$prev_date&t=$prev_time&r=$prev_room&err=file_sql");
+    exit();
   }
 
 }
