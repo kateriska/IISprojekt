@@ -17,12 +17,12 @@
   }
   insert_login_bar();
   alert_if('id_taken', 'ID kurzu zabráno, zvolte prosím jiné');
-  $name = $_GET['name'];
-  $type = $_GET['type'];
-  $price = $_GET['price'];
-  $garant = $_GET['garant'];
-  $dep_head = $_GET['dep_head'];
-  $desc = $_GET['description'];
+  $name = get_val('name');
+  $type = get_val('type');
+  $price = get_val('price');
+  $garant = get_val('garant');
+  $dep_head = get_val('dep_head');
+  $desc = get_val('description');
 ?>
 
   <container class="center">

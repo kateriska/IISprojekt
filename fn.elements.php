@@ -1055,4 +1055,12 @@ function alert_if($err_type, $alert_text){
   }
   return FALSE;
 }
+
+function get_val($str){
+  if(isset($_GET[$str])){
+    return $_GET[$str];
+  }
+
+  return '';
+}
 ?>
