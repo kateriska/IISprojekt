@@ -40,7 +40,7 @@ function insert_login_bar($mail = ''){
   }else{
     echo("<container id='login_bar'>
           <form id='login' action='act.login.php' method='post'>
-            <input type='text' name='mail' placeholder='Email' value=$mail>
+            <input type='text' name='mail' placeholder='Email' value='$mail'>
             <input type='password' name='pwd' placeholder='Heslo'>
             <button type='submit' name='submit_login'>Login</button>
           </form>
