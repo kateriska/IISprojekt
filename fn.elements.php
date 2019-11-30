@@ -413,7 +413,7 @@ function course_compare_draft(){
   mysqli_free_result($result); mysqli_free_result($d_result);return TRUE;
 }
 
-function insert_select_garant($current_garant, $value){
+function insert_select_garant($current_garant, $value = ''){
   require("dbh.php");
   if($value != ''){
     $current_garant = $value;
@@ -440,7 +440,7 @@ function insert_select_garant($current_garant, $value){
   echo("</select><br>");
 }
 
-function insert_select_deputy_head($current_head, $value){
+function insert_select_deputy_head($current_head, $value = ''){
   require("dbh.php");
   if($value != ''){
     $current_head = $value;
